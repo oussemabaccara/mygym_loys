@@ -123,10 +123,17 @@ on_add_ajouter_clicked                 (GtkWidget       *objet,
 
  strcpy(p.role,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox1)));
  
- //Conditions manquantes!!(Identifiant unique && cases non vides)	 
- 	ajouter_personne(p);
- 	gtk_label_set_text(GTK_LABEL(output),"Ajout réussi!");
-
+ //Condition manquante!!(cases non vides)
+ int v;
+ v=exist(p.id);
+ if(v==1)
+	 gtk_label_set_text(GTK_LABEL(output),"L'identifiant existe");
+ else
+	{
+	 ajouter_personne(p);
+	 gtk_label_set_text(GTK_LABEL(output),"Ajout réussi!");
+	}
+	 
 }
 
 

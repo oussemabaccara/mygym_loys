@@ -10,6 +10,27 @@
 #include "personne.h"
 #include <gtk/gtk.h>
 
+int exist(char user[])
+{
+ Personne p;
+ FILE*f;
+ int exist=-1;
+
+ f=fopen("utilisateur.txt" , "r");
+ if (f!=NULL)
+	{
+	 while (fscanf(f,"%s " , p.id)!=EOF)
+		{
+		 if (strcmp(user,p.id)==0 )
+			 exist=1;	
+		}
+	}
+
+ fclose(f);
+
+ return(exist);						
+}
+
 enum   
 {       
  IDENTIFIANT,
