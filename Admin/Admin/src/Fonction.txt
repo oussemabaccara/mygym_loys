@@ -1,0 +1,46 @@
+//Procedure tekhou : Esm lfichier li bech tbadlou / El ligne el jdida li bech thotha / Numero mtaa el ligne le9dima li theb tbadalha
+
+void Rpl(char fname[],char newln[],int lno)
+{
+    FILE *fptr1, *fptr2;
+        int linectr = 0;
+        char str[MAX];
+        char temp[] = "temp.txt";
+
+        fptr1 = fopen(fname, "r");
+        if (!fptr1)
+        {
+                printf("Unable to open the input file!!\n");
+
+        }
+        fptr2 = fopen(temp, "w");
+        if (!fptr2)
+        {
+                printf("Unable to open a temporary file to write!!\n");
+                fclose(fptr1);
+
+        }
+
+        while (!feof(fptr1))
+        {
+            strcpy(str, "\0");
+            fgets(str, MAX, fptr1);
+            if (!feof(fptr1))
+            {
+                linectr++;
+                if (linectr != lno)
+                    {
+                        fprintf(fptr2, "%s", str);
+                    }
+                    else
+                    {
+                        fprintf(fptr2, "%s", newln);
+                        fprintf(fptr2, "%s","\n");
+                    }
+                }
+        }
+        fclose(fptr1);
+        fclose(fptr2);
+        remove(fname);
+        rename(temp, fname);
+}
