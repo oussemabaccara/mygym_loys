@@ -119,7 +119,6 @@ on_add_ajouter_clicked                 (GtkWidget       *objet,
                                         gpointer         user_data)
 {
  Personne p;
- compte cpt;
 
  GtkWidget *input1, *input2,*input3;
  GtkWidget *combobox1;
@@ -187,7 +186,60 @@ on_list_upd_clicked                    (GtkWidget       *objet,
  gtk_widget_destroy(list);
 }
 
+// Modifier un compte -> Chercher
+void
+on_search_acc_clicked                  (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+ char id[30];
+ Personne p;
 
+ GtkWidget *input1, *input2,*input3;
+ GtkWidget *combobox;
+ GtkWidget *jour;
+ GtkWidget *mois;
+ GtkWidget *annee;
+ GtkWidget *edit_acc;
+ GtkWidget *output;
+
+ edit_acc=lookup_widget(objet,"edit_acc");
+
+ input1=lookup_widget(objet,"edit_id");
+ input2=lookup_widget(objet,"edit_last");
+ input3=lookup_widget(objet,"edit_first");
+
+ jour=lookup_widget(objet, "spinday");
+ mois=lookup_widget(objet, "spinmonth");
+ annee=lookup_widget(objet, "spinyear");
+
+ combobox=lookup_widget(objet,"comborole");
+
+ strcpy(id,gtk_entry_get_text(GTK_ENTRY(input1)));
+ p=get_personne(id);
+ gtk_entry_set_text (GTK_ENTRY(input2),p.nom);
+ gtk_entry_set_text (GTK_ENTRY(input3),p.prenom);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(jour),p.date.jour);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(mois),p.date.mois);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(annee),p.date.annee);
+}
+
+
+void
+on_edit_acc_return_clicked             (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+ GtkWidget *edit_acc;
+ GtkWidget *list;
+ GtkWidget *treeview1;
+
+ edit_acc=lookup_widget(objet,"edit_acc");
+ list=create_list();
+
+ gtk_widget_show(list);
+ treeview1=lookup_widget(list,"treeview1");
+ afficher_personne(treeview1);
+ gtk_widget_destroy(edit_acc);
+}
 
 // Espace Admin -> Gestion des activités
 void
@@ -330,29 +382,5 @@ on_stats_return_clicked                (GtkWidget       *objet,
 }
 
 
-void
-on_search_acc_clicked                  (GtkWidget       *objet,
-                                        gpointer         user_data)
-{
- //gtk_entry_set_text (GTK_ENTRY(input1),p.nom);
- //gtk_spin_button_set_value(GTK_SPIN_BUTTON(jourr),p.date.jour);
-}
 
-
-void
-on_edit_acc_return_clicked             (GtkWidget       *objet,
-                                        gpointer         user_data)
-{
- GtkWidget *edit_acc;
- GtkWidget *list;
- GtkWidget *treeview1;
-
- edit_acc=lookup_widget(objet,"edit_acc");
- list=create_list();
-
- gtk_widget_show(list);
- treeview1=lookup_widget(list,"treeview1");
- afficher_personne(treeview1);
- gtk_widget_destroy(edit_acc);
-}
 

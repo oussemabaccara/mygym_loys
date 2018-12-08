@@ -2313,7 +2313,7 @@ Kinésithérapeute</property>
       <property name="visible">True</property>
 
       <child>
-	<widget class="GtkEntry" id="entry3">
+	<widget class="GtkEntry" id="edit_last">
 	  <property name="width_request">300</property>
 	  <property name="height_request">30</property>
 	  <property name="visible">True</property>
@@ -2327,13 +2327,13 @@ Kinésithérapeute</property>
 	  <property name="activates_default">False</property>
 	</widget>
 	<packing>
-	  <property name="x">300</property>
-	  <property name="y">100</property>
+	  <property name="x">304</property>
+	  <property name="y">104</property>
 	</packing>
       </child>
 
       <child>
-	<widget class="GtkEntry" id="entry4">
+	<widget class="GtkEntry" id="edit_first">
 	  <property name="width_request">300</property>
 	  <property name="height_request">30</property>
 	  <property name="visible">True</property>
@@ -2347,13 +2347,13 @@ Kinésithérapeute</property>
 	  <property name="activates_default">False</property>
 	</widget>
 	<packing>
-	  <property name="x">300</property>
-	  <property name="y">150</property>
+	  <property name="x">304</property>
+	  <property name="y">152</property>
 	</packing>
       </child>
 
       <child>
-	<widget class="GtkSpinButton" id="spinbutton4">
+	<widget class="GtkSpinButton" id="spinday">
 	  <property name="width_request">60</property>
 	  <property name="height_request">30</property>
 	  <property name="visible">True</property>
@@ -2373,7 +2373,7 @@ Kinésithérapeute</property>
       </child>
 
       <child>
-	<widget class="GtkSpinButton" id="spinbutton5">
+	<widget class="GtkSpinButton" id="spinyear">
 	  <property name="width_request">75</property>
 	  <property name="height_request">30</property>
 	  <property name="visible">True</property>
@@ -2393,7 +2393,7 @@ Kinésithérapeute</property>
       </child>
 
       <child>
-	<widget class="GtkSpinButton" id="spinbutton6">
+	<widget class="GtkSpinButton" id="spinmonth">
 	  <property name="width_request">60</property>
 	  <property name="height_request">30</property>
 	  <property name="visible">True</property>
@@ -2595,7 +2595,7 @@ Kinésithérapeute</property>
       </child>
 
       <child>
-	<widget class="GtkEntry" id="entry5">
+	<widget class="GtkEntry" id="edit_id">
 	  <property name="width_request">300</property>
 	  <property name="height_request">30</property>
 	  <property name="visible">True</property>
@@ -2689,25 +2689,6 @@ Kinésithérapeute</property>
 	<packing>
 	  <property name="x">552</property>
 	  <property name="y">320</property>
-	</packing>
-      </child>
-
-      <child>
-	<widget class="GtkComboBox" id="combobox2">
-	  <property name="width_request">300</property>
-	  <property name="height_request">30</property>
-	  <property name="visible">True</property>
-	  <property name="items" translatable="yes" context="yes">Adhérent
-Coach
-Médcin_généraliste
-Médecin_nutritionniste
-Kinésithérapeute</property>
-	  <property name="add_tearoffs">False</property>
-	  <property name="focus_on_click">True</property>
-	</widget>
-	<packing>
-	  <property name="x">300</property>
-	  <property name="y">250</property>
 	</packing>
       </child>
 
@@ -2976,6 +2957,25 @@ Kinésithérapeute</property>
 	<packing>
 	  <property name="x">350</property>
 	  <property name="y">320</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkComboBox" id="comborole">
+	  <property name="width_request">300</property>
+	  <property name="height_request">30</property>
+	  <property name="visible">True</property>
+	  <property name="items" translatable="yes" context="yes">Adhérent
+Coach
+Médcin_généraliste
+Médecin_nutritionniste
+Kinésithérapeute</property>
+	  <property name="add_tearoffs">False</property>
+	  <property name="focus_on_click">True</property>
+	</widget>
+	<packing>
+	  <property name="x">300</property>
+	  <property name="y">250</property>
 	</packing>
       </child>
     </widget>

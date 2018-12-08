@@ -7,9 +7,32 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "personne.h"
-#include "acct.h"
 #include <gtk/gtk.h>
+
+#define MAX 256
+
+Personne get_personne(char ide[30])
+{
+    Personne p ;
+    FILE *f;
+    
+    
+    f=fopen("utilisateur.txt","r");
+    if(f!=NULL)
+    {
+        while(fscanf(f,"%s %s %s %d %d %d %s ",&p.id,&p.nom,&p.prenom,
+        &p.date.jour,&p.date.mois,&p.date.annee,&p.role)!=EOF)
+        {
+            
+            if (strcmp(p.id,ide)==0)
+            {
+                return(p);
+            }
+        }
+    }
+}
 
 int exist(char user[])
 {
@@ -52,7 +75,7 @@ void ajouter_personne(Personne p)
  f=fopen("utilisateur.txt","a+");
  if(f!=NULL) 
 	{
-	 fprintf(f,"%s %s %s %d/%d/%d %s \n" ,p.id,p.nom,p.prenom,p.date.jour,p.date.mois,p.date.annee,p.role);
+	 fprintf(f,"%s %s %s %d %d %d %s \n" ,p.id,p.nom,p.prenom,p.date.jour,p.date.mois,p.date.annee,p.role);
 	 fclose(f);
 	}
  FILE *f1;
@@ -84,6 +107,9 @@ void afficher_personne(GtkWidget *liste)
  char nom [30];
  char prenom [30];
  char id[30];
+ char jour[30];
+ char mois[30];
+ char annee[30];
  char date[30];
  char role[30];
  store=NULL;
@@ -130,8 +156,11 @@ void afficher_personne(GtkWidget *liste)
  else 
 	{
  	 f = fopen("utilisateur.txt", "a+");
-	 while(fscanf(f,"%s %s %s %s %s \n",id,nom,prenom,date,role)!=EOF)
+	 while(fscanf(f,"%s %s %s %s %s %s %s \n",id,nom,prenom,jour,mois,annee,role)!=EOF)
 		{
+		 strcpy(date,jour);strcat(date,"/");
+		 strcat(date,mois);strcat(date,"/");
+		 strcat(date,annee);
 		 gtk_list_store_append (store, &iter);
 		 gtk_list_store_set (store,&iter,IDENTIFIANT,id,NOM,nom,PRENOM,prenom,DATE,date,ROLE,role,-1); 
 		}
