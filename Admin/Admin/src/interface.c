@@ -1089,12 +1089,12 @@ create_edit_acc (void)
   GtkWidget *hbox15;
   GtkWidget *image30;
   GtkWidget *label38;
-  GtkWidget *edit_account;
+  GtkWidget *comborole;
+  GtkWidget *EDIT;
   GtkWidget *alignment16;
   GtkWidget *hbox16;
   GtkWidget *image33;
   GtkWidget *label39;
-  GtkWidget *comborole;
 
   edit_acc = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (edit_acc, 800, 450);
@@ -1247,14 +1247,24 @@ create_edit_acc (void)
   gtk_widget_show (label38);
   gtk_box_pack_start (GTK_BOX (hbox15), label38, FALSE, FALSE, 0);
 
-  edit_account = gtk_button_new ();
-  gtk_widget_show (edit_account);
-  gtk_fixed_put (GTK_FIXED (fixed8), edit_account, 350, 320);
-  gtk_widget_set_size_request (edit_account, 152, 32);
+  comborole = gtk_combo_box_new_text ();
+  gtk_widget_show (comborole);
+  gtk_fixed_put (GTK_FIXED (fixed8), comborole, 300, 250);
+  gtk_widget_set_size_request (comborole, 300, 30);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Adh\303\251rent"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Coach"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("M\303\251dcin_g\303\251n\303\251raliste"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("M\303\251decin_nutritionniste"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Kin\303\251sith\303\251rapeute"));
+
+  EDIT = gtk_button_new ();
+  gtk_widget_show (EDIT);
+  gtk_fixed_put (GTK_FIXED (fixed8), EDIT, 350, 320);
+  gtk_widget_set_size_request (EDIT, 152, 32);
 
   alignment16 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment16);
-  gtk_container_add (GTK_CONTAINER (edit_account), alignment16);
+  gtk_container_add (GTK_CONTAINER (EDIT), alignment16);
 
   hbox16 = gtk_hbox_new (FALSE, 2);
   gtk_widget_show (hbox16);
@@ -1268,16 +1278,6 @@ create_edit_acc (void)
   gtk_widget_show (label39);
   gtk_box_pack_start (GTK_BOX (hbox16), label39, FALSE, FALSE, 0);
 
-  comborole = gtk_combo_box_new_text ();
-  gtk_widget_show (comborole);
-  gtk_fixed_put (GTK_FIXED (fixed8), comborole, 300, 250);
-  gtk_widget_set_size_request (comborole, 300, 30);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Adh\303\251rent"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Coach"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("M\303\251dcin_g\303\251n\303\251raliste"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("M\303\251decin_nutritionniste"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Kin\303\251sith\303\251rapeute"));
-
   g_signal_connect ((gpointer) button15, "clicked",
                     G_CALLBACK (gtk_main_quit),
                     NULL);
@@ -1287,8 +1287,8 @@ create_edit_acc (void)
   g_signal_connect ((gpointer) edit_acc_return, "clicked",
                     G_CALLBACK (on_edit_acc_return_clicked),
                     NULL);
-  g_signal_connect ((gpointer) edit_account, "clicked",
-                    G_CALLBACK (on_add_ajouter_clicked),
+  g_signal_connect ((gpointer) EDIT, "clicked",
+                    G_CALLBACK (on_EDIT_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -1322,12 +1322,12 @@ create_edit_acc (void)
   GLADE_HOOKUP_OBJECT (edit_acc, hbox15, "hbox15");
   GLADE_HOOKUP_OBJECT (edit_acc, image30, "image30");
   GLADE_HOOKUP_OBJECT (edit_acc, label38, "label38");
-  GLADE_HOOKUP_OBJECT (edit_acc, edit_account, "edit_account");
+  GLADE_HOOKUP_OBJECT (edit_acc, comborole, "comborole");
+  GLADE_HOOKUP_OBJECT (edit_acc, EDIT, "EDIT");
   GLADE_HOOKUP_OBJECT (edit_acc, alignment16, "alignment16");
   GLADE_HOOKUP_OBJECT (edit_acc, hbox16, "hbox16");
   GLADE_HOOKUP_OBJECT (edit_acc, image33, "image33");
   GLADE_HOOKUP_OBJECT (edit_acc, label39, "label39");
-  GLADE_HOOKUP_OBJECT (edit_acc, comborole, "comborole");
 
   return edit_acc;
 }

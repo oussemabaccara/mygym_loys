@@ -221,9 +221,56 @@ on_search_acc_clicked                  (GtkWidget       *objet,
  gtk_spin_button_set_value(GTK_SPIN_BUTTON(jour),p.date.jour);
  gtk_spin_button_set_value(GTK_SPIN_BUTTON(mois),p.date.mois);
  gtk_spin_button_set_value(GTK_SPIN_BUTTON(annee),p.date.annee);
+ gtk_combo_box_append_text (GTK_COMBO_BOX (combobox), _(p.role));
 }
 
+// Modifier un compte -> Modifier
 
+void
+on_EDIT_clicked                        (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+ Personne p;
+
+ GtkWidget *input1, *input2,*input3;
+ GtkWidget *combobox;
+ GtkWidget *jour;
+ GtkWidget *mois;
+ GtkWidget *annee;
+ GtkWidget *edit_acc;
+ GtkWidget *output;
+ char id[30];
+
+
+
+ edit_acc=lookup_widget(objet,"edit_acc");
+
+ input1=lookup_widget(objet,"edit_id");
+ input2=lookup_widget(objet,"edit_last");
+ input3=lookup_widget(objet,"edit_first");
+
+ jour=lookup_widget(objet, "spinday");
+ mois=lookup_widget(objet, "spinmonth");
+ annee=lookup_widget(objet, "spinyear");
+
+ combobox=lookup_widget(objet,"comborole");
+
+ strcpy(id,gtk_entry_get_text(GTK_ENTRY(input1)));
+ strcpy(p.id,gtk_entry_get_text(GTK_ENTRY(input1)));
+ strcpy(p.nom,gtk_entry_get_text(GTK_ENTRY(input2)));
+ strcpy(p.prenom,gtk_entry_get_text(GTK_ENTRY(input3)));
+
+ p.date.jour=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (jour));
+ p.date.mois=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (mois));
+ p.date.annee=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (annee));
+
+ strcpy(p.role,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox)));
+ dis_acc(id);
+ ajouter_personne(p);
+	 
+}
+
+// Modifier un compte -> retour
 void
 on_edit_acc_return_clicked             (GtkWidget       *objet,
                                         gpointer         user_data)
@@ -380,7 +427,5 @@ on_stats_return_clicked                (GtkWidget       *objet,
  gtk_widget_show(Admin);
  gtk_widget_destroy(stats);
 }
-
-
 
 

@@ -2881,14 +2881,33 @@ Kinésithérapeute</property>
       </child>
 
       <child>
-	<widget class="GtkButton" id="edit_account">
+	<widget class="GtkComboBox" id="comborole">
+	  <property name="width_request">300</property>
+	  <property name="height_request">30</property>
+	  <property name="visible">True</property>
+	  <property name="items" translatable="yes" context="yes">Adhérent
+Coach
+Médcin_généraliste
+Médecin_nutritionniste
+Kinésithérapeute</property>
+	  <property name="add_tearoffs">False</property>
+	  <property name="focus_on_click">True</property>
+	</widget>
+	<packing>
+	  <property name="x">300</property>
+	  <property name="y">250</property>
+	</packing>
+      </child>
+
+      <child>
+	<widget class="GtkButton" id="EDIT">
 	  <property name="width_request">152</property>
 	  <property name="height_request">32</property>
 	  <property name="visible">True</property>
 	  <property name="can_focus">True</property>
 	  <property name="relief">GTK_RELIEF_NORMAL</property>
 	  <property name="focus_on_click">True</property>
-	  <signal name="clicked" handler="on_add_ajouter_clicked" last_modification_time="Sat, 01 Dec 2018 21:47:40 GMT"/>
+	  <signal name="clicked" handler="on_EDIT_clicked" last_modification_time="Sat, 08 Dec 2018 17:22:40 GMT"/>
 
 	  <child>
 	    <widget class="GtkAlignment" id="alignment16">
@@ -2957,25 +2976,6 @@ Kinésithérapeute</property>
 	<packing>
 	  <property name="x">350</property>
 	  <property name="y">320</property>
-	</packing>
-      </child>
-
-      <child>
-	<widget class="GtkComboBox" id="comborole">
-	  <property name="width_request">300</property>
-	  <property name="height_request">30</property>
-	  <property name="visible">True</property>
-	  <property name="items" translatable="yes" context="yes">Adhérent
-Coach
-Médcin_généraliste
-Médecin_nutritionniste
-Kinésithérapeute</property>
-	  <property name="add_tearoffs">False</property>
-	  <property name="focus_on_click">True</property>
-	</widget>
-	<packing>
-	  <property name="x">300</property>
-	  <property name="y">250</property>
 	</packing>
       </child>
     </widget>

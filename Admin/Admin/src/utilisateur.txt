@@ -1,3 +1,10 @@
-1001 a a 1 1 1997 Adhérent 
-1002 1 1 1 1 1997 Adhérent 
-1003 new  eee 7 12 1995 Médcin_généraliste 
+-1001 qsdqsd qsdqsd 1882853328 1882853360 1882853392 Adhérent 
+-1002 sqdsqd qsdqsd 1882853328 1882853360 1882853392 Adhérent 
+1003 new eee 7 12 1995 Adhérent 
+1005 a z 1 1 1997 Adhérent 
+1001 qsdqsd qsdqsd 1 1 1997 Coach 
+1002 eeee eeee 7 12 2005 Médcin_généraliste 
+-8000 Anis Barghouthi 1 1 1997 Adhérent 
+8000 Anees Barghoothi 21 4 1997 Coach 
+-8001 abab baba 1 1 1997 Médcin_généraliste 
+8001 zeze ezez 5 12 1950 Médecin_nutritionniste 

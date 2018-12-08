@@ -11,9 +11,67 @@
 #include "personne.h"
 #include <gtk/gtk.h>
 
-#define MAX 256
 
-Personne get_personne(char ide[30])
+// desactiver un compte
+
+void dis_acc(char ide[])
+{
+ Personne p;
+ FILE *f;
+ FILE *f2;
+ char nom[30];
+ char prenom[30];
+ char id[30];
+ char jour[30];
+ char mois[30];
+ char annee[30];
+ char date[30];
+ char role[30];
+
+ f=fopen("utilisateur.txt","r");
+    if(f==NULL)
+    	{
+	 return;
+	}
+    else
+	{
+         while(fscanf(f,"%s %s %s %s %s %s %s \n",id,nom,prenom,jour,mois,annee,role)!=EOF)
+		{
+		 if(strcmp(id,ide)!=0)
+			{
+			 f2=fopen("test1.txt", "a");
+			 if (f2==NULL)
+				{
+			 	 return;
+				}
+		 	 else	
+				{
+				 fprintf(f2,"%s %s %s %s %s %s %s \n" ,id,nom,prenom,jour,mois,annee,role);
+				 fclose(f2);
+				}
+			}
+		 else
+			{
+		 	 f2=fopen("test1.txt", "a");
+			 if(f2!=NULL)
+				{
+				 char dis[10]="-";
+				 strcat(dis,id);
+				 fprintf(f2,"%s %s %s %s %s %s %s \n" ,dis,nom,prenom,jour,mois,annee,role);
+				 fclose(f2);
+				}
+			}
+	    	}
+	}
+ fclose(f);
+ remove("utilisateur.txt");
+ rename("test1.txt","utilisateur.txt");
+}
+
+
+// get personne
+
+Personne get_personne(char ide[])
 {
     Personne p ;
     FILE *f;
@@ -158,11 +216,14 @@ void afficher_personne(GtkWidget *liste)
  	 f = fopen("utilisateur.txt", "a+");
 	 while(fscanf(f,"%s %s %s %s %s %s %s \n",id,nom,prenom,jour,mois,annee,role)!=EOF)
 		{
-		 strcpy(date,jour);strcat(date,"/");
-		 strcat(date,mois);strcat(date,"/");
-		 strcat(date,annee);
-		 gtk_list_store_append (store, &iter);
-		 gtk_list_store_set (store,&iter,IDENTIFIANT,id,NOM,nom,PRENOM,prenom,DATE,date,ROLE,role,-1); 
+		 if(id[0]!='-')
+			{
+			 strcpy(date,jour);strcat(date,"/");
+			 strcat(date,mois);strcat(date,"/");
+			 strcat(date,annee);
+			 gtk_list_store_append (store, &iter);
+			 gtk_list_store_set (store,&iter,IDENTIFIANT,id,NOM,nom,PRENOM,prenom,DATE,date,ROLE,role,-1);
+			}
 		}
 	 fclose(f);
 	 gtk_tree_view_set_model(GTK_TREE_VIEW(liste), GTK_TREE_MODEL(store));
