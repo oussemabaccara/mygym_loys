@@ -270,6 +270,32 @@ on_EDIT_clicked                        (GtkWidget       *objet,
 	 
 }
 
+// Modifier un compte -> Désactiver
+
+void
+on_des_acc_clicked                     (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+ Personne p;
+
+ GtkWidget *input1, *input2,*input3;
+ GtkWidget *combobox;
+ GtkWidget *jour;
+ GtkWidget *mois;
+ GtkWidget *annee;
+ GtkWidget *edit_acc;
+ GtkWidget *output;
+ char id[30];
+
+ edit_acc=lookup_widget(objet,"edit_acc");
+
+ input1=lookup_widget(objet,"edit_id");
+
+ strcpy(id,gtk_entry_get_text(GTK_ENTRY(input1)));
+
+ dis_acc(id); 
+}
+
 // Modifier un compte -> retour
 void
 on_edit_acc_return_clicked             (GtkWidget       *objet,
@@ -427,5 +453,8 @@ on_stats_return_clicked                (GtkWidget       *objet,
  gtk_widget_show(Admin);
  gtk_widget_destroy(stats);
 }
+
+
+
 
 

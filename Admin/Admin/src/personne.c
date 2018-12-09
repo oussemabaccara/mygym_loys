@@ -19,6 +19,8 @@ void dis_acc(char ide[])
  Personne p;
  FILE *f;
  FILE *f2;
+ FILE *f3;
+ FILE *f4;
  char nom[30];
  char prenom[30];
  char id[30];
@@ -55,7 +57,7 @@ void dis_acc(char ide[])
 		 	 f2=fopen("test1.txt", "a");
 			 if(f2!=NULL)
 				{
-				 char dis[10]="-";
+				 char dis[30]="-";
 				 strcat(dis,id);
 				 fprintf(f2,"%s %s %s %s %s %s %s \n" ,dis,nom,prenom,jour,mois,annee,role);
 				 fclose(f2);
@@ -66,6 +68,33 @@ void dis_acc(char ide[])
  fclose(f);
  remove("utilisateur.txt");
  rename("test1.txt","utilisateur.txt");
+
+//auth
+char login[30];
+char pass[30];
+ f3=fopen("users.txt","r");
+    if(f3==NULL)
+    	{
+	 return;
+	}
+    else
+	{
+         while(fscanf(f,"%s %s %s \n",login,pass,role)!=EOF)
+		{
+		 if(strcmp(login,ide))
+			{
+			 f4=fopen("test2.txt", "a");
+			 if(f4!=NULL)
+				{
+				 fprintf(f4,"%s %s %s \n" ,login,pass,role);
+				 fclose(f4);
+				}
+			}
+		}
+	}
+ fclose(f3);
+ remove("users.txt");
+ rename("test2.txt","users.txt");
 }
 
 
@@ -94,16 +123,18 @@ Personne get_personne(char ide[])
 
 int exist(char user[])
 {
- Personne p;
+ char login[30];
+ char pass[30];
+ char role[30];
  FILE*f;
  int exist=-1;
 
- f=fopen("utilisateur.txt" , "r");
+ f=fopen("users.txt" , "r");
  if (f!=NULL)
 	{
-	 while (fscanf(f,"%s " , p.id)!=EOF)
+	 while (fscanf(f,"%s %s %s" , login,pass,role)!=EOF)
 		{
-		 if (strcmp(user,p.id)==0 )
+		 if (strcmp(user,login)==0 )
 			 exist=1;	
 		}
 	}
@@ -146,6 +177,7 @@ void ajouter_personne(Personne p)
 	 else if((strcmp(p.role,"Coach")==0))r=3;
 	 else if((strcmp(p.role,"Adhérent")==0))r=4;
 	 else if((strcmp(p.role,"Médecin_nutritionniste")==0))r=5;
+	 else if((strcmp(p.role,"Médecin_généraliste")==0))r=6;
 	 fprintf(f,"%s %s %d \n" ,p.id,p.id,r);
 	 fclose(f);
 	}

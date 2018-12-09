@@ -8,3 +8,14 @@
 8000 Anees Barghoothi 21 4 1997 Coach 
 -8001 abab baba 1 1 1997 Médcin_généraliste 
 8001 zeze ezez 5 12 1950 Médecin_nutritionniste 
+5000 2 2 4 4 1965 Médcin_généraliste 
+5001 2 2 4 4 1965 Kinésithérapeute 
+-9000 9001 9002 4 5 2007 Médcin_généraliste 
+-9001 r r 1 1 1997 Coach 
+-9001 kk kk 1 1 1997 Médecin_généraliste 
+-9001 kke kke 1 1 1997 Coach 
+-9001 zeze zeze 1 1 1997 Coach 
+-9001 zeze zeze 1 1 1997 Kinésithérapeute 
+-9001 zeze zeze 1 1 1997 Médecin_généraliste 
+-9001 zeze zeze 1 1 1997 Médecin_nutritionniste 
+-9001 zeze zeze 1 1 1997 Coach 

@@ -414,7 +414,6 @@ create_add (void)
   GtkWidget *label1;
   GtkWidget *label14;
   GtkWidget *label15;
-  GtkWidget *combobox1;
   GtkWidget *add_return;
   GtkWidget *alignment3;
   GtkWidget *hbox3;
@@ -427,6 +426,7 @@ create_add (void)
   GtkWidget *label11;
   GtkWidget *add_quit;
   GtkWidget *image7;
+  GtkWidget *combobox1;
 
   add = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (add, 800, 450);
@@ -528,16 +528,6 @@ create_add (void)
   gtk_fixed_put (GTK_FIXED (fixed4), label15, 552, 320);
   gtk_widget_set_size_request (label15, 136, 33);
 
-  combobox1 = gtk_combo_box_new_text ();
-  gtk_widget_show (combobox1);
-  gtk_fixed_put (GTK_FIXED (fixed4), combobox1, 300, 250);
-  gtk_widget_set_size_request (combobox1, 300, 30);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Adh\303\251rent"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Coach"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("M\303\251dcin_g\303\251n\303\251raliste"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("M\303\251decin_nutritionniste"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Kin\303\251sith\303\251rapeute"));
-
   add_return = gtk_button_new ();
   gtk_widget_show (add_return);
   gtk_fixed_put (GTK_FIXED (fixed4), add_return, 50, 375);
@@ -589,6 +579,16 @@ create_add (void)
   gtk_widget_show (image7);
   gtk_container_add (GTK_CONTAINER (add_quit), image7);
 
+  combobox1 = gtk_combo_box_new_text ();
+  gtk_widget_show (combobox1);
+  gtk_fixed_put (GTK_FIXED (fixed4), combobox1, 300, 250);
+  gtk_widget_set_size_request (combobox1, 300, 30);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Adh\303\251rent"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Coach"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("M\303\251decin_g\303\251n\303\251raliste"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("M\303\251decin_nutritionniste"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Kin\303\251sith\303\251rapeute"));
+
   g_signal_connect ((gpointer) add_return, "clicked",
                     G_CALLBACK (on_add_return_clicked),
                     NULL);
@@ -618,7 +618,6 @@ create_add (void)
   GLADE_HOOKUP_OBJECT (add, label1, "label1");
   GLADE_HOOKUP_OBJECT (add, label14, "label14");
   GLADE_HOOKUP_OBJECT (add, label15, "label15");
-  GLADE_HOOKUP_OBJECT (add, combobox1, "combobox1");
   GLADE_HOOKUP_OBJECT (add, add_return, "add_return");
   GLADE_HOOKUP_OBJECT (add, alignment3, "alignment3");
   GLADE_HOOKUP_OBJECT (add, hbox3, "hbox3");
@@ -631,6 +630,7 @@ create_add (void)
   GLADE_HOOKUP_OBJECT (add, label11, "label11");
   GLADE_HOOKUP_OBJECT (add, add_quit, "add_quit");
   GLADE_HOOKUP_OBJECT (add, image7, "image7");
+  GLADE_HOOKUP_OBJECT (add, combobox1, "combobox1");
 
   return add;
 }
@@ -1072,11 +1072,9 @@ create_edit_acc (void)
   GtkWidget *label31;
   GtkWidget *label32;
   GtkWidget *label33;
-  GtkWidget *label34;
   GtkWidget *edit_id;
   GtkWidget *label35;
   GtkWidget *label36;
-  GtkWidget *label37;
   GtkWidget *button15;
   GtkWidget *image32;
   GtkWidget *search_acc;
@@ -1090,15 +1088,22 @@ create_edit_acc (void)
   GtkWidget *image30;
   GtkWidget *label38;
   GtkWidget *comborole;
+  GtkWidget *label34;
+  GtkWidget *label37;
   GtkWidget *EDIT;
   GtkWidget *alignment16;
   GtkWidget *hbox16;
   GtkWidget *image33;
   GtkWidget *label39;
+  GtkWidget *des_acc;
+  GtkWidget *alignment18;
+  GtkWidget *hbox18;
+  GtkWidget *image35;
+  GtkWidget *label41;
 
   edit_acc = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (edit_acc, 800, 450);
-  gtk_window_set_title (GTK_WINDOW (edit_acc), _("window1"));
+  gtk_window_set_title (GTK_WINDOW (edit_acc), _("Modifier un compte"));
 
   fixed8 = gtk_fixed_new ();
   gtk_widget_show (fixed8);
@@ -1167,12 +1172,6 @@ create_edit_acc (void)
   gtk_widget_set_size_request (label33, 200, 30);
   gtk_misc_set_alignment (GTK_MISC (label33), 1, 0.5);
 
-  label34 = gtk_label_new (_("<span foreground=\"blue\"><b>Ajouter un compte </b></span>"));
-  gtk_widget_show (label34);
-  gtk_fixed_put (GTK_FIXED (fixed8), label34, 320, 20);
-  gtk_widget_set_size_request (label34, 160, 32);
-  gtk_label_set_use_markup (GTK_LABEL (label34), TRUE);
-
   edit_id = gtk_entry_new ();
   gtk_widget_show (edit_id);
   gtk_fixed_put (GTK_FIXED (fixed8), edit_id, 300, 50);
@@ -1190,11 +1189,6 @@ create_edit_acc (void)
   gtk_fixed_put (GTK_FIXED (fixed8), label36, 150, 50);
   gtk_widget_set_size_request (label36, 100, 30);
   gtk_misc_set_alignment (GTK_MISC (label36), 1, 0.5);
-
-  label37 = gtk_label_new ("");
-  gtk_widget_show (label37);
-  gtk_fixed_put (GTK_FIXED (fixed8), label37, 552, 320);
-  gtk_widget_set_size_request (label37, 136, 33);
 
   button15 = gtk_button_new ();
   gtk_widget_show (button15);
@@ -1253,9 +1247,20 @@ create_edit_acc (void)
   gtk_widget_set_size_request (comborole, 300, 30);
   gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Adh\303\251rent"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Coach"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("M\303\251dcin_g\303\251n\303\251raliste"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("M\303\251decin_g\303\251n\303\251raliste"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("M\303\251decin_nutritionniste"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Kin\303\251sith\303\251rapeute"));
+
+  label34 = gtk_label_new (_("<span foreground=\"blue\"><b>Modifier un compte </b></span>"));
+  gtk_widget_show (label34);
+  gtk_fixed_put (GTK_FIXED (fixed8), label34, 320, 20);
+  gtk_widget_set_size_request (label34, 160, 32);
+  gtk_label_set_use_markup (GTK_LABEL (label34), TRUE);
+
+  label37 = gtk_label_new ("");
+  gtk_widget_show (label37);
+  gtk_fixed_put (GTK_FIXED (fixed8), label37, 192, 368);
+  gtk_widget_set_size_request (label37, 576, 57);
 
   EDIT = gtk_button_new ();
   gtk_widget_show (EDIT);
@@ -1278,6 +1283,27 @@ create_edit_acc (void)
   gtk_widget_show (label39);
   gtk_box_pack_start (GTK_BOX (hbox16), label39, FALSE, FALSE, 0);
 
+  des_acc = gtk_button_new ();
+  gtk_widget_show (des_acc);
+  gtk_fixed_put (GTK_FIXED (fixed8), des_acc, 560, 320);
+  gtk_widget_set_size_request (des_acc, 152, 32);
+
+  alignment18 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment18);
+  gtk_container_add (GTK_CONTAINER (des_acc), alignment18);
+
+  hbox18 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox18);
+  gtk_container_add (GTK_CONTAINER (alignment18), hbox18);
+
+  image35 = gtk_image_new_from_stock ("gtk-dialog-error", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image35);
+  gtk_box_pack_start (GTK_BOX (hbox18), image35, FALSE, FALSE, 0);
+
+  label41 = gtk_label_new_with_mnemonic (_("D\303\251sactiver"));
+  gtk_widget_show (label41);
+  gtk_box_pack_start (GTK_BOX (hbox18), label41, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) button15, "clicked",
                     G_CALLBACK (gtk_main_quit),
                     NULL);
@@ -1289,6 +1315,9 @@ create_edit_acc (void)
                     NULL);
   g_signal_connect ((gpointer) EDIT, "clicked",
                     G_CALLBACK (on_EDIT_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) des_acc, "clicked",
+                    G_CALLBACK (on_des_acc_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -1305,11 +1334,9 @@ create_edit_acc (void)
   GLADE_HOOKUP_OBJECT (edit_acc, label31, "label31");
   GLADE_HOOKUP_OBJECT (edit_acc, label32, "label32");
   GLADE_HOOKUP_OBJECT (edit_acc, label33, "label33");
-  GLADE_HOOKUP_OBJECT (edit_acc, label34, "label34");
   GLADE_HOOKUP_OBJECT (edit_acc, edit_id, "edit_id");
   GLADE_HOOKUP_OBJECT (edit_acc, label35, "label35");
   GLADE_HOOKUP_OBJECT (edit_acc, label36, "label36");
-  GLADE_HOOKUP_OBJECT (edit_acc, label37, "label37");
   GLADE_HOOKUP_OBJECT (edit_acc, button15, "button15");
   GLADE_HOOKUP_OBJECT (edit_acc, image32, "image32");
   GLADE_HOOKUP_OBJECT (edit_acc, search_acc, "search_acc");
@@ -1323,11 +1350,18 @@ create_edit_acc (void)
   GLADE_HOOKUP_OBJECT (edit_acc, image30, "image30");
   GLADE_HOOKUP_OBJECT (edit_acc, label38, "label38");
   GLADE_HOOKUP_OBJECT (edit_acc, comborole, "comborole");
+  GLADE_HOOKUP_OBJECT (edit_acc, label34, "label34");
+  GLADE_HOOKUP_OBJECT (edit_acc, label37, "label37");
   GLADE_HOOKUP_OBJECT (edit_acc, EDIT, "EDIT");
   GLADE_HOOKUP_OBJECT (edit_acc, alignment16, "alignment16");
   GLADE_HOOKUP_OBJECT (edit_acc, hbox16, "hbox16");
   GLADE_HOOKUP_OBJECT (edit_acc, image33, "image33");
   GLADE_HOOKUP_OBJECT (edit_acc, label39, "label39");
+  GLADE_HOOKUP_OBJECT (edit_acc, des_acc, "des_acc");
+  GLADE_HOOKUP_OBJECT (edit_acc, alignment18, "alignment18");
+  GLADE_HOOKUP_OBJECT (edit_acc, hbox18, "hbox18");
+  GLADE_HOOKUP_OBJECT (edit_acc, image35, "image35");
+  GLADE_HOOKUP_OBJECT (edit_acc, label41, "label41");
 
   return edit_acc;
 }
