@@ -85,3 +85,11 @@ on_search_acc_clicked                  (GtkWidget       *objet,
 void
 on_edit_acc_return_clicked             (GtkWidget       *objet,
                                         gpointer         user_data);
+
+void
+on_EDIT_clicked                        (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_des_acc_clicked                     (GtkWidget       *objet,
+                                        gpointer         user_data);

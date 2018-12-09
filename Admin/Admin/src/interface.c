@@ -414,7 +414,6 @@ create_add (void)
   GtkWidget *label1;
   GtkWidget *label14;
   GtkWidget *label15;
-  GtkWidget *combobox1;
   GtkWidget *add_return;
   GtkWidget *alignment3;
   GtkWidget *hbox3;
@@ -427,6 +426,7 @@ create_add (void)
   GtkWidget *label11;
   GtkWidget *add_quit;
   GtkWidget *image7;
+  GtkWidget *combobox1;
 
   add = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (add, 800, 450);
@@ -528,16 +528,6 @@ create_add (void)
   gtk_fixed_put (GTK_FIXED (fixed4), label15, 552, 320);
   gtk_widget_set_size_request (label15, 136, 33);
 
-  combobox1 = gtk_combo_box_new_text ();
-  gtk_widget_show (combobox1);
-  gtk_fixed_put (GTK_FIXED (fixed4), combobox1, 300, 250);
-  gtk_widget_set_size_request (combobox1, 300, 30);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Adh\303\251rent"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Coach"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("M\303\251dcin_g\303\251n\303\251raliste"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("M\303\251decin_nutritionniste"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Kin\303\251sith\303\251rapeute"));
-
   add_return = gtk_button_new ();
   gtk_widget_show (add_return);
   gtk_fixed_put (GTK_FIXED (fixed4), add_return, 50, 375);
@@ -589,6 +579,16 @@ create_add (void)
   gtk_widget_show (image7);
   gtk_container_add (GTK_CONTAINER (add_quit), image7);
 
+  combobox1 = gtk_combo_box_new_text ();
+  gtk_widget_show (combobox1);
+  gtk_fixed_put (GTK_FIXED (fixed4), combobox1, 300, 250);
+  gtk_widget_set_size_request (combobox1, 300, 30);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Adh\303\251rent"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Coach"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("M\303\251decin_g\303\251n\303\251raliste"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("M\303\251decin_nutritionniste"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Kin\303\251sith\303\251rapeute"));
+
   g_signal_connect ((gpointer) add_return, "clicked",
                     G_CALLBACK (on_add_return_clicked),
                     NULL);
@@ -618,7 +618,6 @@ create_add (void)
   GLADE_HOOKUP_OBJECT (add, label1, "label1");
   GLADE_HOOKUP_OBJECT (add, label14, "label14");
   GLADE_HOOKUP_OBJECT (add, label15, "label15");
-  GLADE_HOOKUP_OBJECT (add, combobox1, "combobox1");
   GLADE_HOOKUP_OBJECT (add, add_return, "add_return");
   GLADE_HOOKUP_OBJECT (add, alignment3, "alignment3");
   GLADE_HOOKUP_OBJECT (add, hbox3, "hbox3");
@@ -631,6 +630,7 @@ create_add (void)
   GLADE_HOOKUP_OBJECT (add, label11, "label11");
   GLADE_HOOKUP_OBJECT (add, add_quit, "add_quit");
   GLADE_HOOKUP_OBJECT (add, image7, "image7");
+  GLADE_HOOKUP_OBJECT (add, combobox1, "combobox1");
 
   return add;
 }
@@ -1058,26 +1058,23 @@ create_edit_acc (void)
 {
   GtkWidget *edit_acc;
   GtkWidget *fixed8;
-  GtkWidget *entry3;
-  GtkWidget *entry4;
-  GtkObject *spinbutton4_adj;
-  GtkWidget *spinbutton4;
-  GtkObject *spinbutton5_adj;
-  GtkWidget *spinbutton5;
-  GtkObject *spinbutton6_adj;
-  GtkWidget *spinbutton6;
+  GtkWidget *edit_last;
+  GtkWidget *edit_first;
+  GtkObject *spinday_adj;
+  GtkWidget *spinday;
+  GtkObject *spinyear_adj;
+  GtkWidget *spinyear;
+  GtkObject *spinmonth_adj;
+  GtkWidget *spinmonth;
   GtkWidget *label28;
   GtkWidget *label29;
   GtkWidget *label30;
   GtkWidget *label31;
   GtkWidget *label32;
   GtkWidget *label33;
-  GtkWidget *label34;
-  GtkWidget *entry5;
+  GtkWidget *edit_id;
   GtkWidget *label35;
   GtkWidget *label36;
-  GtkWidget *label37;
-  GtkWidget *combobox2;
   GtkWidget *button15;
   GtkWidget *image32;
   GtkWidget *search_acc;
@@ -1090,49 +1087,57 @@ create_edit_acc (void)
   GtkWidget *hbox15;
   GtkWidget *image30;
   GtkWidget *label38;
-  GtkWidget *edit_account;
+  GtkWidget *comborole;
+  GtkWidget *label34;
+  GtkWidget *label37;
+  GtkWidget *EDIT;
   GtkWidget *alignment16;
   GtkWidget *hbox16;
   GtkWidget *image33;
   GtkWidget *label39;
+  GtkWidget *des_acc;
+  GtkWidget *alignment18;
+  GtkWidget *hbox18;
+  GtkWidget *image35;
+  GtkWidget *label41;
 
   edit_acc = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (edit_acc, 800, 450);
-  gtk_window_set_title (GTK_WINDOW (edit_acc), _("window1"));
+  gtk_window_set_title (GTK_WINDOW (edit_acc), _("Modifier un compte"));
 
   fixed8 = gtk_fixed_new ();
   gtk_widget_show (fixed8);
   gtk_container_add (GTK_CONTAINER (edit_acc), fixed8);
 
-  entry3 = gtk_entry_new ();
-  gtk_widget_show (entry3);
-  gtk_fixed_put (GTK_FIXED (fixed8), entry3, 300, 100);
-  gtk_widget_set_size_request (entry3, 300, 30);
-  gtk_entry_set_invisible_char (GTK_ENTRY (entry3), 8226);
+  edit_last = gtk_entry_new ();
+  gtk_widget_show (edit_last);
+  gtk_fixed_put (GTK_FIXED (fixed8), edit_last, 304, 104);
+  gtk_widget_set_size_request (edit_last, 300, 30);
+  gtk_entry_set_invisible_char (GTK_ENTRY (edit_last), 8226);
 
-  entry4 = gtk_entry_new ();
-  gtk_widget_show (entry4);
-  gtk_fixed_put (GTK_FIXED (fixed8), entry4, 300, 150);
-  gtk_widget_set_size_request (entry4, 300, 30);
-  gtk_entry_set_invisible_char (GTK_ENTRY (entry4), 8226);
+  edit_first = gtk_entry_new ();
+  gtk_widget_show (edit_first);
+  gtk_fixed_put (GTK_FIXED (fixed8), edit_first, 304, 152);
+  gtk_widget_set_size_request (edit_first, 300, 30);
+  gtk_entry_set_invisible_char (GTK_ENTRY (edit_first), 8226);
 
-  spinbutton4_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 10);
-  spinbutton4 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton4_adj), 1, 0);
-  gtk_widget_show (spinbutton4);
-  gtk_fixed_put (GTK_FIXED (fixed8), spinbutton4, 300, 200);
-  gtk_widget_set_size_request (spinbutton4, 60, 30);
+  spinday_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 10);
+  spinday = gtk_spin_button_new (GTK_ADJUSTMENT (spinday_adj), 1, 0);
+  gtk_widget_show (spinday);
+  gtk_fixed_put (GTK_FIXED (fixed8), spinday, 300, 200);
+  gtk_widget_set_size_request (spinday, 60, 30);
 
-  spinbutton5_adj = gtk_adjustment_new (1997, 1950, 2018, 1, 10, 10);
-  spinbutton5 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton5_adj), 1, 0);
-  gtk_widget_show (spinbutton5);
-  gtk_fixed_put (GTK_FIXED (fixed8), spinbutton5, 525, 200);
-  gtk_widget_set_size_request (spinbutton5, 75, 30);
+  spinyear_adj = gtk_adjustment_new (1997, 1950, 2018, 1, 10, 10);
+  spinyear = gtk_spin_button_new (GTK_ADJUSTMENT (spinyear_adj), 1, 0);
+  gtk_widget_show (spinyear);
+  gtk_fixed_put (GTK_FIXED (fixed8), spinyear, 525, 200);
+  gtk_widget_set_size_request (spinyear, 75, 30);
 
-  spinbutton6_adj = gtk_adjustment_new (1, 1, 12, 1, 10, 10);
-  spinbutton6 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton6_adj), 1, 0);
-  gtk_widget_show (spinbutton6);
-  gtk_fixed_put (GTK_FIXED (fixed8), spinbutton6, 410, 200);
-  gtk_widget_set_size_request (spinbutton6, 60, 30);
+  spinmonth_adj = gtk_adjustment_new (1, 1, 12, 1, 10, 10);
+  spinmonth = gtk_spin_button_new (GTK_ADJUSTMENT (spinmonth_adj), 1, 0);
+  gtk_widget_show (spinmonth);
+  gtk_fixed_put (GTK_FIXED (fixed8), spinmonth, 410, 200);
+  gtk_widget_set_size_request (spinmonth, 60, 30);
 
   label28 = gtk_label_new (_("Jour"));
   gtk_widget_show (label28);
@@ -1167,17 +1172,11 @@ create_edit_acc (void)
   gtk_widget_set_size_request (label33, 200, 30);
   gtk_misc_set_alignment (GTK_MISC (label33), 1, 0.5);
 
-  label34 = gtk_label_new (_("<span foreground=\"blue\"><b>Ajouter un compte </b></span>"));
-  gtk_widget_show (label34);
-  gtk_fixed_put (GTK_FIXED (fixed8), label34, 320, 20);
-  gtk_widget_set_size_request (label34, 160, 32);
-  gtk_label_set_use_markup (GTK_LABEL (label34), TRUE);
-
-  entry5 = gtk_entry_new ();
-  gtk_widget_show (entry5);
-  gtk_fixed_put (GTK_FIXED (fixed8), entry5, 300, 50);
-  gtk_widget_set_size_request (entry5, 300, 30);
-  gtk_entry_set_invisible_char (GTK_ENTRY (entry5), 8226);
+  edit_id = gtk_entry_new ();
+  gtk_widget_show (edit_id);
+  gtk_fixed_put (GTK_FIXED (fixed8), edit_id, 300, 50);
+  gtk_widget_set_size_request (edit_id, 300, 30);
+  gtk_entry_set_invisible_char (GTK_ENTRY (edit_id), 8226);
 
   label35 = gtk_label_new (_("Nom:"));
   gtk_widget_show (label35);
@@ -1190,21 +1189,6 @@ create_edit_acc (void)
   gtk_fixed_put (GTK_FIXED (fixed8), label36, 150, 50);
   gtk_widget_set_size_request (label36, 100, 30);
   gtk_misc_set_alignment (GTK_MISC (label36), 1, 0.5);
-
-  label37 = gtk_label_new ("");
-  gtk_widget_show (label37);
-  gtk_fixed_put (GTK_FIXED (fixed8), label37, 552, 320);
-  gtk_widget_set_size_request (label37, 136, 33);
-
-  combobox2 = gtk_combo_box_new_text ();
-  gtk_widget_show (combobox2);
-  gtk_fixed_put (GTK_FIXED (fixed8), combobox2, 300, 250);
-  gtk_widget_set_size_request (combobox2, 300, 30);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("Adh\303\251rent"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("Coach"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("M\303\251dcin_g\303\251n\303\251raliste"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("M\303\251decin_nutritionniste"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("Kin\303\251sith\303\251rapeute"));
 
   button15 = gtk_button_new ();
   gtk_widget_show (button15);
@@ -1257,14 +1241,35 @@ create_edit_acc (void)
   gtk_widget_show (label38);
   gtk_box_pack_start (GTK_BOX (hbox15), label38, FALSE, FALSE, 0);
 
-  edit_account = gtk_button_new ();
-  gtk_widget_show (edit_account);
-  gtk_fixed_put (GTK_FIXED (fixed8), edit_account, 350, 320);
-  gtk_widget_set_size_request (edit_account, 152, 32);
+  comborole = gtk_combo_box_new_text ();
+  gtk_widget_show (comborole);
+  gtk_fixed_put (GTK_FIXED (fixed8), comborole, 300, 250);
+  gtk_widget_set_size_request (comborole, 300, 30);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Adh\303\251rent"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Coach"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("M\303\251decin_g\303\251n\303\251raliste"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("M\303\251decin_nutritionniste"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comborole), _("Kin\303\251sith\303\251rapeute"));
+
+  label34 = gtk_label_new (_("<span foreground=\"blue\"><b>Modifier un compte </b></span>"));
+  gtk_widget_show (label34);
+  gtk_fixed_put (GTK_FIXED (fixed8), label34, 320, 20);
+  gtk_widget_set_size_request (label34, 160, 32);
+  gtk_label_set_use_markup (GTK_LABEL (label34), TRUE);
+
+  label37 = gtk_label_new ("");
+  gtk_widget_show (label37);
+  gtk_fixed_put (GTK_FIXED (fixed8), label37, 192, 368);
+  gtk_widget_set_size_request (label37, 576, 57);
+
+  EDIT = gtk_button_new ();
+  gtk_widget_show (EDIT);
+  gtk_fixed_put (GTK_FIXED (fixed8), EDIT, 350, 320);
+  gtk_widget_set_size_request (EDIT, 152, 32);
 
   alignment16 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment16);
-  gtk_container_add (GTK_CONTAINER (edit_account), alignment16);
+  gtk_container_add (GTK_CONTAINER (EDIT), alignment16);
 
   hbox16 = gtk_hbox_new (FALSE, 2);
   gtk_widget_show (hbox16);
@@ -1278,6 +1283,27 @@ create_edit_acc (void)
   gtk_widget_show (label39);
   gtk_box_pack_start (GTK_BOX (hbox16), label39, FALSE, FALSE, 0);
 
+  des_acc = gtk_button_new ();
+  gtk_widget_show (des_acc);
+  gtk_fixed_put (GTK_FIXED (fixed8), des_acc, 560, 320);
+  gtk_widget_set_size_request (des_acc, 152, 32);
+
+  alignment18 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment18);
+  gtk_container_add (GTK_CONTAINER (des_acc), alignment18);
+
+  hbox18 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox18);
+  gtk_container_add (GTK_CONTAINER (alignment18), hbox18);
+
+  image35 = gtk_image_new_from_stock ("gtk-dialog-error", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image35);
+  gtk_box_pack_start (GTK_BOX (hbox18), image35, FALSE, FALSE, 0);
+
+  label41 = gtk_label_new_with_mnemonic (_("D\303\251sactiver"));
+  gtk_widget_show (label41);
+  gtk_box_pack_start (GTK_BOX (hbox18), label41, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) button15, "clicked",
                     G_CALLBACK (gtk_main_quit),
                     NULL);
@@ -1287,30 +1313,30 @@ create_edit_acc (void)
   g_signal_connect ((gpointer) edit_acc_return, "clicked",
                     G_CALLBACK (on_edit_acc_return_clicked),
                     NULL);
-  g_signal_connect ((gpointer) edit_account, "clicked",
-                    G_CALLBACK (on_add_ajouter_clicked),
+  g_signal_connect ((gpointer) EDIT, "clicked",
+                    G_CALLBACK (on_EDIT_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) des_acc, "clicked",
+                    G_CALLBACK (on_des_acc_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (edit_acc, edit_acc, "edit_acc");
   GLADE_HOOKUP_OBJECT (edit_acc, fixed8, "fixed8");
-  GLADE_HOOKUP_OBJECT (edit_acc, entry3, "entry3");
-  GLADE_HOOKUP_OBJECT (edit_acc, entry4, "entry4");
-  GLADE_HOOKUP_OBJECT (edit_acc, spinbutton4, "spinbutton4");
-  GLADE_HOOKUP_OBJECT (edit_acc, spinbutton5, "spinbutton5");
-  GLADE_HOOKUP_OBJECT (edit_acc, spinbutton6, "spinbutton6");
+  GLADE_HOOKUP_OBJECT (edit_acc, edit_last, "edit_last");
+  GLADE_HOOKUP_OBJECT (edit_acc, edit_first, "edit_first");
+  GLADE_HOOKUP_OBJECT (edit_acc, spinday, "spinday");
+  GLADE_HOOKUP_OBJECT (edit_acc, spinyear, "spinyear");
+  GLADE_HOOKUP_OBJECT (edit_acc, spinmonth, "spinmonth");
   GLADE_HOOKUP_OBJECT (edit_acc, label28, "label28");
   GLADE_HOOKUP_OBJECT (edit_acc, label29, "label29");
   GLADE_HOOKUP_OBJECT (edit_acc, label30, "label30");
   GLADE_HOOKUP_OBJECT (edit_acc, label31, "label31");
   GLADE_HOOKUP_OBJECT (edit_acc, label32, "label32");
   GLADE_HOOKUP_OBJECT (edit_acc, label33, "label33");
-  GLADE_HOOKUP_OBJECT (edit_acc, label34, "label34");
-  GLADE_HOOKUP_OBJECT (edit_acc, entry5, "entry5");
+  GLADE_HOOKUP_OBJECT (edit_acc, edit_id, "edit_id");
   GLADE_HOOKUP_OBJECT (edit_acc, label35, "label35");
   GLADE_HOOKUP_OBJECT (edit_acc, label36, "label36");
-  GLADE_HOOKUP_OBJECT (edit_acc, label37, "label37");
-  GLADE_HOOKUP_OBJECT (edit_acc, combobox2, "combobox2");
   GLADE_HOOKUP_OBJECT (edit_acc, button15, "button15");
   GLADE_HOOKUP_OBJECT (edit_acc, image32, "image32");
   GLADE_HOOKUP_OBJECT (edit_acc, search_acc, "search_acc");
@@ -1323,11 +1349,19 @@ create_edit_acc (void)
   GLADE_HOOKUP_OBJECT (edit_acc, hbox15, "hbox15");
   GLADE_HOOKUP_OBJECT (edit_acc, image30, "image30");
   GLADE_HOOKUP_OBJECT (edit_acc, label38, "label38");
-  GLADE_HOOKUP_OBJECT (edit_acc, edit_account, "edit_account");
+  GLADE_HOOKUP_OBJECT (edit_acc, comborole, "comborole");
+  GLADE_HOOKUP_OBJECT (edit_acc, label34, "label34");
+  GLADE_HOOKUP_OBJECT (edit_acc, label37, "label37");
+  GLADE_HOOKUP_OBJECT (edit_acc, EDIT, "EDIT");
   GLADE_HOOKUP_OBJECT (edit_acc, alignment16, "alignment16");
   GLADE_HOOKUP_OBJECT (edit_acc, hbox16, "hbox16");
   GLADE_HOOKUP_OBJECT (edit_acc, image33, "image33");
   GLADE_HOOKUP_OBJECT (edit_acc, label39, "label39");
+  GLADE_HOOKUP_OBJECT (edit_acc, des_acc, "des_acc");
+  GLADE_HOOKUP_OBJECT (edit_acc, alignment18, "alignment18");
+  GLADE_HOOKUP_OBJECT (edit_acc, hbox18, "hbox18");
+  GLADE_HOOKUP_OBJECT (edit_acc, image35, "image35");
+  GLADE_HOOKUP_OBJECT (edit_acc, label41, "label41");
 
   return edit_acc;
 }

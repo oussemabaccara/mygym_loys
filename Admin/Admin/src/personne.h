@@ -16,5 +16,7 @@ typedef struct
 	 Date date;
 	}Personne;
 
+void dis_acc(char id[]);
+Personne get_personne(char ide[]);
 void ajouter_personne(Personne p);
 void afficher_personne(GtkWidget *liste);

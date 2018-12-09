@@ -11,7 +11,7 @@ int verifier( char nom[], char pwd[])
  if(f!=NULL)
 	{
  	 while((fscanf(f,"%s %s %d", ch, ch1,&a)!=EOF))
-	 	 if((strcmp(nom,ch)==0)&&(strcmp(pwd,ch1)==0))return(a);
+	 	 if((strcmp(nom,ch)==0)&&(strcmp(pwd,ch1)==0)&&(nom[0]!='-'))return(a);
 	 fclose(f);
 	}
  else return(0); 	
