@@ -1366,3 +1366,237 @@ create_edit_acc (void)
   return edit_acc;
 }
 
+GtkWidget*
+create_activ_add (void)
+{
+  GtkWidget *activ_add;
+  GtkWidget *fixed9;
+  GtkObject *spinH_adj;
+  GtkWidget *spinH;
+  GtkWidget *label51;
+  GtkWidget *button18;
+  GtkWidget *image38;
+  GtkWidget *label48;
+  GtkWidget *add_activ;
+  GtkWidget *alignment20;
+  GtkWidget *hbox20;
+  GtkWidget *image37;
+  GtkWidget *label53;
+  GtkWidget *add_activ_return;
+  GtkWidget *alignment19;
+  GtkWidget *hbox19;
+  GtkWidget *image36;
+  GtkWidget *label52;
+  GtkWidget *comboduree;
+  GtkWidget *label47;
+  GtkWidget *label45;
+  GtkWidget *label44;
+  GtkWidget *combomin;
+  GtkWidget *label54;
+  GtkWidget *label49;
+  GtkWidget *label50;
+  GtkWidget *combojour;
+  GtkWidget *comboactiv;
+
+  activ_add = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_set_size_request (activ_add, 800, 450);
+  gtk_window_set_title (GTK_WINDOW (activ_add), _("Ajouter une activit\303\251"));
+
+  fixed9 = gtk_fixed_new ();
+  gtk_widget_show (fixed9);
+  gtk_container_add (GTK_CONTAINER (activ_add), fixed9);
+
+  spinH_adj = gtk_adjustment_new (7, 7, 22, 1, 10, 10);
+  spinH = gtk_spin_button_new (GTK_ADJUSTMENT (spinH_adj), 1, 0);
+  gtk_widget_show (spinH);
+  gtk_fixed_put (GTK_FIXED (fixed9), spinH, 344, 200);
+  gtk_widget_set_size_request (spinH, 60, 30);
+
+  label51 = gtk_label_new ("");
+  gtk_widget_show (label51);
+  gtk_fixed_put (GTK_FIXED (fixed9), label51, 552, 320);
+  gtk_widget_set_size_request (label51, 136, 33);
+
+  button18 = gtk_button_new ();
+  gtk_widget_show (button18);
+  gtk_fixed_put (GTK_FIXED (fixed9), button18, 770, 0);
+  gtk_widget_set_size_request (button18, 30, 30);
+
+  image38 = gtk_image_new_from_stock ("gtk-close", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image38);
+  gtk_container_add (GTK_CONTAINER (button18), image38);
+
+  label48 = gtk_label_new (_("<span foreground=\"blue\"><b>Ajouter une activit\303\251</b></span>"));
+  gtk_widget_show (label48);
+  gtk_fixed_put (GTK_FIXED (fixed9), label48, 320, 20);
+  gtk_widget_set_size_request (label48, 160, 32);
+  gtk_label_set_use_markup (GTK_LABEL (label48), TRUE);
+
+  add_activ = gtk_button_new ();
+  gtk_widget_show (add_activ);
+  gtk_fixed_put (GTK_FIXED (fixed9), add_activ, 344, 320);
+  gtk_widget_set_size_request (add_activ, 152, 32);
+
+  alignment20 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment20);
+  gtk_container_add (GTK_CONTAINER (add_activ), alignment20);
+
+  hbox20 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox20);
+  gtk_container_add (GTK_CONTAINER (alignment20), hbox20);
+
+  image37 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image37);
+  gtk_box_pack_start (GTK_BOX (hbox20), image37, FALSE, FALSE, 0);
+
+  label53 = gtk_label_new_with_mnemonic (_("Ajouter"));
+  gtk_widget_show (label53);
+  gtk_box_pack_start (GTK_BOX (hbox20), label53, FALSE, FALSE, 0);
+
+  add_activ_return = gtk_button_new ();
+  gtk_widget_show (add_activ_return);
+  gtk_fixed_put (GTK_FIXED (fixed9), add_activ_return, 50, 375);
+  gtk_widget_set_size_request (add_activ_return, 112, 40);
+
+  alignment19 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment19);
+  gtk_container_add (GTK_CONTAINER (add_activ_return), alignment19);
+
+  hbox19 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox19);
+  gtk_container_add (GTK_CONTAINER (alignment19), hbox19);
+
+  image36 = gtk_image_new_from_stock ("gtk-undo", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image36);
+  gtk_box_pack_start (GTK_BOX (hbox19), image36, FALSE, FALSE, 0);
+
+  label52 = gtk_label_new_with_mnemonic (_("Retour"));
+  gtk_widget_show (label52);
+  gtk_box_pack_start (GTK_BOX (hbox19), label52, FALSE, FALSE, 0);
+
+  comboduree = gtk_combo_box_new_text ();
+  gtk_widget_show (comboduree);
+  gtk_fixed_put (GTK_FIXED (fixed9), comboduree, 344, 256);
+  gtk_widget_set_size_request (comboduree, 152, 32);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboduree), _("15min"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboduree), _("30min"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboduree), _("45min"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboduree), _("1h"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboduree), _("1h15"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboduree), _("1h30"));
+
+  label47 = gtk_label_new (_("Dur\303\251e:"));
+  gtk_widget_show (label47);
+  gtk_fixed_put (GTK_FIXED (fixed9), label47, 80, 256);
+  gtk_widget_set_size_request (label47, 200, 30);
+  gtk_misc_set_alignment (GTK_MISC (label47), 1, 0.5);
+
+  label45 = gtk_label_new (_("Horaire:"));
+  gtk_widget_show (label45);
+  gtk_fixed_put (GTK_FIXED (fixed9), label45, 184, 200);
+  gtk_widget_set_size_request (label45, 100, 30);
+  gtk_misc_set_alignment (GTK_MISC (label45), 1, 0.5);
+
+  label44 = gtk_label_new (_("H"));
+  gtk_widget_show (label44);
+  gtk_fixed_put (GTK_FIXED (fixed9), label44, 408, 200);
+  gtk_widget_set_size_request (label44, 45, 30);
+  gtk_misc_set_alignment (GTK_MISC (label44), 0, 0.5);
+
+  combomin = gtk_combo_box_new_text ();
+  gtk_widget_show (combomin);
+  gtk_fixed_put (GTK_FIXED (fixed9), combomin, 424, 200);
+  gtk_widget_set_size_request (combomin, 64, 32);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin), _("00"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin), _("15"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin), _("30"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin), _("45"));
+
+  label54 = gtk_label_new (_("min"));
+  gtk_widget_show (label54);
+  gtk_fixed_put (GTK_FIXED (fixed9), label54, 496, 200);
+  gtk_widget_set_size_request (label54, 45, 30);
+  gtk_misc_set_alignment (GTK_MISC (label54), 0, 0.5);
+
+  label49 = gtk_label_new (_("Jour:"));
+  gtk_widget_show (label49);
+  gtk_fixed_put (GTK_FIXED (fixed9), label49, 232, 152);
+  gtk_widget_set_size_request (label49, 50, 30);
+  gtk_misc_set_alignment (GTK_MISC (label49), 1, 0.5);
+
+  label50 = gtk_label_new (_("Activit\303\251:"));
+  gtk_widget_show (label50);
+  gtk_fixed_put (GTK_FIXED (fixed9), label50, 184, 104);
+  gtk_widget_set_size_request (label50, 100, 30);
+  gtk_misc_set_alignment (GTK_MISC (label50), 1, 0.5);
+
+  combojour = gtk_combo_box_new_text ();
+  gtk_widget_show (combojour);
+  gtk_fixed_put (GTK_FIXED (fixed9), combojour, 304, 152);
+  gtk_widget_set_size_request (combojour, 248, 30);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combojour), _("Lundi"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combojour), _("Mardi"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combojour), _("Mercredi"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combojour), _("Jeudi"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combojour), _("Vendredi"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combojour), _("Samedi"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combojour), _("Dimanche"));
+
+  comboactiv = gtk_combo_box_new_text ();
+  gtk_widget_show (comboactiv);
+  gtk_fixed_put (GTK_FIXED (fixed9), comboactiv, 304, 104);
+  gtk_widget_set_size_request (comboactiv, 248, 30);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Abdos"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Biking"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Boxe"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Cardio"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Fitness"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Judo"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Karat\303\251"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Musculation"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Running"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Stretching"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Yoga"));
+
+  g_signal_connect ((gpointer) button18, "clicked",
+                    G_CALLBACK (gtk_main_quit),
+                    NULL);
+  g_signal_connect ((gpointer) add_activ, "clicked",
+                    G_CALLBACK (on_add_activ_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) add_activ_return, "clicked",
+                    G_CALLBACK (on_add_activ_return_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (activ_add, activ_add, "activ_add");
+  GLADE_HOOKUP_OBJECT (activ_add, fixed9, "fixed9");
+  GLADE_HOOKUP_OBJECT (activ_add, spinH, "spinH");
+  GLADE_HOOKUP_OBJECT (activ_add, label51, "label51");
+  GLADE_HOOKUP_OBJECT (activ_add, button18, "button18");
+  GLADE_HOOKUP_OBJECT (activ_add, image38, "image38");
+  GLADE_HOOKUP_OBJECT (activ_add, label48, "label48");
+  GLADE_HOOKUP_OBJECT (activ_add, add_activ, "add_activ");
+  GLADE_HOOKUP_OBJECT (activ_add, alignment20, "alignment20");
+  GLADE_HOOKUP_OBJECT (activ_add, hbox20, "hbox20");
+  GLADE_HOOKUP_OBJECT (activ_add, image37, "image37");
+  GLADE_HOOKUP_OBJECT (activ_add, label53, "label53");
+  GLADE_HOOKUP_OBJECT (activ_add, add_activ_return, "add_activ_return");
+  GLADE_HOOKUP_OBJECT (activ_add, alignment19, "alignment19");
+  GLADE_HOOKUP_OBJECT (activ_add, hbox19, "hbox19");
+  GLADE_HOOKUP_OBJECT (activ_add, image36, "image36");
+  GLADE_HOOKUP_OBJECT (activ_add, label52, "label52");
+  GLADE_HOOKUP_OBJECT (activ_add, comboduree, "comboduree");
+  GLADE_HOOKUP_OBJECT (activ_add, label47, "label47");
+  GLADE_HOOKUP_OBJECT (activ_add, label45, "label45");
+  GLADE_HOOKUP_OBJECT (activ_add, label44, "label44");
+  GLADE_HOOKUP_OBJECT (activ_add, combomin, "combomin");
+  GLADE_HOOKUP_OBJECT (activ_add, label54, "label54");
+  GLADE_HOOKUP_OBJECT (activ_add, label49, "label49");
+  GLADE_HOOKUP_OBJECT (activ_add, label50, "label50");
+  GLADE_HOOKUP_OBJECT (activ_add, combojour, "combojour");
+  GLADE_HOOKUP_OBJECT (activ_add, comboactiv, "comboactiv");
+
+  return activ_add;
+}
+

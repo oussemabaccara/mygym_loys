@@ -93,3 +93,11 @@ on_EDIT_clicked                        (GtkWidget       *objet,
 void
 on_des_acc_clicked                     (GtkWidget       *objet,
                                         gpointer         user_data);
+
+void
+on_add_activ_clicked                   (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_add_activ_return_clicked            (GtkWidget       *objet,
+                                        gpointer         user_data);

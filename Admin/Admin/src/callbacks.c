@@ -7,6 +7,7 @@
 #include "verifier.h"
 #include "personne.h"
 #include "acct.h"
+#include "activ.h"
 
 
 // Login
@@ -353,10 +354,59 @@ void
 on_activ_add_clicked                   (GtkWidget       *objet,
                                         gpointer         user_data)
 {
+ GtkWidget *activ;
+ GtkWidget *activ_add;
 
+ activ=lookup_widget(objet,"activ");
+ activ_add=create_activ_add();
+
+ gtk_widget_show(activ_add);
+ gtk_widget_destroy(activ); 
 }
 
 
+void
+on_add_activ_clicked                   (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+ activ a;
+
+ GtkWidget *activ;
+ GtkWidget *jour;
+ GtkWidget *spinH;
+ GtkWidget *min;
+ GtkWidget *duree;
+ GtkWidget *activ_add;
+ GtkWidget *output;
+
+
+
+ activ_add=lookup_widget(objet,"activ_add");
+
+ activ=lookup_widget(objet,"comboactiv");
+ jour=lookup_widget(objet,"combojour");
+ spinH=lookup_widget(objet,"spinH");
+ min=lookup_widget(objet,"combomin");
+ duree=lookup_widget(objet,"comboduree");
+
+
+
+ strcpy(a.type,gtk_entry_get_text(GTK_ENTRY(activ)));
+ strcpy(a.jour,gtk_entry_get_text(GTK_ENTRY(jour)));
+ a.horH=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinH));
+ strcpy(a.hormin,gtk_entry_get_text(GTK_ENTRY(min)));
+ strcpy(a.dur,gtk_entry_get_text(GTK_ENTRY(duree)));
+ 
+ activadd(a);
+}
+
+
+void
+on_add_activ_return_clicked            (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+
+}
 
 // Gestion des Activités -> modifier
 void
@@ -453,7 +503,6 @@ on_stats_return_clicked                (GtkWidget       *objet,
  gtk_widget_show(Admin);
  gtk_widget_destroy(stats);
 }
-
 
 
 
