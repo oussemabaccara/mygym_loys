@@ -90,6 +90,17 @@ char pass[30];
 				 fclose(f4);
 				}
 			}
+		 else
+			{
+			 f4=fopen("test2.txt", "a");
+			 if(f4!=NULL)
+				{
+			 	 char dis[30]="-";
+			 	 strcat(dis,login);
+			 	 fprintf(f4,"%s %s %s \n" ,dis,pass,role);
+			 	 fclose(f4);
+				}
+			}
 		}
 	}
  fclose(f3);
