@@ -56,19 +56,19 @@ void affactiv(GtkWidget *liste)
  if (store==NULL)
 	{
          renderer = gtk_cell_renderer_text_new ();
-	 column = gtk_tree_view_column_new_with_attributes("Activité", renderer, "text",IDENTIFIANT, NULL);
+	 column = gtk_tree_view_column_new_with_attributes("Activité", renderer, "text",TYPE, NULL);
 	 gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column);
 
 	 renderer = gtk_cell_renderer_text_new ();
-	 column = gtk_tree_view_column_new_with_attributes("Jour", renderer, "text",NOM, NULL);	
+	 column = gtk_tree_view_column_new_with_attributes("Jour", renderer, "text",JOUR, NULL);	
 	 gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column);	
 
 	 renderer = gtk_cell_renderer_text_new ();
-	 column = gtk_tree_view_column_new_with_attributes("Horraire", renderer, "text",PRENOM, NULL);
+	 column = gtk_tree_view_column_new_with_attributes("Horraire", renderer, "text",HORRAIRE, NULL);
 	 gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column);
 
 	 renderer = gtk_cell_renderer_text_new ();
-	 column = gtk_tree_view_column_new_with_attributes("Durée", renderer, "text",DATE, NULL);
+	 column = gtk_tree_view_column_new_with_attributes("Durée", renderer, "text",DUREE, NULL);
 	 gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column);
 	}
 

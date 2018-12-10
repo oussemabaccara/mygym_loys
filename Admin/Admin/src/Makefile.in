@@ -101,7 +101,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_admin_OBJECTS = main.$(OBJEXT) support.$(OBJEXT) \
 	interface.$(OBJEXT) callbacks.$(OBJEXT) verifier.$(OBJEXT) \
-	personne.$(OBJEXT) acct.$(OBJEXT)
+	personne.$(OBJEXT) acct.$(OBJEXT) activ.$(OBJEXT)
 admin_OBJECTS = $(am_admin_OBJECTS)
 am__DEPENDENCIES_1 =
 admin_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -285,7 +285,8 @@ admin_SOURCES = \
 	callbacks.c callbacks.h \
 	verifier.c verifier.h \
 	personne.c personne.h \
-	acct.c acct.h
+	acct.c acct.h \
+	activ.c activ.h
 
 admin_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 all: all-am
@@ -375,6 +376,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/acct.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/activ.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/callbacks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/interface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
