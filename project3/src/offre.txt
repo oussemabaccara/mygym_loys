@@ -1,0 +1,6 @@
+1 1_mois 80DT
+2 3_mois 240DT
+3 1_an 800DT
+4 1_mois+suivi_médical 200DT
+5 3_mois+suivi_médical 500DT
+6 1_an+suivi_médical 1800DT
