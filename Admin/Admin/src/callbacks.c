@@ -7,7 +7,7 @@
 #include "verifier.h"
 #include "personne.h"
 #include "acct.h"
-#include "activ.h"
+#include "event.h"
 
 
 // Login
@@ -322,11 +322,14 @@ on_admin_activ_clicked                 (GtkWidget       *objet,
 {
  GtkWidget *activ;
  GtkWidget *Admin;
+ GtkWidget *treeview;
 
  Admin=lookup_widget(objet,"Admin");
  activ=create_activ();
 
  gtk_widget_show(activ);
+ treeview=lookup_widget(activ,"treeactiv");
+ afficher_event(treeview);
  gtk_widget_destroy(Admin);
 }
 
@@ -369,7 +372,7 @@ void
 on_add_activ_clicked                   (GtkWidget       *objet,
                                         gpointer         user_data)
 {
- activ a;
+ /*activ a;
 
  GtkWidget *activ;
  GtkWidget *jour;
@@ -397,7 +400,7 @@ on_add_activ_clicked                   (GtkWidget       *objet,
  strcpy(a.hormin,gtk_entry_get_text(GTK_ENTRY(min)));
  strcpy(a.dur,gtk_entry_get_text(GTK_ENTRY(duree)));
  
- activadd(a);
+ eventadd(a);*/
 }
 
 
@@ -405,7 +408,17 @@ void
 on_add_activ_return_clicked            (GtkWidget       *objet,
                                         gpointer         user_data)
 {
+ GtkWidget *activ;
+ GtkWidget *activ_add;
+ GtkWidget *treeview;
 
+ activ_add=lookup_widget(objet,"activ_add");
+ activ=create_activ();
+
+ gtk_widget_show(activ);
+ treeview=lookup_widget(activ,"treeactiv");
+ afficher_event(treeview);
+ gtk_widget_destroy(activ_add); 
 }
 
 // Gestion des Activités -> modifier
@@ -413,7 +426,7 @@ void
 on_activ_upd_clicked                   (GtkWidget       *objet,
                                         gpointer         user_data)
 {
- 
+
 }
 
 

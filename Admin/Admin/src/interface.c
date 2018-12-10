@@ -648,7 +648,7 @@ create_activ (void)
   GtkWidget *hbox7;
   GtkWidget *image11;
   GtkWidget *label19;
-  GtkWidget *activ_treeview;
+  GtkWidget *treeactiv;
   GtkWidget *activ_upd;
   GtkWidget *alignment12;
   GtkWidget *hbox12;
@@ -705,10 +705,10 @@ create_activ (void)
   gtk_widget_show (label19);
   gtk_box_pack_start (GTK_BOX (hbox7), label19, FALSE, FALSE, 0);
 
-  activ_treeview = gtk_tree_view_new ();
-  gtk_widget_show (activ_treeview);
-  gtk_fixed_put (GTK_FIXED (fixed7), activ_treeview, 50, 60);
-  gtk_widget_set_size_request (activ_treeview, 700, 300);
+  treeactiv = gtk_tree_view_new ();
+  gtk_widget_show (treeactiv);
+  gtk_fixed_put (GTK_FIXED (fixed7), treeactiv, 50, 60);
+  gtk_widget_set_size_request (treeactiv, 700, 300);
 
   activ_upd = gtk_button_new ();
   gtk_widget_show (activ_upd);
@@ -781,7 +781,7 @@ create_activ (void)
   GLADE_HOOKUP_OBJECT (activ, hbox7, "hbox7");
   GLADE_HOOKUP_OBJECT (activ, image11, "image11");
   GLADE_HOOKUP_OBJECT (activ, label19, "label19");
-  GLADE_HOOKUP_OBJECT (activ, activ_treeview, "activ_treeview");
+  GLADE_HOOKUP_OBJECT (activ, treeactiv, "treeactiv");
   GLADE_HOOKUP_OBJECT (activ, activ_upd, "activ_upd");
   GLADE_HOOKUP_OBJECT (activ, alignment12, "alignment12");
   GLADE_HOOKUP_OBJECT (activ, hbox12, "hbox12");
@@ -1388,15 +1388,13 @@ create_activ_add (void)
   GtkWidget *image36;
   GtkWidget *label52;
   GtkWidget *comboduree;
-  GtkWidget *label47;
-  GtkWidget *label45;
-  GtkWidget *label44;
   GtkWidget *combomin;
-  GtkWidget *label54;
-  GtkWidget *label49;
-  GtkWidget *label50;
   GtkWidget *combojour;
   GtkWidget *comboactiv;
+  GtkWidget *label50;
+  GtkWidget *label49;
+  GtkWidget *label45;
+  GtkWidget *label47;
 
   activ_add = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (activ_add, 800, 450);
@@ -1406,7 +1404,7 @@ create_activ_add (void)
   gtk_widget_show (fixed9);
   gtk_container_add (GTK_CONTAINER (activ_add), fixed9);
 
-  spinH_adj = gtk_adjustment_new (7, 7, 22, 1, 10, 10);
+  spinH_adj = gtk_adjustment_new (1, 1, 30, 1, 10, 10);
   spinH = gtk_spin_button_new (GTK_ADJUSTMENT (spinH_adj), 1, 0);
   gtk_widget_show (spinH);
   gtk_fixed_put (GTK_FIXED (fixed9), spinH, 344, 200);
@@ -1485,24 +1483,6 @@ create_activ_add (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboduree), _("1h15"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboduree), _("1h30"));
 
-  label47 = gtk_label_new (_("Dur\303\251e:"));
-  gtk_widget_show (label47);
-  gtk_fixed_put (GTK_FIXED (fixed9), label47, 80, 256);
-  gtk_widget_set_size_request (label47, 200, 30);
-  gtk_misc_set_alignment (GTK_MISC (label47), 1, 0.5);
-
-  label45 = gtk_label_new (_("Horaire:"));
-  gtk_widget_show (label45);
-  gtk_fixed_put (GTK_FIXED (fixed9), label45, 184, 200);
-  gtk_widget_set_size_request (label45, 100, 30);
-  gtk_misc_set_alignment (GTK_MISC (label45), 1, 0.5);
-
-  label44 = gtk_label_new (_("H"));
-  gtk_widget_show (label44);
-  gtk_fixed_put (GTK_FIXED (fixed9), label44, 408, 200);
-  gtk_widget_set_size_request (label44, 45, 30);
-  gtk_misc_set_alignment (GTK_MISC (label44), 0, 0.5);
-
   combomin = gtk_combo_box_new_text ();
   gtk_widget_show (combomin);
   gtk_fixed_put (GTK_FIXED (fixed9), combomin, 424, 200);
@@ -1511,24 +1491,6 @@ create_activ_add (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (combomin), _("15"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (combomin), _("30"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (combomin), _("45"));
-
-  label54 = gtk_label_new (_("min"));
-  gtk_widget_show (label54);
-  gtk_fixed_put (GTK_FIXED (fixed9), label54, 496, 200);
-  gtk_widget_set_size_request (label54, 45, 30);
-  gtk_misc_set_alignment (GTK_MISC (label54), 0, 0.5);
-
-  label49 = gtk_label_new (_("Jour:"));
-  gtk_widget_show (label49);
-  gtk_fixed_put (GTK_FIXED (fixed9), label49, 232, 152);
-  gtk_widget_set_size_request (label49, 50, 30);
-  gtk_misc_set_alignment (GTK_MISC (label49), 1, 0.5);
-
-  label50 = gtk_label_new (_("Activit\303\251:"));
-  gtk_widget_show (label50);
-  gtk_fixed_put (GTK_FIXED (fixed9), label50, 184, 104);
-  gtk_widget_set_size_request (label50, 100, 30);
-  gtk_misc_set_alignment (GTK_MISC (label50), 1, 0.5);
 
   combojour = gtk_combo_box_new_text ();
   gtk_widget_show (combojour);
@@ -1557,6 +1519,30 @@ create_activ_add (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Running"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Stretching"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboactiv), _("Yoga"));
+
+  label50 = gtk_label_new (_(":"));
+  gtk_widget_show (label50);
+  gtk_fixed_put (GTK_FIXED (fixed9), label50, 184, 104);
+  gtk_widget_set_size_request (label50, 100, 30);
+  gtk_misc_set_alignment (GTK_MISC (label50), 1, 0.5);
+
+  label49 = gtk_label_new (_(":"));
+  gtk_widget_show (label49);
+  gtk_fixed_put (GTK_FIXED (fixed9), label49, 232, 152);
+  gtk_widget_set_size_request (label49, 50, 30);
+  gtk_misc_set_alignment (GTK_MISC (label49), 1, 0.5);
+
+  label45 = gtk_label_new (_(":"));
+  gtk_widget_show (label45);
+  gtk_fixed_put (GTK_FIXED (fixed9), label45, 184, 200);
+  gtk_widget_set_size_request (label45, 100, 30);
+  gtk_misc_set_alignment (GTK_MISC (label45), 1, 0.5);
+
+  label47 = gtk_label_new (_(":"));
+  gtk_widget_show (label47);
+  gtk_fixed_put (GTK_FIXED (fixed9), label47, 80, 256);
+  gtk_widget_set_size_request (label47, 200, 30);
+  gtk_misc_set_alignment (GTK_MISC (label47), 1, 0.5);
 
   g_signal_connect ((gpointer) button18, "clicked",
                     G_CALLBACK (gtk_main_quit),
@@ -1587,15 +1573,13 @@ create_activ_add (void)
   GLADE_HOOKUP_OBJECT (activ_add, image36, "image36");
   GLADE_HOOKUP_OBJECT (activ_add, label52, "label52");
   GLADE_HOOKUP_OBJECT (activ_add, comboduree, "comboduree");
-  GLADE_HOOKUP_OBJECT (activ_add, label47, "label47");
-  GLADE_HOOKUP_OBJECT (activ_add, label45, "label45");
-  GLADE_HOOKUP_OBJECT (activ_add, label44, "label44");
   GLADE_HOOKUP_OBJECT (activ_add, combomin, "combomin");
-  GLADE_HOOKUP_OBJECT (activ_add, label54, "label54");
-  GLADE_HOOKUP_OBJECT (activ_add, label49, "label49");
-  GLADE_HOOKUP_OBJECT (activ_add, label50, "label50");
   GLADE_HOOKUP_OBJECT (activ_add, combojour, "combojour");
   GLADE_HOOKUP_OBJECT (activ_add, comboactiv, "comboactiv");
+  GLADE_HOOKUP_OBJECT (activ_add, label50, "label50");
+  GLADE_HOOKUP_OBJECT (activ_add, label49, "label49");
+  GLADE_HOOKUP_OBJECT (activ_add, label45, "label45");
+  GLADE_HOOKUP_OBJECT (activ_add, label47, "label47");
 
   return activ_add;
 }

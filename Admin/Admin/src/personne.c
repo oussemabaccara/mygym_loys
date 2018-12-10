@@ -214,7 +214,6 @@ void afficher_personne(GtkWidget *liste)
  char date[30];
  char role[30];
  store=NULL;
-
  FILE *f;
 
  store=gtk_tree_view_get_model(liste);	
