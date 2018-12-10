@@ -648,7 +648,7 @@ create_activ (void)
   GtkWidget *hbox7;
   GtkWidget *image11;
   GtkWidget *label19;
-  GtkWidget *activ_treeview;
+  GtkWidget *treeactiv;
   GtkWidget *activ_upd;
   GtkWidget *alignment12;
   GtkWidget *hbox12;
@@ -705,10 +705,10 @@ create_activ (void)
   gtk_widget_show (label19);
   gtk_box_pack_start (GTK_BOX (hbox7), label19, FALSE, FALSE, 0);
 
-  activ_treeview = gtk_tree_view_new ();
-  gtk_widget_show (activ_treeview);
-  gtk_fixed_put (GTK_FIXED (fixed7), activ_treeview, 50, 60);
-  gtk_widget_set_size_request (activ_treeview, 700, 300);
+  treeactiv = gtk_tree_view_new ();
+  gtk_widget_show (treeactiv);
+  gtk_fixed_put (GTK_FIXED (fixed7), treeactiv, 50, 60);
+  gtk_widget_set_size_request (treeactiv, 700, 300);
 
   activ_upd = gtk_button_new ();
   gtk_widget_show (activ_upd);
@@ -781,7 +781,7 @@ create_activ (void)
   GLADE_HOOKUP_OBJECT (activ, hbox7, "hbox7");
   GLADE_HOOKUP_OBJECT (activ, image11, "image11");
   GLADE_HOOKUP_OBJECT (activ, label19, "label19");
-  GLADE_HOOKUP_OBJECT (activ, activ_treeview, "activ_treeview");
+  GLADE_HOOKUP_OBJECT (activ, treeactiv, "treeactiv");
   GLADE_HOOKUP_OBJECT (activ, activ_upd, "activ_upd");
   GLADE_HOOKUP_OBJECT (activ, alignment12, "alignment12");
   GLADE_HOOKUP_OBJECT (activ, hbox12, "hbox12");

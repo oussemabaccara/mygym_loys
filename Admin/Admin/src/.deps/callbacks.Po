@@ -605,7 +605,7 @@ callbacks.o: callbacks.c /usr/include/stdc-predef.h /usr/include/string.h \
  /usr/include/gtk-2.0/gtk/gtktipsquery.h callbacks.h interface.h \
  support.h ../config.h /usr/include/libintl.h /usr/include/locale.h \
  /usr/include/x86_64-linux-gnu/bits/locale.h verifier.h personne.h acct.h \
- activ.h
+ event.h
 
 /usr/include/stdc-predef.h:
 
@@ -1965,4 +1965,4 @@ personne.h:
 
 acct.h:
 
-activ.h:
+event.h:
