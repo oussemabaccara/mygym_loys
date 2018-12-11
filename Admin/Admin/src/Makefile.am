@@ -14,7 +14,8 @@ admin_SOURCES = \
 	callbacks.c callbacks.h \
 	verifier.c verifier.h \
 	personne.c personne.h \
-	event.c event.h
+	event.c event.h \
+	offre.c offre.h
 
 admin_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 

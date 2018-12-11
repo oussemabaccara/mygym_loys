@@ -101,7 +101,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_admin_OBJECTS = main.$(OBJEXT) support.$(OBJEXT) \
 	interface.$(OBJEXT) callbacks.$(OBJEXT) verifier.$(OBJEXT) \
-	personne.$(OBJEXT) event.$(OBJEXT)
+	personne.$(OBJEXT) event.$(OBJEXT) offre.$(OBJEXT)
 admin_OBJECTS = $(am_admin_OBJECTS)
 am__DEPENDENCIES_1 =
 admin_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -285,7 +285,8 @@ admin_SOURCES = \
 	callbacks.c callbacks.h \
 	verifier.c verifier.h \
 	personne.c personne.h \
-	event.c event.h
+	event.c event.h \
+	offre.c offre.h
 
 admin_LDADD = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype $(INTLLIBS)
 all: all-am
@@ -378,6 +379,7 @@ include ./$(DEPDIR)/callbacks.Po
 include ./$(DEPDIR)/event.Po
 include ./$(DEPDIR)/interface.Po
 include ./$(DEPDIR)/main.Po
+include ./$(DEPDIR)/offre.Po
 include ./$(DEPDIR)/personne.Po
 include ./$(DEPDIR)/support.Po
 include ./$(DEPDIR)/verifier.Po

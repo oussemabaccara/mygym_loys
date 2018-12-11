@@ -8,6 +8,7 @@
 #include "personne.h"
 #include "acct.h"
 #include "event.h"
+#include "offre.h"
 
 
 // Login
@@ -367,18 +368,24 @@ on_activ_add_clicked                   (GtkWidget       *objet,
  gtk_widget_destroy(activ); 
 }
 
+// ajouter un ev
 
 void
 on_add_activ_clicked                   (GtkWidget       *objet,
                                         gpointer         user_data)
 {
- /*activ a;
+ event e;
 
- GtkWidget *activ;
- GtkWidget *jour;
- GtkWidget *spinH;
- GtkWidget *min;
- GtkWidget *duree;
+ GtkWidget *name;
+ GtkWidget *des;
+ GtkWidget *spind;
+ GtkWidget *spinm;
+ GtkWidget *spiny;
+ GtkWidget *spinh;
+ GtkWidget *combomin;
+ GtkWidget *nb_ev;
+ GtkWidget *nbm_ev;
+ GtkWidget *num_ev;
  GtkWidget *activ_add;
  GtkWidget *output;
 
@@ -386,23 +393,35 @@ on_add_activ_clicked                   (GtkWidget       *objet,
 
  activ_add=lookup_widget(objet,"activ_add");
 
- activ=lookup_widget(objet,"comboactiv");
- jour=lookup_widget(objet,"combojour");
- spinH=lookup_widget(objet,"spinH");
- min=lookup_widget(objet,"combomin");
- duree=lookup_widget(objet,"comboduree");
+ name=lookup_widget(objet,"name_ev");
+ des=lookup_widget(objet,"des_ev");
+ spind=lookup_widget(objet,"spind_ev");
+ spinm=lookup_widget(objet,"spinm_ev");
+ spiny=lookup_widget(objet,"spiny_ev");
+ spinh=lookup_widget(objet,"spinh_ev");
+ combomin=lookup_widget(objet,"combomin_ev");
+ nb_ev=lookup_widget(objet,"nb_ev");
+ nbm_ev=lookup_widget(objet,"nbm_ev");
+ num_ev=lookup_widget(objet,"num_ev");
 
 
 
- strcpy(a.type,gtk_entry_get_text(GTK_ENTRY(activ)));
- strcpy(a.jour,gtk_entry_get_text(GTK_ENTRY(jour)));
- a.horH=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinH));
- strcpy(a.hormin,gtk_entry_get_text(GTK_ENTRY(min)));
- strcpy(a.dur,gtk_entry_get_text(GTK_ENTRY(duree)));
+ strcpy(e.num,gtk_entry_get_text(GTK_ENTRY(num_ev)));
+ strcpy(e.description,gtk_entry_get_text(GTK_ENTRY(des)));
+ strcpy(e.nom,gtk_entry_get_text(GTK_ENTRY(name)));
+ e.date.jour=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spind));
+ e.date.mois=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinm));
+ e.date.annee=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spiny));
+ e.heure.h=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinh));
+ strcpy(e.heure.min,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combomin)));
+ strcpy(e.nombre,gtk_entry_get_text(GTK_ENTRY(nb_ev)));
+ strcpy(e.nombremax,gtk_entry_get_text(GTK_ENTRY(nbm_ev)));
+
  
- eventadd(a);*/
+ ajout_ev(e);
 }
 
+//
 
 void
 on_add_activ_return_clicked            (GtkWidget       *objet,
@@ -421,12 +440,170 @@ on_add_activ_return_clicked            (GtkWidget       *objet,
  gtk_widget_destroy(activ_add); 
 }
 
+//double click treeview event
+void
+on_treeactiv_row_activated             (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+ GtkWidget *entry;
+ GtkWidget *entry2;
+ GtkWidget *entry3;
+ GtkWidget *entry4;
+ GtkWidget *entry5;
+GtkTreeIter iter;
+GtkTreeModel *model;
+gchar *string,*string1,*string2,*string3,*string4,*string5;
+model=gtk_tree_view_get_model(treeview);
+gtk_tree_model_get_iter(model,&iter,path);
+gtk_tree_model_get(model,&iter,0,&string,-1);
+gtk_tree_model_get(model,&iter,1,&string1,-1);
+gtk_tree_model_get(model,&iter,2,&string2,-1);
+gtk_tree_model_get(model,&iter,3,&string3,-1);
+gtk_tree_model_get(model,&iter,4,&string4,-1);
+gtk_tree_model_get(model,&iter,5,&string5,-1);
+
+
+ GtkWidget *activ;
+ GtkWidget *activ_edit;
+ GtkWidget *jour;
+ GtkWidget *mois;
+ GtkWidget *annee;
+ GtkWidget *h;
+ GtkWidget *combobox;
+ event e;
+ activ=lookup_widget(treeview,"activ");
+ activ_edit=create_activ_edit();
+ gtk_widget_show(activ_edit);
+entry=lookup_widget(activ_edit,"numedev");
+entry2=lookup_widget(activ_edit,"nameedev");
+entry3=lookup_widget(activ_edit,"desedev");
+entry4=lookup_widget(activ_edit,"nbedev");
+entry5=lookup_widget(activ_edit,"nbmedev");
+ jour=lookup_widget(activ_edit, "edjev");
+ mois=lookup_widget(activ_edit, "edmev");
+ annee=lookup_widget(activ_edit, "edyev");
+ h=lookup_widget(activ_edit, "edhev");
+ combobox=lookup_widget(activ_edit,"comboedev");
+gtk_entry_set_text(GTK_ENTRY(entry),string);
+gtk_entry_set_text(GTK_ENTRY(entry2),string1);
+gtk_entry_set_text(GTK_ENTRY(entry3),string2);
+gtk_entry_set_text(GTK_ENTRY(entry4),string5);
+e=get_event(string);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(jour),e.date.jour);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(mois),e.date.mois);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(annee),e.date.annee);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(h),e.heure.h);
+gtk_entry_set_text(GTK_ENTRY(entry5),e.nombremax);
+ gtk_combo_box_append_text (GTK_COMBO_BOX (combobox), _(e.heure.min));
+ gtk_widget_destroy(activ); 
+}
+
+
+//
+
+void
+on_edit_ev_clicked                     (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+ event e;
+
+ GtkWidget *name;
+ GtkWidget *des;
+ GtkWidget *spind;
+ GtkWidget *spinm;
+ GtkWidget *spiny;
+ GtkWidget *spinh;
+ GtkWidget *combomin;
+ GtkWidget *nb_ev;
+ GtkWidget *nbm_ev;
+ GtkWidget *num_ev;
+ GtkWidget *activ_edit;
+ GtkWidget *output;
+
+
+
+ activ_edit=lookup_widget(objet,"activ_edit");
+
+ name=lookup_widget(objet,"nameedev");
+ des=lookup_widget(objet,"desedev");
+ spind=lookup_widget(objet,"edjev");
+ spinm=lookup_widget(objet,"edmev");
+ spiny=lookup_widget(objet,"edyev");
+ spinh=lookup_widget(objet,"edhev");
+ combomin=lookup_widget(objet,"comboedev");
+ nb_ev=lookup_widget(objet,"nbedev");
+ nbm_ev=lookup_widget(objet,"nbmedev");
+ num_ev=lookup_widget(objet,"numedev");
+
+
+
+ strcpy(e.num,gtk_entry_get_text(GTK_ENTRY(num_ev)));
+ strcpy(e.description,gtk_entry_get_text(GTK_ENTRY(des)));
+ strcpy(e.nom,gtk_entry_get_text(GTK_ENTRY(name)));
+ e.date.jour=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spind));
+ e.date.mois=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinm));
+ e.date.annee=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spiny));
+ e.heure.h=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinh));
+ strcpy(e.heure.min,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combomin)));
+ strcpy(e.nombre,gtk_entry_get_text(GTK_ENTRY(nb_ev)));
+ strcpy(e.nombremax,gtk_entry_get_text(GTK_ENTRY(nbm_ev)));
+
+ suppev(e.num);
+ ajout_ev(e); 
+}
+
+//
+void
+on_delev_clicked                       (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+ event e;
+ GtkWidget *num_ev;
+ GtkWidget *activ_edit;
+ GtkWidget *output;
+
+
+
+ activ_edit=lookup_widget(objet,"activ_edit");
+ num_ev=lookup_widget(objet,"numedev");
+ strcpy(e.num,gtk_entry_get_text(GTK_ENTRY(num_ev)));
+ suppev(e.num);
+}
+
+//
+
+void
+on_edev_return_clicked                 (GtkButton       *button,
+                                        gpointer         user_data)
+{
+ GtkWidget *activ;
+ GtkWidget *activ_edit;
+ GtkWidget *treeview;
+
+ activ_edit=lookup_widget(button,"activ_edit");
+ activ=create_activ();
+
+ gtk_widget_show(activ);
+ treeview=lookup_widget(activ,"treeactiv");
+ afficher_event(treeview);
+ gtk_widget_destroy(activ_edit);
+}
+
 // Gestion des Activités -> modifier
+
+
 void
 on_activ_upd_clicked                   (GtkWidget       *objet,
                                         gpointer         user_data)
 {
-
+  GtkWidget *activ;
+ GtkWidget *activ_edit;
+ activ=lookup_widget(objet,"activ");
+ activ_edit=create_activ_edit();
+ gtk_widget_show(activ_edit);
+ gtk_widget_destroy(activ);
 }
 
 
@@ -453,13 +630,15 @@ void
 on_admin_deals_clicked                 (GtkWidget       *objet,
                                         gpointer         user_data)
 {
+ GtkWidget *tree;
  GtkWidget *deals;
  GtkWidget *Admin;
 
  Admin=lookup_widget(objet,"Admin");
  deals=create_deals();
-
+ tree=lookup_widget(deals,"deals_treeview");
  gtk_widget_show(deals);
+ afficher_offre(tree);
  gtk_widget_destroy(Admin);
 }
 
@@ -487,18 +666,171 @@ void
 on_deals_add_clicked                   (GtkWidget       *objet,
                                         gpointer         user_data)
 {
+ GtkWidget *deals;
+ GtkWidget *deals_add;
 
+ deals=lookup_widget(objet,"deals");
+ deals_add=create_deals_add();
+
+ gtk_widget_show(deals_add);
+ gtk_widget_destroy(deals);
 }
 
+//double click treeview
+void
+on_deals_treeview_row_activated        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+ GtkWidget *entry;
+ GtkWidget *entry2;
+ GtkWidget *entry3;
+GtkTreeIter iter;
+GtkTreeModel *model;
+gchar *string,*string1,*string2;
+model=gtk_tree_view_get_model(treeview);
+gtk_tree_model_get_iter(model,&iter,path);
+gtk_tree_model_get(model,&iter,0,&string,-1);
+gtk_tree_model_get(model,&iter,1,&string1,-1);
+gtk_tree_model_get(model,&iter,2,&string2,-1);
 
+
+ GtkWidget *deals;
+ GtkWidget *deals_edit;
+ offre o;
+ deals=lookup_widget(treeview,"deals");
+ deals_edit=create_deals_edit();
+ gtk_widget_show(deals_edit);
+entry=lookup_widget(deals_edit,"numeddl");
+entry2=lookup_widget(deals_edit,"deseddl");
+entry3=lookup_widget(deals_edit,"preddl");
+gtk_entry_set_text(GTK_ENTRY(entry),string);
+gtk_entry_set_text(GTK_ENTRY(entry2),string1);
+gtk_entry_set_text(GTK_ENTRY(entry3),string2);
+ gtk_widget_destroy(deals);
+}
 
 // Gestion des offres -> modifier
 void
 on_deals_upd_clicked                   (GtkWidget       *objet,
                                         gpointer         user_data)
 {
+ GtkWidget *deals;
+ GtkWidget *deals_edit;
 
+ deals=lookup_widget(objet,"deals");
+ deals_edit=create_deals_edit();
+
+ gtk_widget_show(deals_edit);
+ gtk_widget_destroy(deals);
 }
+
+
+
+void
+on_adddeal_clicked                     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+ offre o;
+  GtkWidget *deals;
+ GtkWidget *e1;
+ GtkWidget *e2;
+ GtkWidget *e3;
+ GtkWidget *output;
+
+
+
+ deals=lookup_widget(button,"deals_add");
+
+ e1=lookup_widget(button,"numaddl");
+ e2=lookup_widget(button,"desaddl");
+ e3=lookup_widget(button,"praddl");
+
+
+
+ strcpy(o.nbre,gtk_entry_get_text(GTK_ENTRY(e1)));
+ strcpy(o.description,gtk_entry_get_text(GTK_ENTRY(e2)));
+ strcpy(o.prix,gtk_entry_get_text(GTK_ENTRY(e3)));
+ ajout_of(o);
+}
+
+
+void
+on_adddeal_return_clicked              (GtkButton       *button,
+                                        gpointer         user_data)
+{
+ GtkWidget *tree;
+ GtkWidget *deals;
+ GtkWidget *deals_add;
+
+ deals_add=lookup_widget(button,"deals_add");
+ deals=create_deals();
+ tree=lookup_widget(deals,"deals_treeview");
+ gtk_widget_show(deals);
+ afficher_offre(tree);
+ gtk_widget_destroy(deals_add);
+}
+
+
+void
+on_editdeal_clicked                    (GtkButton       *button,
+                                        gpointer         user_data)
+{
+ offre o;
+  GtkWidget *deals;
+ GtkWidget *e1;
+ GtkWidget *e2;
+ GtkWidget *e3;
+ GtkWidget *output;
+
+
+
+ deals=lookup_widget(button,"deals_edit");
+
+ e1=lookup_widget(button,"numeddl");
+ e2=lookup_widget(button,"deseddl");
+ e3=lookup_widget(button,"preddl");
+
+
+
+ strcpy(o.nbre,gtk_entry_get_text(GTK_ENTRY(e1)));
+ strcpy(o.description,gtk_entry_get_text(GTK_ENTRY(e2)));
+ strcpy(o.prix,gtk_entry_get_text(GTK_ENTRY(e3)));
+ suppof(o.nbre);
+ ajout_of(o);
+}
+
+
+void
+on_suppdeal_clicked                    (GtkButton       *button,
+                                        gpointer         user_data)
+{offre o;
+GtkWidget *deals;
+ GtkWidget *e1;
+deals=lookup_widget(button,"deals_edit");
+ e1=lookup_widget(button,"numeddl");
+ strcpy(o.nbre,gtk_entry_get_text(GTK_ENTRY(e1)));
+ suppof(o.nbre);
+}
+
+
+void
+on_editdeal_return_clicked             (GtkButton       *button,
+                                        gpointer         user_data)
+{
+ GtkWidget *tree;
+ GtkWidget *deals;
+ GtkWidget *deals_edit;
+
+ deals_edit=lookup_widget(button,"deals_edit");
+ deals=create_deals();
+ tree=lookup_widget(deals,"deals_treeview");
+ gtk_widget_show(deals);
+ afficher_offre(tree);
+ gtk_widget_destroy(deals_edit);
+}
+
 
 
 
@@ -516,6 +848,16 @@ on_stats_return_clicked                (GtkWidget       *objet,
  gtk_widget_show(Admin);
  gtk_widget_destroy(stats);
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

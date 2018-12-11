@@ -9,15 +9,24 @@ typedef struct
 }date;
 
 typedef struct
+{
+ 	int h;
+ 	char min[30];
+}heure;
+
+typedef struct
 {	char num[5];
 	char nom[40];
 	char description[100];
 	date date;
-	char heure[10];
+	heure heure;
 	char nombre[5];
 	char nombremax[5];
 }event;
 
+void suppev(char num[]);
+event get_event(char ide[]);
+void ajout_ev(event e);
 void afficher_event(GtkWidget *liste);
 int ajout_part(char num[],char id[]);
 int modif_nb(char num[]);
