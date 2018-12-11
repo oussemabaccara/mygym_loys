@@ -109,15 +109,11 @@ on_treeactiv_row_activated             (GtkTreeView     *treeview,
                                         gpointer         user_data);
 
 void
-on_edit_ev_clicked                     (GtkButton       *button,
+on_edit_ev_clicked                     (GtkButton       *objet,
                                         gpointer         user_data);
 
 void
 on_edev_return_clicked                 (GtkButton       *button,
-                                        gpointer         user_data);
-
-void
-on_activ_edit_show                     (GtkWidget       *widget,
                                         gpointer         user_data);
 
 void

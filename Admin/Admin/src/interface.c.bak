@@ -1670,14 +1670,14 @@ create_activ_edit (void)
   GtkWidget *fixed10;
   GtkWidget *nameedev;
   GtkWidget *desedev;
-  GtkObject *spinbutton4_adj;
-  GtkWidget *spinbutton4;
-  GtkObject *spinbutton5_adj;
-  GtkWidget *spinbutton5;
-  GtkObject *spinbutton6_adj;
-  GtkWidget *spinbutton6;
-  GtkObject *spinbutton7_adj;
-  GtkWidget *spinbutton7;
+  GtkObject *edjev_adj;
+  GtkWidget *edjev;
+  GtkObject *edmev_adj;
+  GtkWidget *edmev;
+  GtkObject *edyev_adj;
+  GtkWidget *edyev;
+  GtkObject *edhev_adj;
+  GtkWidget *edhev;
   GtkWidget *numedev;
   GtkWidget *label67;
   GtkWidget *label68;
@@ -1689,7 +1689,6 @@ create_activ_edit (void)
   GtkWidget *label74;
   GtkWidget *label75;
   GtkWidget *label76;
-  GtkWidget *combobox2;
   GtkWidget *button21;
   GtkWidget *image41;
   GtkWidget *label80;
@@ -1707,6 +1706,7 @@ create_activ_edit (void)
   GtkWidget *image40;
   GtkWidget *label79;
   GtkWidget *label77;
+  GtkWidget *comboedev;
 
   activ_edit = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (activ_edit, 800, 450);
@@ -1728,29 +1728,29 @@ create_activ_edit (void)
   gtk_widget_set_size_request (desedev, 250, 30);
   gtk_entry_set_invisible_char (GTK_ENTRY (desedev), 8226);
 
-  spinbutton4_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 10);
-  spinbutton4 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton4_adj), 1, 0);
-  gtk_widget_show (spinbutton4);
-  gtk_fixed_put (GTK_FIXED (fixed10), spinbutton4, 352, 200);
-  gtk_widget_set_size_request (spinbutton4, 60, 30);
+  edjev_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 10);
+  edjev = gtk_spin_button_new (GTK_ADJUSTMENT (edjev_adj), 1, 0);
+  gtk_widget_show (edjev);
+  gtk_fixed_put (GTK_FIXED (fixed10), edjev, 352, 200);
+  gtk_widget_set_size_request (edjev, 60, 30);
 
-  spinbutton5_adj = gtk_adjustment_new (1, 1, 12, 1, 10, 10);
-  spinbutton5 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton5_adj), 1, 0);
-  gtk_widget_show (spinbutton5);
-  gtk_fixed_put (GTK_FIXED (fixed10), spinbutton5, 456, 200);
-  gtk_widget_set_size_request (spinbutton5, 60, 30);
+  edmev_adj = gtk_adjustment_new (1, 1, 12, 1, 10, 10);
+  edmev = gtk_spin_button_new (GTK_ADJUSTMENT (edmev_adj), 1, 0);
+  gtk_widget_show (edmev);
+  gtk_fixed_put (GTK_FIXED (fixed10), edmev, 456, 200);
+  gtk_widget_set_size_request (edmev, 60, 30);
 
-  spinbutton6_adj = gtk_adjustment_new (2018, 2018, 2021, 1, 10, 10);
-  spinbutton6 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton6_adj), 1, 0);
-  gtk_widget_show (spinbutton6);
-  gtk_fixed_put (GTK_FIXED (fixed10), spinbutton6, 568, 200);
-  gtk_widget_set_size_request (spinbutton6, 75, 30);
+  edyev_adj = gtk_adjustment_new (2018, 2018, 2021, 1, 10, 10);
+  edyev = gtk_spin_button_new (GTK_ADJUSTMENT (edyev_adj), 1, 0);
+  gtk_widget_show (edyev);
+  gtk_fixed_put (GTK_FIXED (fixed10), edyev, 568, 200);
+  gtk_widget_set_size_request (edyev, 75, 30);
 
-  spinbutton7_adj = gtk_adjustment_new (7, 7, 22, 1, 10, 10);
-  spinbutton7 = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton7_adj), 1, 0);
-  gtk_widget_show (spinbutton7);
-  gtk_fixed_put (GTK_FIXED (fixed10), spinbutton7, 350, 250);
-  gtk_widget_set_size_request (spinbutton7, 60, 30);
+  edhev_adj = gtk_adjustment_new (7, 7, 22, 1, 10, 10);
+  edhev = gtk_spin_button_new (GTK_ADJUSTMENT (edhev_adj), 1, 0);
+  gtk_widget_show (edhev);
+  gtk_fixed_put (GTK_FIXED (fixed10), edhev, 350, 250);
+  gtk_widget_set_size_request (edhev, 60, 30);
 
   numedev = gtk_entry_new ();
   gtk_widget_show (numedev);
@@ -1814,15 +1814,6 @@ create_activ_edit (void)
   gtk_fixed_put (GTK_FIXED (fixed10), label76, 490, 250);
   gtk_widget_set_size_request (label76, 50, 30);
   gtk_misc_set_alignment (GTK_MISC (label76), 0, 0.5);
-
-  combobox2 = gtk_combo_box_new_text ();
-  gtk_widget_show (combobox2);
-  gtk_fixed_put (GTK_FIXED (fixed10), combobox2, 430, 250);
-  gtk_widget_set_size_request (combobox2, 60, 30);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("00"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("15"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("30"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2), _("45"));
 
   button21 = gtk_button_new ();
   gtk_widget_show (button21);
@@ -1905,6 +1896,15 @@ create_activ_edit (void)
   gtk_widget_set_size_request (label77, 192, 36);
   gtk_label_set_use_markup (GTK_LABEL (label77), TRUE);
 
+  comboedev = gtk_combo_box_new_text ();
+  gtk_widget_show (comboedev);
+  gtk_fixed_put (GTK_FIXED (fixed10), comboedev, 430, 250);
+  gtk_widget_set_size_request (comboedev, 60, 30);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("00"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("15"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("30"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("45"));
+
   g_signal_connect ((gpointer) activ_edit, "show",
                     G_CALLBACK (on_activ_edit_show),
                     NULL);
@@ -1923,10 +1923,10 @@ create_activ_edit (void)
   GLADE_HOOKUP_OBJECT (activ_edit, fixed10, "fixed10");
   GLADE_HOOKUP_OBJECT (activ_edit, nameedev, "nameedev");
   GLADE_HOOKUP_OBJECT (activ_edit, desedev, "desedev");
-  GLADE_HOOKUP_OBJECT (activ_edit, spinbutton4, "spinbutton4");
-  GLADE_HOOKUP_OBJECT (activ_edit, spinbutton5, "spinbutton5");
-  GLADE_HOOKUP_OBJECT (activ_edit, spinbutton6, "spinbutton6");
-  GLADE_HOOKUP_OBJECT (activ_edit, spinbutton7, "spinbutton7");
+  GLADE_HOOKUP_OBJECT (activ_edit, edjev, "edjev");
+  GLADE_HOOKUP_OBJECT (activ_edit, edmev, "edmev");
+  GLADE_HOOKUP_OBJECT (activ_edit, edyev, "edyev");
+  GLADE_HOOKUP_OBJECT (activ_edit, edhev, "edhev");
   GLADE_HOOKUP_OBJECT (activ_edit, numedev, "numedev");
   GLADE_HOOKUP_OBJECT (activ_edit, label67, "label67");
   GLADE_HOOKUP_OBJECT (activ_edit, label68, "label68");
@@ -1938,7 +1938,6 @@ create_activ_edit (void)
   GLADE_HOOKUP_OBJECT (activ_edit, label74, "label74");
   GLADE_HOOKUP_OBJECT (activ_edit, label75, "label75");
   GLADE_HOOKUP_OBJECT (activ_edit, label76, "label76");
-  GLADE_HOOKUP_OBJECT (activ_edit, combobox2, "combobox2");
   GLADE_HOOKUP_OBJECT (activ_edit, button21, "button21");
   GLADE_HOOKUP_OBJECT (activ_edit, image41, "image41");
   GLADE_HOOKUP_OBJECT (activ_edit, label80, "label80");
@@ -1956,6 +1955,7 @@ create_activ_edit (void)
   GLADE_HOOKUP_OBJECT (activ_edit, image40, "image40");
   GLADE_HOOKUP_OBJECT (activ_edit, label79, "label79");
   GLADE_HOOKUP_OBJECT (activ_edit, label77, "label77");
+  GLADE_HOOKUP_OBJECT (activ_edit, comboedev, "comboedev");
 
   return activ_edit;
 }

@@ -1905,9 +1905,6 @@ create_activ_edit (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("30"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("45"));
 
-  g_signal_connect ((gpointer) activ_edit, "show",
-                    G_CALLBACK (on_activ_edit_show),
-                    NULL);
   g_signal_connect ((gpointer) button21, "clicked",
                     G_CALLBACK (gtk_main_quit),
                     NULL);

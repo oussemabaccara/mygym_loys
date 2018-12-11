@@ -8,6 +8,41 @@
 #include <stdio.h>
 #include "event.h"
 
+//supp event
+void suppev(char num[])
+{
+FILE *f;
+FILE *f2;
+char ch1[30],ch2[30],ch3[30],ch4[30],ch5[30],ch6[30],ch7[30],ch8[30],ch9[30],ch10[30];
+f=fopen("event.txt","r");
+
+if(f==NULL)
+	{
+		return;
+	}
+while (fscanf(f,"%s %s %s %s %s %s %s %s %s %s",ch1,ch2,ch3,ch4,ch5,ch6,ch7,ch8,ch9,ch10)!=EOF)
+        {
+         if (strcmp(num,ch1))
+        {
+	f2=fopen("testev.txt", "a");
+		if (f2==NULL)
+		{
+		return;
+		}
+
+	fprintf(f2,"%s %s %s %s %s %s %s %s %s %s \n",ch1,ch2,ch3,ch4,ch5,ch6,ch7,ch8,ch9,ch10);
+
+	 fclose(f2);
+	}
+	}
+
+	fclose(f);
+remove("event.txt");
+rename("testev.txt","event.txt");
+
+}
+
+
 //ajout
 void ajout_ev(event e)
 {

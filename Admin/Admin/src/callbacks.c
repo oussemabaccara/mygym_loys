@@ -367,7 +367,7 @@ on_activ_add_clicked                   (GtkWidget       *objet,
  gtk_widget_destroy(activ); 
 }
 
-//
+// ajouter un ev
 
 void
 on_add_activ_clicked                   (GtkWidget       *objet,
@@ -496,22 +496,58 @@ e=get_event(string);
  gtk_widget_destroy(activ); 
 }
 
-//
-
-void
-on_activ_edit_show                     (GtkWidget       *widget,
-                                        gpointer         user_data)
-{
- 
-}
 
 //
 
 void
-on_edit_ev_clicked                     (GtkButton       *button,
+on_edit_ev_clicked                     (GtkButton       *objet,
                                         gpointer         user_data)
 {
+ event e;
 
+ GtkWidget *name;
+ GtkWidget *des;
+ GtkWidget *spind;
+ GtkWidget *spinm;
+ GtkWidget *spiny;
+ GtkWidget *spinh;
+ GtkWidget *combomin;
+ GtkWidget *nb_ev;
+ GtkWidget *nbm_ev;
+ GtkWidget *num_ev;
+ GtkWidget *activ_edit;
+ GtkWidget *output;
+
+
+
+ activ_edit=lookup_widget(objet,"activ_edit");
+
+ name=lookup_widget(objet,"nameedev");
+ des=lookup_widget(objet,"desedev");
+ spind=lookup_widget(objet,"edjev");
+ spinm=lookup_widget(objet,"edmev");
+ spiny=lookup_widget(objet,"edyev");
+ spinh=lookup_widget(objet,"edhev");
+ combomin=lookup_widget(objet,"comboedev");
+ nb_ev=lookup_widget(objet,"nbedev");
+ nbm_ev=lookup_widget(objet,"nbmedev");
+ num_ev=lookup_widget(objet,"numedev");
+
+
+
+ strcpy(e.num,gtk_entry_get_text(GTK_ENTRY(num_ev)));
+ strcpy(e.description,gtk_entry_get_text(GTK_ENTRY(des)));
+ strcpy(e.nom,gtk_entry_get_text(GTK_ENTRY(name)));
+ e.date.jour=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spind));
+ e.date.mois=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinm));
+ e.date.annee=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spiny));
+ e.heure.h=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinh));
+ strcpy(e.heure.min,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combomin)));
+ strcpy(e.nombre,gtk_entry_get_text(GTK_ENTRY(nb_ev)));
+ strcpy(e.nombremax,gtk_entry_get_text(GTK_ENTRY(nbm_ev)));
+
+ suppev(e.num);
+ ajout_ev(e); 
 }
 
 //

@@ -3829,7 +3829,6 @@ Kinésithérapeute</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
   <property name="urgency_hint">False</property>
-  <signal name="show" handler="on_activ_edit_show" last_modification_time="Tue, 11 Dec 2018 10:24:49 GMT"/>
 
   <child>
     <widget class="GtkFixed" id="fixed10">
