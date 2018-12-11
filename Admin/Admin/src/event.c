@@ -20,6 +20,28 @@ void ajout_ev(event e)
 	}
 }
 
+// get event
+
+event get_event(char ide[])
+{
+    event e ;
+    FILE *f;
+    
+    
+    f=fopen("event.txt","r");
+    if(f!=NULL)
+    {
+        while(fscanf(f,"%s %s %s %d %d %d %d %s %s %s \n" ,&e.num,&e.nom,&e.description,&e.date.jour,&e.date.mois,&e.date.annee,&e.heure.h,&e.heure.min,&e.nombre,&e.nombremax)!=EOF)
+        {
+            
+            if (strcmp(e.num,ide)==0)
+            {
+                return(e);
+            }
+        }
+    }
+}
+
 //affichage des evenements
 enum
 { 	

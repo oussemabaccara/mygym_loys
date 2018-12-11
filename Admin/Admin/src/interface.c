@@ -763,6 +763,9 @@ create_activ (void)
   g_signal_connect ((gpointer) activ_return, "clicked",
                     G_CALLBACK (on_activ_return_clicked),
                     NULL);
+  g_signal_connect ((gpointer) treeactiv, "row_activated",
+                    G_CALLBACK (on_treeactiv_row_activated),
+                    NULL);
   g_signal_connect ((gpointer) activ_upd, "clicked",
                     G_CALLBACK (on_activ_upd_clicked),
                     NULL);
@@ -1658,5 +1661,302 @@ create_activ_add (void)
   GLADE_HOOKUP_OBJECT (activ_add, label66, "label66");
 
   return activ_add;
+}
+
+GtkWidget*
+create_activ_edit (void)
+{
+  GtkWidget *activ_edit;
+  GtkWidget *fixed10;
+  GtkWidget *nameedev;
+  GtkWidget *desedev;
+  GtkObject *edjev_adj;
+  GtkWidget *edjev;
+  GtkObject *edmev_adj;
+  GtkWidget *edmev;
+  GtkObject *edyev_adj;
+  GtkWidget *edyev;
+  GtkObject *edhev_adj;
+  GtkWidget *edhev;
+  GtkWidget *numedev;
+  GtkWidget *label67;
+  GtkWidget *label68;
+  GtkWidget *label69;
+  GtkWidget *label70;
+  GtkWidget *label71;
+  GtkWidget *label72;
+  GtkWidget *label73;
+  GtkWidget *label74;
+  GtkWidget *label75;
+  GtkWidget *label76;
+  GtkWidget *button21;
+  GtkWidget *image41;
+  GtkWidget *label80;
+  GtkWidget *nbedev;
+  GtkWidget *nbmedev;
+  GtkWidget *label81;
+  GtkWidget *edit_ev;
+  GtkWidget *alignment21;
+  GtkWidget *hbox21;
+  GtkWidget *image39;
+  GtkWidget *label78;
+  GtkWidget *edev_return;
+  GtkWidget *alignment22;
+  GtkWidget *hbox22;
+  GtkWidget *image40;
+  GtkWidget *label79;
+  GtkWidget *label77;
+  GtkWidget *comboedev;
+
+  activ_edit = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_set_size_request (activ_edit, 800, 450);
+  gtk_window_set_title (GTK_WINDOW (activ_edit), _("Modifier un evenement"));
+
+  fixed10 = gtk_fixed_new ();
+  gtk_widget_show (fixed10);
+  gtk_container_add (GTK_CONTAINER (activ_edit), fixed10);
+
+  nameedev = gtk_entry_new ();
+  gtk_widget_show (nameedev);
+  gtk_fixed_put (GTK_FIXED (fixed10), nameedev, 328, 104);
+  gtk_widget_set_size_request (nameedev, 250, 30);
+  gtk_entry_set_invisible_char (GTK_ENTRY (nameedev), 8226);
+
+  desedev = gtk_entry_new ();
+  gtk_widget_show (desedev);
+  gtk_fixed_put (GTK_FIXED (fixed10), desedev, 325, 150);
+  gtk_widget_set_size_request (desedev, 250, 30);
+  gtk_entry_set_invisible_char (GTK_ENTRY (desedev), 8226);
+
+  edjev_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 10);
+  edjev = gtk_spin_button_new (GTK_ADJUSTMENT (edjev_adj), 1, 0);
+  gtk_widget_show (edjev);
+  gtk_fixed_put (GTK_FIXED (fixed10), edjev, 352, 200);
+  gtk_widget_set_size_request (edjev, 60, 30);
+
+  edmev_adj = gtk_adjustment_new (1, 1, 12, 1, 10, 10);
+  edmev = gtk_spin_button_new (GTK_ADJUSTMENT (edmev_adj), 1, 0);
+  gtk_widget_show (edmev);
+  gtk_fixed_put (GTK_FIXED (fixed10), edmev, 456, 200);
+  gtk_widget_set_size_request (edmev, 60, 30);
+
+  edyev_adj = gtk_adjustment_new (2018, 2018, 2021, 1, 10, 10);
+  edyev = gtk_spin_button_new (GTK_ADJUSTMENT (edyev_adj), 1, 0);
+  gtk_widget_show (edyev);
+  gtk_fixed_put (GTK_FIXED (fixed10), edyev, 568, 200);
+  gtk_widget_set_size_request (edyev, 75, 30);
+
+  edhev_adj = gtk_adjustment_new (7, 7, 22, 1, 10, 10);
+  edhev = gtk_spin_button_new (GTK_ADJUSTMENT (edhev_adj), 1, 0);
+  gtk_widget_show (edhev);
+  gtk_fixed_put (GTK_FIXED (fixed10), edhev, 350, 250);
+  gtk_widget_set_size_request (edhev, 60, 30);
+
+  numedev = gtk_entry_new ();
+  gtk_widget_show (numedev);
+  gtk_fixed_put (GTK_FIXED (fixed10), numedev, 325, 50);
+  gtk_widget_set_size_request (numedev, 250, 30);
+  gtk_entry_set_invisible_char (GTK_ENTRY (numedev), 8226);
+
+  label67 = gtk_label_new (_("Jour:"));
+  gtk_widget_show (label67);
+  gtk_fixed_put (GTK_FIXED (fixed10), label67, 312, 200);
+  gtk_widget_set_size_request (label67, 40, 30);
+
+  label68 = gtk_label_new (_("Mois:"));
+  gtk_widget_show (label68);
+  gtk_fixed_put (GTK_FIXED (fixed10), label68, 416, 200);
+  gtk_widget_set_size_request (label68, 40, 30);
+
+  label69 = gtk_label_new (_("Ann\303\251e:"));
+  gtk_widget_show (label69);
+  gtk_fixed_put (GTK_FIXED (fixed10), label69, 520, 200);
+  gtk_widget_set_size_request (label69, 45, 30);
+
+  label70 = gtk_label_new (_("Num\303\251ro:"));
+  gtk_widget_show (label70);
+  gtk_fixed_put (GTK_FIXED (fixed10), label70, 200, 50);
+  gtk_widget_set_size_request (label70, 100, 30);
+  gtk_misc_set_alignment (GTK_MISC (label70), 1, 0.5);
+
+  label71 = gtk_label_new (_("Nom:"));
+  gtk_widget_show (label71);
+  gtk_fixed_put (GTK_FIXED (fixed10), label71, 250, 100);
+  gtk_widget_set_size_request (label71, 50, 30);
+  gtk_misc_set_alignment (GTK_MISC (label71), 1, 0.5);
+
+  label72 = gtk_label_new (_("Description:"));
+  gtk_widget_show (label72);
+  gtk_fixed_put (GTK_FIXED (fixed10), label72, 200, 150);
+  gtk_widget_set_size_request (label72, 100, 30);
+  gtk_misc_set_alignment (GTK_MISC (label72), 1, 0.5);
+
+  label73 = gtk_label_new (_("Date:"));
+  gtk_widget_show (label73);
+  gtk_fixed_put (GTK_FIXED (fixed10), label73, 100, 200);
+  gtk_widget_set_size_request (label73, 200, 30);
+  gtk_misc_set_alignment (GTK_MISC (label73), 1, 0.5);
+
+  label74 = gtk_label_new (_("Heure:"));
+  gtk_widget_show (label74);
+  gtk_fixed_put (GTK_FIXED (fixed10), label74, 100, 250);
+  gtk_widget_set_size_request (label74, 200, 30);
+  gtk_misc_set_alignment (GTK_MISC (label74), 1, 0.5);
+
+  label75 = gtk_label_new (_("H"));
+  gtk_widget_show (label75);
+  gtk_fixed_put (GTK_FIXED (fixed10), label75, 410, 250);
+  gtk_widget_set_size_request (label75, 40, 30);
+  gtk_misc_set_alignment (GTK_MISC (label75), 0, 0.5);
+
+  label76 = gtk_label_new (_("min"));
+  gtk_widget_show (label76);
+  gtk_fixed_put (GTK_FIXED (fixed10), label76, 490, 250);
+  gtk_widget_set_size_request (label76, 50, 30);
+  gtk_misc_set_alignment (GTK_MISC (label76), 0, 0.5);
+
+  button21 = gtk_button_new ();
+  gtk_widget_show (button21);
+  gtk_fixed_put (GTK_FIXED (fixed10), button21, 770, 0);
+  gtk_widget_set_size_request (button21, 30, 30);
+
+  image41 = gtk_image_new_from_stock ("gtk-close", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image41);
+  gtk_container_add (GTK_CONTAINER (button21), image41);
+
+  label80 = gtk_label_new (_("Nombre:"));
+  gtk_widget_show (label80);
+  gtk_fixed_put (GTK_FIXED (fixed10), label80, 104, 296);
+  gtk_widget_set_size_request (label80, 200, 30);
+  gtk_misc_set_alignment (GTK_MISC (label80), 1, 0.5);
+
+  nbedev = gtk_entry_new ();
+  gtk_widget_show (nbedev);
+  gtk_fixed_put (GTK_FIXED (fixed10), nbedev, 328, 296);
+  gtk_widget_set_size_request (nbedev, 250, 30);
+  gtk_entry_set_invisible_char (GTK_ENTRY (nbedev), 8226);
+
+  nbmedev = gtk_entry_new ();
+  gtk_widget_show (nbmedev);
+  gtk_fixed_put (GTK_FIXED (fixed10), nbmedev, 328, 336);
+  gtk_widget_set_size_request (nbmedev, 250, 30);
+  gtk_entry_set_invisible_char (GTK_ENTRY (nbmedev), 8226);
+
+  label81 = gtk_label_new (_("Nombre max:"));
+  gtk_widget_show (label81);
+  gtk_fixed_put (GTK_FIXED (fixed10), label81, 104, 336);
+  gtk_widget_set_size_request (label81, 200, 30);
+  gtk_misc_set_alignment (GTK_MISC (label81), 1, 0.5);
+
+  edit_ev = gtk_button_new ();
+  gtk_widget_show (edit_ev);
+  gtk_fixed_put (GTK_FIXED (fixed10), edit_ev, 336, 375);
+  gtk_widget_set_size_request (edit_ev, 152, 32);
+
+  alignment21 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment21);
+  gtk_container_add (GTK_CONTAINER (edit_ev), alignment21);
+
+  hbox21 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox21);
+  gtk_container_add (GTK_CONTAINER (alignment21), hbox21);
+
+  image39 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image39);
+  gtk_box_pack_start (GTK_BOX (hbox21), image39, FALSE, FALSE, 0);
+
+  label78 = gtk_label_new_with_mnemonic (_("Modifier"));
+  gtk_widget_show (label78);
+  gtk_box_pack_start (GTK_BOX (hbox21), label78, FALSE, FALSE, 0);
+
+  edev_return = gtk_button_new ();
+  gtk_widget_show (edev_return);
+  gtk_fixed_put (GTK_FIXED (fixed10), edev_return, 50, 375);
+  gtk_widget_set_size_request (edev_return, 112, 40);
+
+  alignment22 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment22);
+  gtk_container_add (GTK_CONTAINER (edev_return), alignment22);
+
+  hbox22 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox22);
+  gtk_container_add (GTK_CONTAINER (alignment22), hbox22);
+
+  image40 = gtk_image_new_from_stock ("gtk-undo", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image40);
+  gtk_box_pack_start (GTK_BOX (hbox22), image40, FALSE, FALSE, 0);
+
+  label79 = gtk_label_new_with_mnemonic (_("Retour"));
+  gtk_widget_show (label79);
+  gtk_box_pack_start (GTK_BOX (hbox22), label79, FALSE, FALSE, 0);
+
+  label77 = gtk_label_new (_("<span foreground=\"blue\"><b>Modifier un evenement</b></span>"));
+  gtk_widget_show (label77);
+  gtk_fixed_put (GTK_FIXED (fixed10), label77, 336, 16);
+  gtk_widget_set_size_request (label77, 192, 36);
+  gtk_label_set_use_markup (GTK_LABEL (label77), TRUE);
+
+  comboedev = gtk_combo_box_new_text ();
+  gtk_widget_show (comboedev);
+  gtk_fixed_put (GTK_FIXED (fixed10), comboedev, 430, 250);
+  gtk_widget_set_size_request (comboedev, 60, 30);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("00"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("15"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("30"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("45"));
+
+  g_signal_connect ((gpointer) activ_edit, "show",
+                    G_CALLBACK (on_activ_edit_show),
+                    NULL);
+  g_signal_connect ((gpointer) button21, "clicked",
+                    G_CALLBACK (gtk_main_quit),
+                    NULL);
+  g_signal_connect ((gpointer) edit_ev, "clicked",
+                    G_CALLBACK (on_edit_ev_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) edev_return, "clicked",
+                    G_CALLBACK (on_edev_return_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (activ_edit, activ_edit, "activ_edit");
+  GLADE_HOOKUP_OBJECT (activ_edit, fixed10, "fixed10");
+  GLADE_HOOKUP_OBJECT (activ_edit, nameedev, "nameedev");
+  GLADE_HOOKUP_OBJECT (activ_edit, desedev, "desedev");
+  GLADE_HOOKUP_OBJECT (activ_edit, edjev, "edjev");
+  GLADE_HOOKUP_OBJECT (activ_edit, edmev, "edmev");
+  GLADE_HOOKUP_OBJECT (activ_edit, edyev, "edyev");
+  GLADE_HOOKUP_OBJECT (activ_edit, edhev, "edhev");
+  GLADE_HOOKUP_OBJECT (activ_edit, numedev, "numedev");
+  GLADE_HOOKUP_OBJECT (activ_edit, label67, "label67");
+  GLADE_HOOKUP_OBJECT (activ_edit, label68, "label68");
+  GLADE_HOOKUP_OBJECT (activ_edit, label69, "label69");
+  GLADE_HOOKUP_OBJECT (activ_edit, label70, "label70");
+  GLADE_HOOKUP_OBJECT (activ_edit, label71, "label71");
+  GLADE_HOOKUP_OBJECT (activ_edit, label72, "label72");
+  GLADE_HOOKUP_OBJECT (activ_edit, label73, "label73");
+  GLADE_HOOKUP_OBJECT (activ_edit, label74, "label74");
+  GLADE_HOOKUP_OBJECT (activ_edit, label75, "label75");
+  GLADE_HOOKUP_OBJECT (activ_edit, label76, "label76");
+  GLADE_HOOKUP_OBJECT (activ_edit, button21, "button21");
+  GLADE_HOOKUP_OBJECT (activ_edit, image41, "image41");
+  GLADE_HOOKUP_OBJECT (activ_edit, label80, "label80");
+  GLADE_HOOKUP_OBJECT (activ_edit, nbedev, "nbedev");
+  GLADE_HOOKUP_OBJECT (activ_edit, nbmedev, "nbmedev");
+  GLADE_HOOKUP_OBJECT (activ_edit, label81, "label81");
+  GLADE_HOOKUP_OBJECT (activ_edit, edit_ev, "edit_ev");
+  GLADE_HOOKUP_OBJECT (activ_edit, alignment21, "alignment21");
+  GLADE_HOOKUP_OBJECT (activ_edit, hbox21, "hbox21");
+  GLADE_HOOKUP_OBJECT (activ_edit, image39, "image39");
+  GLADE_HOOKUP_OBJECT (activ_edit, label78, "label78");
+  GLADE_HOOKUP_OBJECT (activ_edit, edev_return, "edev_return");
+  GLADE_HOOKUP_OBJECT (activ_edit, alignment22, "alignment22");
+  GLADE_HOOKUP_OBJECT (activ_edit, hbox22, "hbox22");
+  GLADE_HOOKUP_OBJECT (activ_edit, image40, "image40");
+  GLADE_HOOKUP_OBJECT (activ_edit, label79, "label79");
+  GLADE_HOOKUP_OBJECT (activ_edit, label77, "label77");
+  GLADE_HOOKUP_OBJECT (activ_edit, comboedev, "comboedev");
+
+  return activ_edit;
 }
 

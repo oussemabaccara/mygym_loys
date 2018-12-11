@@ -101,3 +101,25 @@ on_add_activ_clicked                   (GtkWidget       *objet,
 void
 on_add_activ_return_clicked            (GtkWidget       *objet,
                                         gpointer         user_data);
+
+void
+on_treeactiv_row_activated             (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_edit_ev_clicked                     (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_edev_return_clicked                 (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_activ_edit_show                     (GtkWidget       *widget,
+                                        gpointer         user_data);
+
+void
+on_activ_edit_show                     (GtkWidget       *widget,
+                                        gpointer         user_data);

@@ -11,3 +11,4 @@ GtkWidget* create_stats (void);
 GtkWidget* create_deals (void);
 GtkWidget* create_edit_acc (void);
 GtkWidget* create_activ_add (void);
+GtkWidget* create_activ_edit (void);

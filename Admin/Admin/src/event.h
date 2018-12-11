@@ -24,6 +24,7 @@ typedef struct
 	char nombremax[5];
 }event;
 
+event get_event(char ide[]);
 void ajout_ev(event e);
 void afficher_event(GtkWidget *liste);
 int ajout_part(char num[],char id[]);

@@ -367,6 +367,7 @@ on_activ_add_clicked                   (GtkWidget       *objet,
  gtk_widget_destroy(activ); 
 }
 
+//
 
 void
 on_add_activ_clicked                   (GtkWidget       *objet,
@@ -419,6 +420,7 @@ on_add_activ_clicked                   (GtkWidget       *objet,
  ajout_ev(e);
 }
 
+//
 
 void
 on_add_activ_return_clicked            (GtkWidget       *objet,
@@ -435,6 +437,100 @@ on_add_activ_return_clicked            (GtkWidget       *objet,
  treeview=lookup_widget(activ,"treeactiv");
  afficher_event(treeview);
  gtk_widget_destroy(activ_add); 
+}
+
+//double click treeview event
+void
+on_treeactiv_row_activated             (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+ GtkWidget *entry;
+ GtkWidget *entry2;
+ GtkWidget *entry3;
+ GtkWidget *entry4;
+GtkTreeIter iter;
+GtkTreeModel *model;
+gchar *string,*string1,*string2,*string3,*string4,*string5;
+model=gtk_tree_view_get_model(treeview);
+gtk_tree_model_get_iter(model,&iter,path);
+gtk_tree_model_get(model,&iter,0,&string,-1);
+gtk_tree_model_get(model,&iter,1,&string1,-1);
+gtk_tree_model_get(model,&iter,2,&string2,-1);
+gtk_tree_model_get(model,&iter,3,&string3,-1);
+gtk_tree_model_get(model,&iter,4,&string4,-1);
+gtk_tree_model_get(model,&iter,5,&string5,-1);
+
+
+ GtkWidget *activ;
+ GtkWidget *activ_edit;
+ GtkWidget *jour;
+ GtkWidget *mois;
+ GtkWidget *annee;
+ GtkWidget *h;
+ GtkWidget *combobox;
+ event e;
+ activ=lookup_widget(treeview,"activ");
+ activ_edit=create_activ_edit();
+ gtk_widget_show(activ_edit);
+entry=lookup_widget(activ_edit,"numedev");
+entry2=lookup_widget(activ_edit,"nameedev");
+entry3=lookup_widget(activ_edit,"desedev");
+entry4=lookup_widget(activ_edit,"nbedev");
+ jour=lookup_widget(activ_edit, "edjev");
+ mois=lookup_widget(activ_edit, "edmev");
+ annee=lookup_widget(activ_edit, "edyev");
+ h=lookup_widget(activ_edit, "edhev");
+ combobox=lookup_widget(activ_edit,"comboedev");
+gtk_entry_set_text(GTK_ENTRY(entry),string);
+gtk_entry_set_text(GTK_ENTRY(entry2),string1);
+gtk_entry_set_text(GTK_ENTRY(entry3),string2);
+gtk_entry_set_text(GTK_ENTRY(entry4),string5);
+e=get_event(string);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(jour),e.date.jour);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(mois),e.date.mois);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(annee),e.date.annee);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(h),e.heure.h);
+ gtk_combo_box_append_text (GTK_COMBO_BOX (combobox), _(e.heure.min));
+ gtk_widget_destroy(activ); 
+}
+
+//
+
+void
+on_activ_edit_show                     (GtkWidget       *widget,
+                                        gpointer         user_data)
+{
+ 
+}
+
+//
+
+void
+on_edit_ev_clicked                     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+//
+
+void
+on_edev_return_clicked                 (GtkButton       *button,
+                                        gpointer         user_data)
+{
+ GtkWidget *activ;
+ GtkWidget *activ_edit;
+ GtkWidget *treeview;
+
+ activ_edit=lookup_widget(button,"activ_edit");
+ activ=create_activ();
+
+ gtk_widget_show(activ);
+ treeview=lookup_widget(activ,"treeactiv");
+ afficher_event(treeview);
+ gtk_widget_destroy(activ_edit);
 }
 
 // Gestion des Activités -> modifier
@@ -532,6 +628,13 @@ on_stats_return_clicked                (GtkWidget       *objet,
  gtk_widget_show(Admin);
  gtk_widget_destroy(stats);
 }
+
+
+
+
+
+
+
 
 
 
