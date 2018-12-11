@@ -122,7 +122,6 @@ create_Admin (void)
   GtkWidget *admin_quit;
   GtkWidget *image8;
   GtkWidget *admin_list;
-  GtkWidget *admin_stats;
   GtkWidget *admin_deals;
   GtkWidget *image21;
   GtkWidget *image20;
@@ -130,6 +129,7 @@ create_Admin (void)
   GtkWidget *image22;
   GtkWidget *image23;
   GtkWidget *admin_activ;
+  GtkWidget *admin_stats;
 
   Admin = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (Admin, 800, 450);
@@ -152,11 +152,6 @@ create_Admin (void)
   gtk_widget_show (admin_list);
   gtk_fixed_put (GTK_FIXED (fixed2), admin_list, 75, 95);
   gtk_widget_set_size_request (admin_list, 250, 50);
-
-  admin_stats = gtk_button_new_with_mnemonic (_("Rapports et statistiques"));
-  gtk_widget_show (admin_stats);
-  gtk_fixed_put (GTK_FIXED (fixed2), admin_stats, 375, 235);
-  gtk_widget_set_size_request (admin_stats, 250, 50);
 
   admin_deals = gtk_button_new_with_mnemonic (_("Gestion des offres"));
   gtk_widget_show (admin_deals);
@@ -194,20 +189,25 @@ create_Admin (void)
   gtk_fixed_put (GTK_FIXED (fixed2), admin_activ, 225, 165);
   gtk_widget_set_size_request (admin_activ, 250, 50);
 
+  admin_stats = gtk_button_new_with_mnemonic (_("Base de donn\303\251es"));
+  gtk_widget_show (admin_stats);
+  gtk_fixed_put (GTK_FIXED (fixed2), admin_stats, 375, 235);
+  gtk_widget_set_size_request (admin_stats, 250, 50);
+
   g_signal_connect ((gpointer) admin_quit, "clicked",
                     G_CALLBACK (gtk_main_quit),
                     NULL);
   g_signal_connect ((gpointer) admin_list, "clicked",
                     G_CALLBACK (on_admin_list_clicked),
                     NULL);
-  g_signal_connect ((gpointer) admin_stats, "clicked",
-                    G_CALLBACK (on_admin_stats_clicked),
-                    NULL);
   g_signal_connect ((gpointer) admin_deals, "clicked",
                     G_CALLBACK (on_admin_deals_clicked),
                     NULL);
   g_signal_connect ((gpointer) admin_activ, "clicked",
                     G_CALLBACK (on_admin_activ_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) admin_stats, "clicked",
+                    G_CALLBACK (on_admin_stats_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -216,7 +216,6 @@ create_Admin (void)
   GLADE_HOOKUP_OBJECT (Admin, admin_quit, "admin_quit");
   GLADE_HOOKUP_OBJECT (Admin, image8, "image8");
   GLADE_HOOKUP_OBJECT (Admin, admin_list, "admin_list");
-  GLADE_HOOKUP_OBJECT (Admin, admin_stats, "admin_stats");
   GLADE_HOOKUP_OBJECT (Admin, admin_deals, "admin_deals");
   GLADE_HOOKUP_OBJECT (Admin, image21, "image21");
   GLADE_HOOKUP_OBJECT (Admin, image20, "image20");
@@ -224,6 +223,7 @@ create_Admin (void)
   GLADE_HOOKUP_OBJECT (Admin, image22, "image22");
   GLADE_HOOKUP_OBJECT (Admin, image23, "image23");
   GLADE_HOOKUP_OBJECT (Admin, admin_activ, "admin_activ");
+  GLADE_HOOKUP_OBJECT (Admin, admin_stats, "admin_stats");
 
   return Admin;
 }
@@ -812,13 +812,13 @@ create_stats (void)
   GtkWidget *hbox6;
   GtkWidget *image10;
   GtkWidget *label18;
-  GtkWidget *stats_title;
   GtkWidget *image26;
   GtkWidget *stats_treeview;
+  GtkWidget *stats_title;
 
   stats = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (stats, 800, 450);
-  gtk_window_set_title (GTK_WINDOW (stats), _("Rapports et statistiques"));
+  gtk_window_set_title (GTK_WINDOW (stats), _("Base de donn\303\251es"));
 
   fixed6 = gtk_fixed_new ();
   gtk_widget_show (fixed6);
@@ -854,12 +854,6 @@ create_stats (void)
   gtk_widget_show (label18);
   gtk_box_pack_start (GTK_BOX (hbox6), label18, FALSE, FALSE, 0);
 
-  stats_title = gtk_label_new (_("<span foreground=\"blue\"><b>Rapports et statistiques</b></span>"));
-  gtk_widget_show (stats_title);
-  gtk_fixed_put (GTK_FIXED (fixed6), stats_title, 250, 20);
-  gtk_widget_set_size_request (stats_title, 300, 32);
-  gtk_label_set_use_markup (GTK_LABEL (stats_title), TRUE);
-
   image26 = gtk_image_new_from_icon_name ("", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image26);
   gtk_fixed_put (GTK_FIXED (fixed6), image26, 256, 8);
@@ -869,6 +863,12 @@ create_stats (void)
   gtk_widget_show (stats_treeview);
   gtk_fixed_put (GTK_FIXED (fixed6), stats_treeview, 50, 60);
   gtk_widget_set_size_request (stats_treeview, 700, 300);
+
+  stats_title = gtk_label_new (_("<span foreground=\"blue\"><b>Comptes d\303\251sactiv\303\251s</b></span>"));
+  gtk_widget_show (stats_title);
+  gtk_fixed_put (GTK_FIXED (fixed6), stats_title, 250, 20);
+  gtk_widget_set_size_request (stats_title, 300, 32);
+  gtk_label_set_use_markup (GTK_LABEL (stats_title), TRUE);
 
   g_signal_connect ((gpointer) stats_quit, "clicked",
                     G_CALLBACK (gtk_main_quit),
@@ -887,9 +887,9 @@ create_stats (void)
   GLADE_HOOKUP_OBJECT (stats, hbox6, "hbox6");
   GLADE_HOOKUP_OBJECT (stats, image10, "image10");
   GLADE_HOOKUP_OBJECT (stats, label18, "label18");
-  GLADE_HOOKUP_OBJECT (stats, stats_title, "stats_title");
   GLADE_HOOKUP_OBJECT (stats, image26, "image26");
   GLADE_HOOKUP_OBJECT (stats, stats_treeview, "stats_treeview");
+  GLADE_HOOKUP_OBJECT (stats, stats_title, "stats_title");
 
   return stats;
 }
@@ -1402,7 +1402,6 @@ create_activ_add (void)
   GtkWidget *label64;
   GtkWidget *label65;
   GtkWidget *label48;
-  GtkWidget *combomin_ev;
   GtkWidget *add_activ;
   GtkWidget *alignment20;
   GtkWidget *hbox20;
@@ -1419,6 +1418,7 @@ create_activ_add (void)
   GtkWidget *nb_ev;
   GtkWidget *nbm_ev;
   GtkWidget *label66;
+  GtkWidget *combomin_ev;
 
   activ_add = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (activ_add, 800, 450);
@@ -1533,15 +1533,6 @@ create_activ_add (void)
   gtk_widget_set_size_request (label48, 192, 36);
   gtk_label_set_use_markup (GTK_LABEL (label48), TRUE);
 
-  combomin_ev = gtk_combo_box_new_text ();
-  gtk_widget_show (combomin_ev);
-  gtk_fixed_put (GTK_FIXED (fixed9), combomin_ev, 430, 250);
-  gtk_widget_set_size_request (combomin_ev, 60, 30);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin_ev), _("00"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin_ev), _("15"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin_ev), _("30"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin_ev), _("45"));
-
   add_activ = gtk_button_new ();
   gtk_widget_show (add_activ);
   gtk_fixed_put (GTK_FIXED (fixed9), add_activ, 336, 375);
@@ -1617,6 +1608,15 @@ create_activ_add (void)
   gtk_widget_set_size_request (label66, 200, 30);
   gtk_misc_set_alignment (GTK_MISC (label66), 1, 0.5);
 
+  combomin_ev = gtk_combo_box_new_text ();
+  gtk_widget_show (combomin_ev);
+  gtk_fixed_put (GTK_FIXED (fixed9), combomin_ev, 430, 250);
+  gtk_widget_set_size_request (combomin_ev, 60, 30);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin_ev), _("00"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin_ev), _("15"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin_ev), _("30"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combomin_ev), _("45"));
+
   g_signal_connect ((gpointer) add_activ, "clicked",
                     G_CALLBACK (on_add_activ_clicked),
                     NULL);
@@ -1648,7 +1648,6 @@ create_activ_add (void)
   GLADE_HOOKUP_OBJECT (activ_add, label64, "label64");
   GLADE_HOOKUP_OBJECT (activ_add, label65, "label65");
   GLADE_HOOKUP_OBJECT (activ_add, label48, "label48");
-  GLADE_HOOKUP_OBJECT (activ_add, combomin_ev, "combomin_ev");
   GLADE_HOOKUP_OBJECT (activ_add, add_activ, "add_activ");
   GLADE_HOOKUP_OBJECT (activ_add, alignment20, "alignment20");
   GLADE_HOOKUP_OBJECT (activ_add, hbox20, "hbox20");
@@ -1665,6 +1664,7 @@ create_activ_add (void)
   GLADE_HOOKUP_OBJECT (activ_add, nb_ev, "nb_ev");
   GLADE_HOOKUP_OBJECT (activ_add, nbm_ev, "nbm_ev");
   GLADE_HOOKUP_OBJECT (activ_add, label66, "label66");
+  GLADE_HOOKUP_OBJECT (activ_add, combomin_ev, "combomin_ev");
 
   return activ_add;
 }
