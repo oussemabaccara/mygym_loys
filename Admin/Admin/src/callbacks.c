@@ -372,13 +372,18 @@ void
 on_add_activ_clicked                   (GtkWidget       *objet,
                                         gpointer         user_data)
 {
- /*activ a;
+ event e;
 
- GtkWidget *activ;
- GtkWidget *jour;
- GtkWidget *spinH;
- GtkWidget *min;
- GtkWidget *duree;
+ GtkWidget *name;
+ GtkWidget *des;
+ GtkWidget *spind;
+ GtkWidget *spinm;
+ GtkWidget *spiny;
+ GtkWidget *spinh;
+ GtkWidget *combomin;
+ GtkWidget *nb_ev;
+ GtkWidget *nbm_ev;
+ GtkWidget *num_ev;
  GtkWidget *activ_add;
  GtkWidget *output;
 
@@ -386,21 +391,32 @@ on_add_activ_clicked                   (GtkWidget       *objet,
 
  activ_add=lookup_widget(objet,"activ_add");
 
- activ=lookup_widget(objet,"comboactiv");
- jour=lookup_widget(objet,"combojour");
- spinH=lookup_widget(objet,"spinH");
- min=lookup_widget(objet,"combomin");
- duree=lookup_widget(objet,"comboduree");
+ name=lookup_widget(objet,"name_ev");
+ des=lookup_widget(objet,"des_ev");
+ spind=lookup_widget(objet,"spind_ev");
+ spinm=lookup_widget(objet,"spinm_ev");
+ spiny=lookup_widget(objet,"spiny_ev");
+ spinh=lookup_widget(objet,"spinh_ev");
+ combomin=lookup_widget(objet,"combomin_ev");
+ nb_ev=lookup_widget(objet,"nb_ev");
+ nbm_ev=lookup_widget(objet,"nbm_ev");
+ num_ev=lookup_widget(objet,"num_ev");
 
 
 
- strcpy(a.type,gtk_entry_get_text(GTK_ENTRY(activ)));
- strcpy(a.jour,gtk_entry_get_text(GTK_ENTRY(jour)));
- a.horH=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinH));
- strcpy(a.hormin,gtk_entry_get_text(GTK_ENTRY(min)));
- strcpy(a.dur,gtk_entry_get_text(GTK_ENTRY(duree)));
+ strcpy(e.num,gtk_entry_get_text(GTK_ENTRY(num_ev)));
+ strcpy(e.description,gtk_entry_get_text(GTK_ENTRY(des)));
+ strcpy(e.nom,gtk_entry_get_text(GTK_ENTRY(name)));
+ e.date.jour=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spind));
+ e.date.mois=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinm));
+ e.date.annee=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spiny));
+ e.heure.h=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinh));
+ strcpy(e.heure.min,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combomin)));
+ strcpy(e.nombre,gtk_entry_get_text(GTK_ENTRY(nb_ev)));
+ strcpy(e.nombremax,gtk_entry_get_text(GTK_ENTRY(nbm_ev)));
+
  
- eventadd(a);*/
+ ajout_ev(e);
 }
 
 

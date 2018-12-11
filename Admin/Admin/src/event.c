@@ -7,6 +7,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "event.h"
+
+//ajout
+void ajout_ev(event e)
+{
+ FILE *f;
+ f=fopen("event.txt","a+");
+ if(f!=NULL) 
+	{
+	 fprintf(f,"%s %s %s %d %d %d %d %s %s %s \n" ,e.num,e.nom,e.description,e.date.jour,e.date.mois,e.date.annee,e.heure.h,e.heure.min,e.nombre,e.nombremax);
+	 fclose(f);
+	}
+}
+
 //affichage des evenements
 enum
 { 	
@@ -34,6 +47,8 @@ void afficher_event(GtkWidget *liste)
 	char mois[30];
 	char annee[30];
 	char date[30];
+	char h[30];
+	char min[30];
 	char heure[30];
 	char nombre[30];
 	char nombremax[30];
@@ -83,11 +98,13 @@ void afficher_event(GtkWidget *liste)
  else
 	{
 	 f = fopen("event.txt", "a+");
-         while(fscanf(f,"%s %s %s %s %s %s %s %s %s \n",num,nom,description,jour,mois,annee,heure,nombre,nombremax)!=EOF)
+         while(fscanf(f,"%s %s %s %s %s %s %s %s %s %s \n",num,nom,description,jour,mois,annee,h,min,nombre,nombremax)!=EOF)
 		{
 		 strcpy(date,jour);strcat(date,"/");
 		 strcat(date,mois);strcat(date,"/");
 		 strcat(date,annee);
+		 strcpy(heure,h);strcat(heure,":");
+		 strcat(heure,min);
 		 gtk_list_store_append (store, &iter);
 		 gtk_list_store_set (store,&iter,NUM,num,NOM,nom,DESCRIPTION,description,DATE,date,HEURE,heure,NOMBRE,nombre,-1); 
 		}
