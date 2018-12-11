@@ -350,6 +350,9 @@ create_list (void)
   gtk_widget_show (label23);
   gtk_box_pack_start (GTK_BOX (hbox10), label23, FALSE, FALSE, 0);
 
+  g_signal_connect ((gpointer) treeview1, "row_activated",
+                    G_CALLBACK (on_treeview1_row_activated),
+                    NULL);
   g_signal_connect ((gpointer) list_return, "clicked",
                     G_CALLBACK (on_list_return_clicked),
                     NULL);
@@ -875,6 +878,9 @@ create_stats (void)
                     NULL);
   g_signal_connect ((gpointer) stats_return, "clicked",
                     G_CALLBACK (on_stats_return_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) stats_treeview, "row_activated",
+                    G_CALLBACK (on_stats_treeview_row_activated),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -2367,5 +2373,250 @@ create_deals_add (void)
   GLADE_HOOKUP_OBJECT (deals_add, label101, "label101");
 
   return deals_add;
+}
+
+GtkWidget*
+create_react (void)
+{
+  GtkWidget *react;
+  GtkWidget *fixed13;
+  GtkWidget *re_ent_nom;
+  GtkWidget *re_ent_prenom;
+  GtkObject *respinbutton1_adj;
+  GtkWidget *respinbutton1;
+  GtkObject *respinbutton3_adj;
+  GtkWidget *respinbutton3;
+  GtkObject *respinbutton2_adj;
+  GtkWidget *respinbutton2;
+  GtkWidget *re_ent_id;
+  GtkWidget *button29;
+  GtkWidget *image51;
+  GtkWidget *label106;
+  GtkWidget *label107;
+  GtkWidget *label108;
+  GtkWidget *label109;
+  GtkWidget *label110;
+  GtkWidget *label111;
+  GtkWidget *label112;
+  GtkWidget *label113;
+  GtkWidget *button30;
+  GtkWidget *alignment30;
+  GtkWidget *hbox30;
+  GtkWidget *image52;
+  GtkWidget *label114;
+  GtkWidget *label103;
+  GtkWidget *label105;
+  GtkWidget *reeturn;
+  GtkWidget *alignment29;
+  GtkWidget *hbox29;
+  GtkWidget *image50;
+  GtkWidget *label104;
+  GtkWidget *recombobox1;
+
+  react = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_set_size_request (react, 800, 450);
+  gtk_window_set_title (GTK_WINDOW (react), _("Ajouter un compte"));
+
+  fixed13 = gtk_fixed_new ();
+  gtk_widget_show (fixed13);
+  gtk_container_add (GTK_CONTAINER (react), fixed13);
+
+  re_ent_nom = gtk_entry_new ();
+  gtk_widget_show (re_ent_nom);
+  gtk_fixed_put (GTK_FIXED (fixed13), re_ent_nom, 300, 100);
+  gtk_widget_set_size_request (re_ent_nom, 300, 30);
+  gtk_entry_set_invisible_char (GTK_ENTRY (re_ent_nom), 8226);
+
+  re_ent_prenom = gtk_entry_new ();
+  gtk_widget_show (re_ent_prenom);
+  gtk_fixed_put (GTK_FIXED (fixed13), re_ent_prenom, 300, 150);
+  gtk_widget_set_size_request (re_ent_prenom, 300, 30);
+  gtk_entry_set_invisible_char (GTK_ENTRY (re_ent_prenom), 8226);
+
+  respinbutton1_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 10);
+  respinbutton1 = gtk_spin_button_new (GTK_ADJUSTMENT (respinbutton1_adj), 1, 0);
+  gtk_widget_show (respinbutton1);
+  gtk_fixed_put (GTK_FIXED (fixed13), respinbutton1, 304, 200);
+  gtk_widget_set_size_request (respinbutton1, 60, 30);
+
+  respinbutton3_adj = gtk_adjustment_new (1997, 1950, 2018, 1, 10, 10);
+  respinbutton3 = gtk_spin_button_new (GTK_ADJUSTMENT (respinbutton3_adj), 1, 0);
+  gtk_widget_show (respinbutton3);
+  gtk_fixed_put (GTK_FIXED (fixed13), respinbutton3, 525, 200);
+  gtk_widget_set_size_request (respinbutton3, 75, 30);
+
+  respinbutton2_adj = gtk_adjustment_new (1, 1, 12, 1, 10, 10);
+  respinbutton2 = gtk_spin_button_new (GTK_ADJUSTMENT (respinbutton2_adj), 1, 0);
+  gtk_widget_show (respinbutton2);
+  gtk_fixed_put (GTK_FIXED (fixed13), respinbutton2, 410, 200);
+  gtk_widget_set_size_request (respinbutton2, 60, 30);
+
+  re_ent_id = gtk_entry_new ();
+  gtk_widget_show (re_ent_id);
+  gtk_fixed_put (GTK_FIXED (fixed13), re_ent_id, 300, 50);
+  gtk_widget_set_size_request (re_ent_id, 300, 30);
+  gtk_entry_set_invisible_char (GTK_ENTRY (re_ent_id), 8226);
+
+  button29 = gtk_button_new ();
+  gtk_widget_show (button29);
+  gtk_fixed_put (GTK_FIXED (fixed13), button29, 770, 0);
+  gtk_widget_set_size_request (button29, 30, 30);
+
+  image51 = gtk_image_new_from_stock ("gtk-close", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image51);
+  gtk_container_add (GTK_CONTAINER (button29), image51);
+
+  label106 = gtk_label_new (_("Ann\303\251e"));
+  gtk_widget_show (label106);
+  gtk_fixed_put (GTK_FIXED (fixed13), label106, 475, 200);
+  gtk_widget_set_size_request (label106, 45, 30);
+
+  label107 = gtk_label_new (_("Mois"));
+  gtk_widget_show (label107);
+  gtk_fixed_put (GTK_FIXED (fixed13), label107, 370, 200);
+  gtk_widget_set_size_request (label107, 40, 30);
+
+  label108 = gtk_label_new (_("Jour"));
+  gtk_widget_show (label108);
+  gtk_fixed_put (GTK_FIXED (fixed13), label108, 260, 200);
+  gtk_widget_set_size_request (label108, 40, 30);
+
+  label109 = gtk_label_new (_("Date de naissance:"));
+  gtk_widget_show (label109);
+  gtk_fixed_put (GTK_FIXED (fixed13), label109, 50, 200);
+  gtk_widget_set_size_request (label109, 200, 30);
+  gtk_misc_set_alignment (GTK_MISC (label109), 1, 0.5);
+
+  label110 = gtk_label_new (_("Pr\303\251nom:"));
+  gtk_widget_show (label110);
+  gtk_fixed_put (GTK_FIXED (fixed13), label110, 150, 150);
+  gtk_widget_set_size_request (label110, 100, 30);
+  gtk_misc_set_alignment (GTK_MISC (label110), 1, 0.5);
+
+  label111 = gtk_label_new (_("Nom:"));
+  gtk_widget_show (label111);
+  gtk_fixed_put (GTK_FIXED (fixed13), label111, 200, 100);
+  gtk_widget_set_size_request (label111, 50, 30);
+  gtk_misc_set_alignment (GTK_MISC (label111), 1, 0.5);
+
+  label112 = gtk_label_new (_("Identifiant:"));
+  gtk_widget_show (label112);
+  gtk_fixed_put (GTK_FIXED (fixed13), label112, 150, 50);
+  gtk_widget_set_size_request (label112, 100, 30);
+  gtk_misc_set_alignment (GTK_MISC (label112), 1, 0.5);
+
+  label113 = gtk_label_new (_("Role:"));
+  gtk_widget_show (label113);
+  gtk_fixed_put (GTK_FIXED (fixed13), label113, 50, 250);
+  gtk_widget_set_size_request (label113, 200, 30);
+  gtk_misc_set_alignment (GTK_MISC (label113), 1, 0.5);
+
+  button30 = gtk_button_new ();
+  gtk_widget_show (button30);
+  gtk_fixed_put (GTK_FIXED (fixed13), button30, 350, 320);
+  gtk_widget_set_size_request (button30, 152, 32);
+
+  alignment30 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment30);
+  gtk_container_add (GTK_CONTAINER (button30), alignment30);
+
+  hbox30 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox30);
+  gtk_container_add (GTK_CONTAINER (alignment30), hbox30);
+
+  image52 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image52);
+  gtk_box_pack_start (GTK_BOX (hbox30), image52, FALSE, FALSE, 0);
+
+  label114 = gtk_label_new_with_mnemonic (_("Reactiver"));
+  gtk_widget_show (label114);
+  gtk_box_pack_start (GTK_BOX (hbox30), label114, FALSE, FALSE, 0);
+
+  label103 = gtk_label_new (_("<span foreground=\"blue\"><b>Reactiver ce compte? </b></span>"));
+  gtk_widget_show (label103);
+  gtk_fixed_put (GTK_FIXED (fixed13), label103, 320, 20);
+  gtk_widget_set_size_request (label103, 160, 32);
+  gtk_label_set_use_markup (GTK_LABEL (label103), TRUE);
+
+  label105 = gtk_label_new ("");
+  gtk_widget_show (label105);
+  gtk_fixed_put (GTK_FIXED (fixed13), label105, 544, 304);
+  gtk_widget_set_size_request (label105, 240, 64);
+
+  reeturn = gtk_button_new ();
+  gtk_widget_show (reeturn);
+  gtk_fixed_put (GTK_FIXED (fixed13), reeturn, 50, 375);
+  gtk_widget_set_size_request (reeturn, 112, 40);
+
+  alignment29 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment29);
+  gtk_container_add (GTK_CONTAINER (reeturn), alignment29);
+
+  hbox29 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox29);
+  gtk_container_add (GTK_CONTAINER (alignment29), hbox29);
+
+  image50 = gtk_image_new_from_stock ("gtk-undo", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image50);
+  gtk_box_pack_start (GTK_BOX (hbox29), image50, FALSE, FALSE, 0);
+
+  label104 = gtk_label_new_with_mnemonic (_("Retour"));
+  gtk_widget_show (label104);
+  gtk_box_pack_start (GTK_BOX (hbox29), label104, FALSE, FALSE, 0);
+
+  recombobox1 = gtk_combo_box_new_text ();
+  gtk_widget_show (recombobox1);
+  gtk_fixed_put (GTK_FIXED (fixed13), recombobox1, 300, 250);
+  gtk_widget_set_size_request (recombobox1, 300, 30);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (recombobox1), _("Adh\303\251rent"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (recombobox1), _("Coach"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (recombobox1), _("M\303\251decin_g\303\251n\303\251raliste"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (recombobox1), _("M\303\251decin_nutritionniste"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (recombobox1), _("Kin\303\251sith\303\251rapeute"));
+
+  g_signal_connect ((gpointer) button29, "clicked",
+                    G_CALLBACK (gtk_main_quit),
+                    NULL);
+  g_signal_connect ((gpointer) button30, "clicked",
+                    G_CALLBACK (on_add_ajouter_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) reeturn, "clicked",
+                    G_CALLBACK (on_reeturn_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (react, react, "react");
+  GLADE_HOOKUP_OBJECT (react, fixed13, "fixed13");
+  GLADE_HOOKUP_OBJECT (react, re_ent_nom, "re_ent_nom");
+  GLADE_HOOKUP_OBJECT (react, re_ent_prenom, "re_ent_prenom");
+  GLADE_HOOKUP_OBJECT (react, respinbutton1, "respinbutton1");
+  GLADE_HOOKUP_OBJECT (react, respinbutton3, "respinbutton3");
+  GLADE_HOOKUP_OBJECT (react, respinbutton2, "respinbutton2");
+  GLADE_HOOKUP_OBJECT (react, re_ent_id, "re_ent_id");
+  GLADE_HOOKUP_OBJECT (react, button29, "button29");
+  GLADE_HOOKUP_OBJECT (react, image51, "image51");
+  GLADE_HOOKUP_OBJECT (react, label106, "label106");
+  GLADE_HOOKUP_OBJECT (react, label107, "label107");
+  GLADE_HOOKUP_OBJECT (react, label108, "label108");
+  GLADE_HOOKUP_OBJECT (react, label109, "label109");
+  GLADE_HOOKUP_OBJECT (react, label110, "label110");
+  GLADE_HOOKUP_OBJECT (react, label111, "label111");
+  GLADE_HOOKUP_OBJECT (react, label112, "label112");
+  GLADE_HOOKUP_OBJECT (react, label113, "label113");
+  GLADE_HOOKUP_OBJECT (react, button30, "button30");
+  GLADE_HOOKUP_OBJECT (react, alignment30, "alignment30");
+  GLADE_HOOKUP_OBJECT (react, hbox30, "hbox30");
+  GLADE_HOOKUP_OBJECT (react, image52, "image52");
+  GLADE_HOOKUP_OBJECT (react, label114, "label114");
+  GLADE_HOOKUP_OBJECT (react, label103, "label103");
+  GLADE_HOOKUP_OBJECT (react, label105, "label105");
+  GLADE_HOOKUP_OBJECT (react, reeturn, "reeturn");
+  GLADE_HOOKUP_OBJECT (react, alignment29, "alignment29");
+  GLADE_HOOKUP_OBJECT (react, hbox29, "hbox29");
+  GLADE_HOOKUP_OBJECT (react, image50, "image50");
+  GLADE_HOOKUP_OBJECT (react, label104, "label104");
+  GLADE_HOOKUP_OBJECT (react, recombobox1, "recombobox1");
+
+  return react;
 }
 
