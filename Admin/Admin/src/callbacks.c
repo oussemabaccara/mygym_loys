@@ -193,6 +193,46 @@ gtk_combo_box_set_active (c,0);
  gtk_widget_show(edit_acc);
  gtk_widget_destroy(list);
 }
+//double click
+void
+on_treeview1_row_activated             (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+  GtkWidget *e1,*e2,*e3,*s1,*s2,*s3,*c1;
+GtkTreeIter iter;
+GtkTreeModel *model;
+gchar *string;
+model=gtk_tree_view_get_model(treeview);
+gtk_tree_model_get_iter(model,&iter,path);
+gtk_tree_model_get(model,&iter,0,&string,-1);
+
+
+ GtkWidget *list;
+ GtkWidget *edit_acc;
+ Personne p;
+ list=lookup_widget(treeview,"list");
+ edit_acc=create_edit_acc();
+ gtk_widget_show(edit_acc);
+e1=lookup_widget(edit_acc,"edit_id");
+e2=lookup_widget(edit_acc,"edit_last");
+e3=lookup_widget(edit_acc,"edit_first");
+ s1=lookup_widget(edit_acc, "spinday");
+ s2=lookup_widget(edit_acc, "spinmonth");
+ s3=lookup_widget(edit_acc, "spinyear");
+ c1=lookup_widget(edit_acc,"comborole");
+p=get_personne(string);
+gtk_entry_set_text(GTK_ENTRY(e1),p.id);
+gtk_entry_set_text(GTK_ENTRY(e2),p.nom);
+gtk_entry_set_text(GTK_ENTRY(e3),p.prenom);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(s1),p.date.jour);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(s2),p.date.mois);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(s3),p.date.annee);
+ gtk_combo_box_prepend_text (GTK_COMBO_BOX (c1), _(p.role));
+ gtk_widget_destroy(list);
+ gtk_combo_box_set_active (c1,0);
+}
 
 void
 on_edit_acc_show                       (GtkWidget       *widget,
@@ -877,6 +917,9 @@ on_stats_return_clicked                (GtkWidget       *objet,
  gtk_widget_show(Admin);
  gtk_widget_destroy(stats);
 }
+
+
+
 
 
 

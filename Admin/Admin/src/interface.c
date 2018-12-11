@@ -350,6 +350,9 @@ create_list (void)
   gtk_widget_show (label23);
   gtk_box_pack_start (GTK_BOX (hbox10), label23, FALSE, FALSE, 0);
 
+  g_signal_connect ((gpointer) treeview1, "row_activated",
+                    G_CALLBACK (on_treeview1_row_activated),
+                    NULL);
   g_signal_connect ((gpointer) list_return, "clicked",
                     G_CALLBACK (on_list_return_clicked),
                     NULL);

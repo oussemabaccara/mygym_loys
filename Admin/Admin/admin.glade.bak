@@ -448,6 +448,7 @@
 	  <property name="fixed_height_mode">False</property>
 	  <property name="hover_selection">False</property>
 	  <property name="hover_expand">False</property>
+	  <signal name="row_activated" handler="on_treeview1_row_activated" last_modification_time="Tue, 11 Dec 2018 21:02:22 GMT"/>
 	</widget>
 	<packing>
 	  <property name="x">50</property>
