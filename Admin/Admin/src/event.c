@@ -86,6 +86,7 @@ enum
 	DATE,
 	HEURE,
 	NOMBRE,
+	NOMBREMAX,
 	COLUMNS
 };
 
@@ -139,12 +140,16 @@ void afficher_event(GtkWidget *liste)
 		renderer = gtk_cell_renderer_text_new ();
 		column = gtk_tree_view_column_new_with_attributes("nombre", renderer, "text",NOMBRE, NULL);
 		gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column);
+
+		renderer = gtk_cell_renderer_text_new ();
+		column = gtk_tree_view_column_new_with_attributes("nombremax", renderer, "text",NOMBREMAX, NULL);
+		gtk_tree_view_append_column (GTK_TREE_VIEW (liste), column);
                
 	
 	}
 
 	
- store=gtk_list_store_new (COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+ store=gtk_list_store_new (COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
  f = fopen("event.txt", "r");
 	
@@ -163,7 +168,7 @@ void afficher_event(GtkWidget *liste)
 		 strcpy(heure,h);strcat(heure,":");
 		 strcat(heure,min);
 		 gtk_list_store_append (store, &iter);
-		 gtk_list_store_set (store,&iter,NUM,num,NOM,nom,DESCRIPTION,description,DATE,date,HEURE,heure,NOMBRE,nombre,-1); 
+		 gtk_list_store_set (store,&iter,NUM,num,NOM,nom,DESCRIPTION,description,DATE,date,HEURE,heure,NOMBRE,nombre,NOMBREMAX,nombremax,-1); 
 		}
 	 fclose(f);
 	 gtk_tree_view_set_model(GTK_TREE_VIEW (liste),  GTK_TREE_MODEL (store));

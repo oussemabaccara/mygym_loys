@@ -554,6 +554,24 @@ on_edit_ev_clicked                     (GtkButton       *objet,
 }
 
 //
+void
+on_delev_clicked                       (GtkButton       *objet,
+                                        gpointer         user_data)
+{
+ event e;
+ GtkWidget *num_ev;
+ GtkWidget *activ_edit;
+ GtkWidget *output;
+
+
+
+ activ_edit=lookup_widget(objet,"activ_edit");
+ num_ev=lookup_widget(objet,"numedev");
+ strcpy(e.num,gtk_entry_get_text(GTK_ENTRY(num_ev)));
+ suppev(e.num);
+}
+
+//
 
 void
 on_edev_return_clicked                 (GtkButton       *button,
@@ -573,11 +591,18 @@ on_edev_return_clicked                 (GtkButton       *button,
 }
 
 // Gestion des Activités -> modifier
+
+
 void
 on_activ_upd_clicked                   (GtkWidget       *objet,
                                         gpointer         user_data)
 {
-
+  GtkWidget *activ;
+ GtkWidget *activ_edit;
+ activ=lookup_widget(objet,"activ");
+ activ_edit=create_activ_edit();
+ gtk_widget_show(activ_edit);
+ gtk_widget_destroy(activ);
 }
 
 
@@ -667,6 +692,9 @@ on_stats_return_clicked                (GtkWidget       *objet,
  gtk_widget_show(Admin);
  gtk_widget_destroy(stats);
 }
+
+
+
 
 
 

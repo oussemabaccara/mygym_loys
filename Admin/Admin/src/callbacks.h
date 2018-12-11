@@ -119,3 +119,7 @@ on_edev_return_clicked                 (GtkButton       *button,
 void
 on_activ_edit_show                     (GtkWidget       *widget,
                                         gpointer         user_data);
+
+void
+on_delev_clicked                       (GtkButton       *objet,
+                                        gpointer         user_data);

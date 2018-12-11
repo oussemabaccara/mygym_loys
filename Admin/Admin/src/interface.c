@@ -124,12 +124,12 @@ create_Admin (void)
   GtkWidget *admin_list;
   GtkWidget *admin_stats;
   GtkWidget *admin_deals;
-  GtkWidget *admin_activ;
   GtkWidget *image21;
   GtkWidget *image20;
   GtkWidget *titre_espace_Admin;
   GtkWidget *image22;
   GtkWidget *image23;
+  GtkWidget *admin_activ;
 
   Admin = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (Admin, 800, 450);
@@ -163,11 +163,6 @@ create_Admin (void)
   gtk_fixed_put (GTK_FIXED (fixed2), admin_deals, 525, 305);
   gtk_widget_set_size_request (admin_deals, 250, 50);
 
-  admin_activ = gtk_button_new_with_mnemonic (_("Gestion des activit\303\251s"));
-  gtk_widget_show (admin_activ);
-  gtk_fixed_put (GTK_FIXED (fixed2), admin_activ, 225, 165);
-  gtk_widget_set_size_request (admin_activ, 250, 50);
-
   image21 = gtk_image_new_from_icon_name ("", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image21);
   gtk_fixed_put (GTK_FIXED (fixed2), image21, 325, 235);
@@ -194,6 +189,11 @@ create_Admin (void)
   gtk_fixed_put (GTK_FIXED (fixed2), image23, 175, 165);
   gtk_widget_set_size_request (image23, 50, 50);
 
+  admin_activ = gtk_button_new_with_mnemonic (_("Gestion des evenements"));
+  gtk_widget_show (admin_activ);
+  gtk_fixed_put (GTK_FIXED (fixed2), admin_activ, 225, 165);
+  gtk_widget_set_size_request (admin_activ, 250, 50);
+
   g_signal_connect ((gpointer) admin_quit, "clicked",
                     G_CALLBACK (gtk_main_quit),
                     NULL);
@@ -218,12 +218,12 @@ create_Admin (void)
   GLADE_HOOKUP_OBJECT (Admin, admin_list, "admin_list");
   GLADE_HOOKUP_OBJECT (Admin, admin_stats, "admin_stats");
   GLADE_HOOKUP_OBJECT (Admin, admin_deals, "admin_deals");
-  GLADE_HOOKUP_OBJECT (Admin, admin_activ, "admin_activ");
   GLADE_HOOKUP_OBJECT (Admin, image21, "image21");
   GLADE_HOOKUP_OBJECT (Admin, image20, "image20");
   GLADE_HOOKUP_OBJECT (Admin, titre_espace_Admin, "titre_espace_Admin");
   GLADE_HOOKUP_OBJECT (Admin, image22, "image22");
   GLADE_HOOKUP_OBJECT (Admin, image23, "image23");
+  GLADE_HOOKUP_OBJECT (Admin, admin_activ, "admin_activ");
 
   return Admin;
 }
@@ -642,7 +642,6 @@ create_activ (void)
   GtkWidget *fixed7;
   GtkWidget *activ_quit;
   GtkWidget *image12;
-  GtkWidget *Activ_title_label;
   GtkWidget *activ_return;
   GtkWidget *alignment7;
   GtkWidget *hbox7;
@@ -660,10 +659,11 @@ create_activ (void)
   GtkWidget *image18;
   GtkWidget *label24;
   GtkWidget *image25;
+  GtkWidget *Activ_title_label;
 
   activ = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (activ, 800, 450);
-  gtk_window_set_title (GTK_WINDOW (activ), _("Gestion des activit\303\251s"));
+  gtk_window_set_title (GTK_WINDOW (activ), _("Gestion des evenements"));
 
   fixed7 = gtk_fixed_new ();
   gtk_widget_show (fixed7);
@@ -677,12 +677,6 @@ create_activ (void)
   image12 = gtk_image_new_from_stock ("gtk-no", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image12);
   gtk_container_add (GTK_CONTAINER (activ_quit), image12);
-
-  Activ_title_label = gtk_label_new (_("<span foreground=\"blue\"><b>Gestion des activit\303\251s</b></span>"));
-  gtk_widget_show (Activ_title_label);
-  gtk_fixed_put (GTK_FIXED (fixed7), Activ_title_label, 250, 20);
-  gtk_widget_set_size_request (Activ_title_label, 300, 32);
-  gtk_label_set_use_markup (GTK_LABEL (Activ_title_label), TRUE);
 
   activ_return = gtk_button_new ();
   gtk_widget_show (activ_return);
@@ -757,6 +751,12 @@ create_activ (void)
   gtk_fixed_put (GTK_FIXED (fixed7), image25, 272, 8);
   gtk_widget_set_size_request (image25, 50, 50);
 
+  Activ_title_label = gtk_label_new (_("<span foreground=\"blue\"><b>Gestion des evenements</b></span>"));
+  gtk_widget_show (Activ_title_label);
+  gtk_fixed_put (GTK_FIXED (fixed7), Activ_title_label, 250, 20);
+  gtk_widget_set_size_request (Activ_title_label, 300, 32);
+  gtk_label_set_use_markup (GTK_LABEL (Activ_title_label), TRUE);
+
   g_signal_connect ((gpointer) activ_quit, "clicked",
                     G_CALLBACK (gtk_main_quit),
                     NULL);
@@ -778,7 +778,6 @@ create_activ (void)
   GLADE_HOOKUP_OBJECT (activ, fixed7, "fixed7");
   GLADE_HOOKUP_OBJECT (activ, activ_quit, "activ_quit");
   GLADE_HOOKUP_OBJECT (activ, image12, "image12");
-  GLADE_HOOKUP_OBJECT (activ, Activ_title_label, "Activ_title_label");
   GLADE_HOOKUP_OBJECT (activ, activ_return, "activ_return");
   GLADE_HOOKUP_OBJECT (activ, alignment7, "alignment7");
   GLADE_HOOKUP_OBJECT (activ, hbox7, "hbox7");
@@ -796,6 +795,7 @@ create_activ (void)
   GLADE_HOOKUP_OBJECT (activ, image18, "image18");
   GLADE_HOOKUP_OBJECT (activ, label24, "label24");
   GLADE_HOOKUP_OBJECT (activ, image25, "image25");
+  GLADE_HOOKUP_OBJECT (activ, Activ_title_label, "Activ_title_label");
 
   return activ;
 }
@@ -1695,11 +1695,6 @@ create_activ_edit (void)
   GtkWidget *nbedev;
   GtkWidget *nbmedev;
   GtkWidget *label81;
-  GtkWidget *edit_ev;
-  GtkWidget *alignment21;
-  GtkWidget *hbox21;
-  GtkWidget *image39;
-  GtkWidget *label78;
   GtkWidget *edev_return;
   GtkWidget *alignment22;
   GtkWidget *hbox22;
@@ -1707,6 +1702,16 @@ create_activ_edit (void)
   GtkWidget *label79;
   GtkWidget *label77;
   GtkWidget *comboedev;
+  GtkWidget *edit_ev;
+  GtkWidget *alignment21;
+  GtkWidget *hbox21;
+  GtkWidget *image39;
+  GtkWidget *label78;
+  GtkWidget *delev;
+  GtkWidget *alignment23;
+  GtkWidget *hbox23;
+  GtkWidget *image42;
+  GtkWidget *label82;
 
   activ_edit = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (activ_edit, 800, 450);
@@ -1848,27 +1853,6 @@ create_activ_edit (void)
   gtk_widget_set_size_request (label81, 200, 30);
   gtk_misc_set_alignment (GTK_MISC (label81), 1, 0.5);
 
-  edit_ev = gtk_button_new ();
-  gtk_widget_show (edit_ev);
-  gtk_fixed_put (GTK_FIXED (fixed10), edit_ev, 336, 375);
-  gtk_widget_set_size_request (edit_ev, 152, 32);
-
-  alignment21 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment21);
-  gtk_container_add (GTK_CONTAINER (edit_ev), alignment21);
-
-  hbox21 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox21);
-  gtk_container_add (GTK_CONTAINER (alignment21), hbox21);
-
-  image39 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image39);
-  gtk_box_pack_start (GTK_BOX (hbox21), image39, FALSE, FALSE, 0);
-
-  label78 = gtk_label_new_with_mnemonic (_("Modifier"));
-  gtk_widget_show (label78);
-  gtk_box_pack_start (GTK_BOX (hbox21), label78, FALSE, FALSE, 0);
-
   edev_return = gtk_button_new ();
   gtk_widget_show (edev_return);
   gtk_fixed_put (GTK_FIXED (fixed10), edev_return, 50, 375);
@@ -1905,14 +1889,59 @@ create_activ_edit (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("30"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboedev), _("45"));
 
+  edit_ev = gtk_button_new ();
+  gtk_widget_show (edit_ev);
+  gtk_fixed_put (GTK_FIXED (fixed10), edit_ev, 296, 376);
+  gtk_widget_set_size_request (edit_ev, 152, 32);
+
+  alignment21 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment21);
+  gtk_container_add (GTK_CONTAINER (edit_ev), alignment21);
+
+  hbox21 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox21);
+  gtk_container_add (GTK_CONTAINER (alignment21), hbox21);
+
+  image39 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image39);
+  gtk_box_pack_start (GTK_BOX (hbox21), image39, FALSE, FALSE, 0);
+
+  label78 = gtk_label_new_with_mnemonic (_("Modifier"));
+  gtk_widget_show (label78);
+  gtk_box_pack_start (GTK_BOX (hbox21), label78, FALSE, FALSE, 0);
+
+  delev = gtk_button_new ();
+  gtk_widget_show (delev);
+  gtk_fixed_put (GTK_FIXED (fixed10), delev, 464, 376);
+  gtk_widget_set_size_request (delev, 152, 32);
+
+  alignment23 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment23);
+  gtk_container_add (GTK_CONTAINER (delev), alignment23);
+
+  hbox23 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox23);
+  gtk_container_add (GTK_CONTAINER (alignment23), hbox23);
+
+  image42 = gtk_image_new_from_stock ("gtk-delete", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image42);
+  gtk_box_pack_start (GTK_BOX (hbox23), image42, FALSE, FALSE, 0);
+
+  label82 = gtk_label_new_with_mnemonic (_("Supprimer"));
+  gtk_widget_show (label82);
+  gtk_box_pack_start (GTK_BOX (hbox23), label82, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) button21, "clicked",
                     G_CALLBACK (gtk_main_quit),
+                    NULL);
+  g_signal_connect ((gpointer) edev_return, "clicked",
+                    G_CALLBACK (on_edev_return_clicked),
                     NULL);
   g_signal_connect ((gpointer) edit_ev, "clicked",
                     G_CALLBACK (on_edit_ev_clicked),
                     NULL);
-  g_signal_connect ((gpointer) edev_return, "clicked",
-                    G_CALLBACK (on_edev_return_clicked),
+  g_signal_connect ((gpointer) delev, "clicked",
+                    G_CALLBACK (on_delev_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -1941,11 +1970,6 @@ create_activ_edit (void)
   GLADE_HOOKUP_OBJECT (activ_edit, nbedev, "nbedev");
   GLADE_HOOKUP_OBJECT (activ_edit, nbmedev, "nbmedev");
   GLADE_HOOKUP_OBJECT (activ_edit, label81, "label81");
-  GLADE_HOOKUP_OBJECT (activ_edit, edit_ev, "edit_ev");
-  GLADE_HOOKUP_OBJECT (activ_edit, alignment21, "alignment21");
-  GLADE_HOOKUP_OBJECT (activ_edit, hbox21, "hbox21");
-  GLADE_HOOKUP_OBJECT (activ_edit, image39, "image39");
-  GLADE_HOOKUP_OBJECT (activ_edit, label78, "label78");
   GLADE_HOOKUP_OBJECT (activ_edit, edev_return, "edev_return");
   GLADE_HOOKUP_OBJECT (activ_edit, alignment22, "alignment22");
   GLADE_HOOKUP_OBJECT (activ_edit, hbox22, "hbox22");
@@ -1953,6 +1977,16 @@ create_activ_edit (void)
   GLADE_HOOKUP_OBJECT (activ_edit, label79, "label79");
   GLADE_HOOKUP_OBJECT (activ_edit, label77, "label77");
   GLADE_HOOKUP_OBJECT (activ_edit, comboedev, "comboedev");
+  GLADE_HOOKUP_OBJECT (activ_edit, edit_ev, "edit_ev");
+  GLADE_HOOKUP_OBJECT (activ_edit, alignment21, "alignment21");
+  GLADE_HOOKUP_OBJECT (activ_edit, hbox21, "hbox21");
+  GLADE_HOOKUP_OBJECT (activ_edit, image39, "image39");
+  GLADE_HOOKUP_OBJECT (activ_edit, label78, "label78");
+  GLADE_HOOKUP_OBJECT (activ_edit, delev, "delev");
+  GLADE_HOOKUP_OBJECT (activ_edit, alignment23, "alignment23");
+  GLADE_HOOKUP_OBJECT (activ_edit, hbox23, "hbox23");
+  GLADE_HOOKUP_OBJECT (activ_edit, image42, "image42");
+  GLADE_HOOKUP_OBJECT (activ_edit, label82, "label82");
 
   return activ_edit;
 }
