@@ -23,7 +23,7 @@ typedef struct
 	char nombre[5];
 	char nombremax[5];
 }event;
-
+int existev(char num[]);
 void suppev(char num[]);
 event get_event(char ide[]);
 void ajout_ev(event e);

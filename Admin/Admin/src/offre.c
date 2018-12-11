@@ -4,6 +4,31 @@
 #include <gtk/gtk.h>
 #include "offre.h"
 
+
+//exist
+int existof(char num[])
+{
+ char ch1[30];
+ char ch2[30];
+ char ch3[30];
+ FILE*f;
+ int exist=-1;
+
+ f=fopen("offre.txt" , "r");
+ if (f!=NULL)
+	{
+	 while (fscanf(f,"%s %s %s" ,ch1,ch2,ch3)!=EOF)
+		{
+		 if (strcmp(num,ch1)==0 )
+			 exist=1;	
+		}
+	}
+
+ fclose(f);
+
+ return(exist);						
+}
+
 //supp offre
 void suppof(char num[])
 {

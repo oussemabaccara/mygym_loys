@@ -149,3 +149,7 @@ on_deals_treeview_row_activated        (GtkTreeView     *treeview,
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data);
+
+void
+on_edit_acc_show                       (GtkWidget       *widget,
+                                        gpointer         user_data);

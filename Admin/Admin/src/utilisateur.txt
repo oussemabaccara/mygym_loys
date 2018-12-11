@@ -1,1 +1,5 @@
-1001 aaa bbb 2 2 1995 Coach 
+-1001 aaa bbb 2 2 1995 Coach 
+a a a 1 1 1997 Coach 
+z a a 1 1 1997 Médecin_généraliste 
+-e a a 1 1 1997 Kinésithérapeute 
+r a a 1 1 1997 Adhérent 

@@ -1310,6 +1310,9 @@ create_edit_acc (void)
   gtk_widget_show (label41);
   gtk_box_pack_start (GTK_BOX (hbox18), label41, FALSE, FALSE, 0);
 
+  g_signal_connect ((gpointer) edit_acc, "show",
+                    G_CALLBACK (on_edit_acc_show),
+                    NULL);
   g_signal_connect ((gpointer) button15, "clicked",
                     G_CALLBACK (gtk_main_quit),
                     NULL);

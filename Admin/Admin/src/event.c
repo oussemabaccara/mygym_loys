@@ -8,6 +8,38 @@
 #include <stdio.h>
 #include "event.h"
 
+//exist
+
+int existev(char num[])
+{
+ char ch1[30];
+ char ch2[30];
+ char ch3[30];
+ char ch4[30];
+ char ch5[30];
+ char ch6[30];
+ char ch7[30];
+ char ch8[30];
+ char ch9[30];
+ char ch10[30];
+ FILE*f;
+ int exist=-1;
+
+ f=fopen("event.txt" , "r");
+ if (f!=NULL)
+	{
+	 while (fscanf(f,"%s %s %s %s %s %s %s %s %s %s" ,ch1,ch2,ch3,ch4,ch5,ch6,ch7,ch8,ch9,ch10)!=EOF)
+		{
+		 if (strcmp(num,ch1)==0 )
+			 exist=1;	
+		}
+	}
+
+ fclose(f);
+
+ return(exist);						
+}
+
 //supp event
 void suppev(char num[])
 {

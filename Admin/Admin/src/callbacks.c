@@ -86,12 +86,16 @@ on_list_add_clicked                    (GtkWidget       *objet,
 {
  GtkWidget *list;
  GtkWidget *add;
+ GtkWidget *c;
 
  list=lookup_widget(objet,"list");
  add=create_add();
+c=lookup_widget(add,"combobox1");
 
  gtk_widget_show(add);
  gtk_widget_destroy(list);
+ gtk_combo_box_set_active (c,
+                          0);
 }
 
 
@@ -180,12 +184,21 @@ on_list_upd_clicked                    (GtkWidget       *objet,
 {
  GtkWidget *list;
  GtkWidget *edit_acc;
+  GtkWidget *c;
 
  list=lookup_widget(objet,"list");
  edit_acc=create_edit_acc();
-
+c=lookup_widget(edit_acc,"comborole");
+gtk_combo_box_set_active (c,0);
  gtk_widget_show(edit_acc);
  gtk_widget_destroy(list);
+}
+
+void
+on_edit_acc_show                       (GtkWidget       *widget,
+                                        gpointer         user_data)
+{
+
 }
 
 // Modifier un compte -> Chercher
@@ -223,7 +236,10 @@ on_search_acc_clicked                  (GtkWidget       *objet,
  gtk_spin_button_set_value(GTK_SPIN_BUTTON(jour),p.date.jour);
  gtk_spin_button_set_value(GTK_SPIN_BUTTON(mois),p.date.mois);
  gtk_spin_button_set_value(GTK_SPIN_BUTTON(annee),p.date.annee);
- gtk_combo_box_append_text (GTK_COMBO_BOX (combobox), _(p.role));
+ gtk_combo_box_prepend_text (GTK_COMBO_BOX (combobox), _(p.role));
+ GtkWidget *c;
+ c=lookup_widget(edit_acc,"comborole");
+ gtk_combo_box_set_active (c,0);
 }
 
 // Modifier un compte -> Modifier
@@ -365,7 +381,10 @@ on_activ_add_clicked                   (GtkWidget       *objet,
  activ_add=create_activ_add();
 
  gtk_widget_show(activ_add);
- gtk_widget_destroy(activ); 
+ gtk_widget_destroy(activ);
+ GtkWidget *c;
+ c=lookup_widget(activ_add,"combomin_ev");
+ gtk_combo_box_set_active (c,0);
 }
 
 // ajouter un ev
@@ -417,7 +436,7 @@ on_add_activ_clicked                   (GtkWidget       *objet,
  strcpy(e.nombre,gtk_entry_get_text(GTK_ENTRY(nb_ev)));
  strcpy(e.nombremax,gtk_entry_get_text(GTK_ENTRY(nbm_ev)));
 
- 
+ if (existev(e.num)!=1)
  ajout_ev(e);
 }
 
@@ -496,8 +515,11 @@ e=get_event(string);
  gtk_spin_button_set_value(GTK_SPIN_BUTTON(annee),e.date.annee);
  gtk_spin_button_set_value(GTK_SPIN_BUTTON(h),e.heure.h);
 gtk_entry_set_text(GTK_ENTRY(entry5),e.nombremax);
- gtk_combo_box_append_text (GTK_COMBO_BOX (combobox), _(e.heure.min));
- gtk_widget_destroy(activ); 
+ gtk_combo_box_prepend_text (GTK_COMBO_BOX (combobox), _(e.heure.min));
+ gtk_widget_destroy(activ);
+ GtkWidget *c;
+ c=lookup_widget(activ_edit,"comboedev");
+ gtk_combo_box_set_active (c,0);
 }
 
 
@@ -551,7 +573,7 @@ on_edit_ev_clicked                     (GtkButton       *objet,
  strcpy(e.nombremax,gtk_entry_get_text(GTK_ENTRY(nbm_ev)));
 
  suppev(e.num);
- ajout_ev(e); 
+ ajout_ev(e);
 }
 
 //
@@ -604,6 +626,9 @@ on_activ_upd_clicked                   (GtkWidget       *objet,
  activ_edit=create_activ_edit();
  gtk_widget_show(activ_edit);
  gtk_widget_destroy(activ);
+ GtkWidget *c;
+ c=lookup_widget(activ_edit,"comboedev");
+ gtk_combo_box_set_active (c,0);
 }
 
 
@@ -621,6 +646,9 @@ on_admin_stats_clicked                 (GtkWidget       *objet,
 
  gtk_widget_show(stats);
  gtk_widget_destroy(Admin);
+ GtkWidget *tree;
+ tree=lookup_widget(stats,"stats_treeview");
+ afficher_bpersonne(tree);
 }
 
 
@@ -752,6 +780,7 @@ on_adddeal_clicked                     (GtkButton       *button,
  strcpy(o.nbre,gtk_entry_get_text(GTK_ENTRY(e1)));
  strcpy(o.description,gtk_entry_get_text(GTK_ENTRY(e2)));
  strcpy(o.prix,gtk_entry_get_text(GTK_ENTRY(e3)));
+ if (existof(o.nbre)!=1)
  ajout_of(o);
 }
 
@@ -848,6 +877,9 @@ on_stats_return_clicked                (GtkWidget       *objet,
  gtk_widget_show(Admin);
  gtk_widget_destroy(stats);
 }
+
+
+
 
 
 
