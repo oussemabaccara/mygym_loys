@@ -123,3 +123,29 @@ on_activ_edit_show                     (GtkWidget       *widget,
 void
 on_delev_clicked                       (GtkButton       *objet,
                                         gpointer         user_data);
+
+void
+on_adddeal_clicked                     (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_adddeal_return_clicked              (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_editdeal_clicked                    (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_suppdeal_clicked                    (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_editdeal_return_clicked             (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_deals_treeview_row_activated        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
