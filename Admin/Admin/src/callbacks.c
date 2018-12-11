@@ -450,6 +450,7 @@ on_treeactiv_row_activated             (GtkTreeView     *treeview,
  GtkWidget *entry2;
  GtkWidget *entry3;
  GtkWidget *entry4;
+ GtkWidget *entry5;
 GtkTreeIter iter;
 GtkTreeModel *model;
 gchar *string,*string1,*string2,*string3,*string4,*string5;
@@ -478,6 +479,7 @@ entry=lookup_widget(activ_edit,"numedev");
 entry2=lookup_widget(activ_edit,"nameedev");
 entry3=lookup_widget(activ_edit,"desedev");
 entry4=lookup_widget(activ_edit,"nbedev");
+entry5=lookup_widget(activ_edit,"nbmedev");
  jour=lookup_widget(activ_edit, "edjev");
  mois=lookup_widget(activ_edit, "edmev");
  annee=lookup_widget(activ_edit, "edyev");
@@ -492,6 +494,7 @@ e=get_event(string);
  gtk_spin_button_set_value(GTK_SPIN_BUTTON(mois),e.date.mois);
  gtk_spin_button_set_value(GTK_SPIN_BUTTON(annee),e.date.annee);
  gtk_spin_button_set_value(GTK_SPIN_BUTTON(h),e.heure.h);
+gtk_entry_set_text(GTK_ENTRY(entry5),e.nombremax);
  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox), _(e.heure.min));
  gtk_widget_destroy(activ); 
 }
