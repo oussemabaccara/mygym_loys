@@ -1,10 +1,10 @@
 admin 111 1 
 -1001 1001 3 
 a a 3 
-z z 6 
+-z z 6 
 -e e 2 
 -r r 4 
 -zeze zeze 2 
 -r r 4 
 -r r 4 
-r r 4 
+-r r 4 

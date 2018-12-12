@@ -1001,6 +1001,54 @@ void
 on_reactivate_clicked                  (GtkButton       *button,
                                         gpointer         user_data)
 {
+  Personne p;
+
+ GtkWidget *reinput1, *reinput2,*reinput3;
+ GtkWidget *recombobox1;
+ GtkWidget *rejour;
+ GtkWidget *remois;
+ GtkWidget *reannee;
+ GtkWidget *react;
+ GtkWidget *reoutput;
+
+
+
+ react=lookup_widget(button,"react");
+
+ reinput1=lookup_widget(button,"re_ent_id");
+ reinput2=lookup_widget(button,"re_ent_nom");
+ reinput3=lookup_widget(button,"re_ent_prenom");
+
+ rejour=lookup_widget(button, "respinbutton1");
+ remois=lookup_widget(button, "respinbutton2");
+ reannee=lookup_widget(button, "respinbutton3");
+
+ recombobox1=lookup_widget(button,"recombobox1");
+
+ reoutput=lookup_widget(button,"label105");
+
+
+
+ strcpy(p.id,gtk_entry_get_text(GTK_ENTRY(reinput1)));
+ strcpy(p.nom,gtk_entry_get_text(GTK_ENTRY(reinput2)));
+ strcpy(p.prenom,gtk_entry_get_text(GTK_ENTRY(reinput3)));
+
+ p.date.jour=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (rejour));
+ p.date.mois=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (remois));
+ p.date.annee=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (reannee));
+
+ strcpy(p.role,gtk_combo_box_get_active_text(GTK_COMBO_BOX(recombobox1)));
  
+ // Condition manquante!!(cases non vides)
+ int e;
+ e=exist(p.id);
+ if(e==1)
+	 gtk_label_set_text(GTK_LABEL(reoutput),"Ce compte est actif");
+ else
+	{
+	 re_acc(p);
+	 gtk_label_set_text(GTK_LABEL(reoutput),"Compte réactivé");
+	}
+	
 }
 

@@ -15,7 +15,7 @@ typedef struct
 	 char role[30];
 	 Date date;
 	}Personne;
-
+void re_acc(Personne p);
 void dis_acc(char id[]);
 Personne get_personne(char ide[]);
 void ajouter_personne(Personne p);
