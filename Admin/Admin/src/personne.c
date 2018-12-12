@@ -11,6 +11,102 @@
 #include "personne.h"
 #include <gtk/gtk.h>
 
+//reactivate
+
+void re_acc(Personne p)
+{
+ FILE *f0;
+ FILE *f02;
+ FILE *f03;
+ FILE *f04;
+ char nom[30];
+ char prenom[30];
+ char id[30];
+ char jour[30];
+ char mois[30];
+ char annee[30];
+ char date[30];
+ char role[30];
+
+ f0=fopen("utilisateur.txt","r");
+    if(f0==NULL)
+    	{
+	 return;
+	}
+ while(fscanf(f0,"%s %s %s %s %s %s %s \n",id,nom,prenom,jour,mois,annee,role)!=EOF)
+	{
+	 char dis[30]="-";
+	 strcat(dis,p.id);
+	 char j[30],m[30],a[30];
+         sprintf(j, "%d", p.date.jour);sprintf(m, "%d", p.date.mois);sprintf(a, "%d", p.date.annee);
+	 if((strcmp(id,dis)!=0)||(strcmp(nom,p.nom)!=0)||(strcmp(prenom,p.prenom)!=0)||(strcmp(jour,j)!=0)||(strcmp(mois,m)!=0)||(strcmp(annee,a)!=0)||(strcmp(role,p.role)!=0))
+		{
+		 	 f02=fopen("test1.txt", "a");
+		 if (f02==NULL)
+			{
+		 	 return;
+			}
+		 fprintf(f02,"%s %s %s %s %s %s %s \n" ,id,nom,prenom,jour,mois,annee,role);
+		 fclose(f02);
+		}
+	 else
+		{
+		 	 	 f02=fopen("test1.txt", "a");
+		 if(f02!=NULL)
+			{
+		 	 char aid[30];
+		 	 for(int i=0;i<strlen(id);i++)
+			*(aid+i)=*(id+i+1);
+			 fprintf(f02,"%s %s %s %s %s %s %s \n" ,aid,nom,prenom,jour,mois,annee,role);
+			 fclose(f02);
+			}
+	
+		}
+    	}
+ fclose(f0);
+ remove("utilisateur.txt");
+ rename("test1.txt","utilisateur.txt");
+
+//auth
+char login[30];
+char pass[30];
+ f03=fopen("users.txt","r");
+    if(f03==NULL)
+    	{
+	 return;
+	}
+    else
+	{
+         while(fscanf(f03,"%s %s %s \n",login,pass,role)!=EOF)
+		{char dis[30]="-";
+	 	 strcat(dis,p.id);
+		 if(strcmp(login,dis))
+			{
+			 f04=fopen("test2.txt", "a");
+			 if(f04!=NULL)
+				{
+				 fprintf(f04,"%s %s %s \n" ,login,pass,role);
+				 fclose(f04);
+				}
+			}
+		 else
+			{
+			 f04=fopen("test2.txt", "a");
+			 if(f04!=NULL)
+				{
+			 	 char aid[30];
+			 	 for(int i=0;i<strlen(login);i++)
+				 	*(aid+i)=*(login+i+1);
+			 	 fprintf(f04,"%s %s %s \n" ,aid,pass,role);
+			 	 fclose(f04);
+				}
+			}
+		}
+	}
+ fclose(f03);
+ remove("users.txt");
+ rename("test2.txt","users.txt");
+}
 
 // desactiver un compte
 
@@ -79,7 +175,7 @@ char pass[30];
 	}
     else
 	{
-         while(fscanf(f,"%s %s %s \n",login,pass,role)!=EOF)
+         while(fscanf(f3,"%s %s %s \n",login,pass,role)!=EOF)
 		{
 		 if(strcmp(login,ide))
 			{
@@ -146,7 +242,11 @@ int exist(char user[])
 	 while (fscanf(f,"%s %s %s" , login,pass,role)!=EOF)
 		{
 		 if (strcmp(user,login)==0 )
-			 exist=1;	
+			 exist=1;
+		 char dis[30]="-";
+		 strcat(dis,user);
+		 if (strcmp(dis,login)==0 )
+			 exist=2;	
 		}
 	}
 
