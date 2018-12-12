@@ -14,3 +14,4 @@ GtkWidget* create_activ_add (void);
 GtkWidget* create_activ_edit (void);
 GtkWidget* create_deals_edit (void);
 GtkWidget* create_deals_add (void);
+GtkWidget* create_react (void);

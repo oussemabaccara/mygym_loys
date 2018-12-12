@@ -339,11 +339,14 @@ void afficher_bpersonne(GtkWidget *liste)
 		{
 		 if(id[0]=='-')
 			{
+			 char aid[30];
+			 for(int i=0;i<strlen(id);i++)
+				*(aid+i)=*(id+i+1);
 			 strcpy(date,jour);strcat(date,"/");
 			 strcat(date,mois);strcat(date,"/");
 			 strcat(date,annee);
 			 gtk_list_store_append (store, &iter);
-			 gtk_list_store_set (store,&iter,IDENTIFIANT,id,NOM,nom,PRENOM,prenom,DATE,date,ROLE,role,-1);
+			 gtk_list_store_set (store,&iter,IDENTIFIANT,aid,NOM,nom,PRENOM,prenom,DATE,date,ROLE,role,-1);
 			}
 		}
 	 fclose(f);

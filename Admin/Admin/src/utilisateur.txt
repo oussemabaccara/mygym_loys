@@ -3,4 +3,4 @@ a a a 1 1 1997 Coach
 z a a 1 1 1997 Médecin_généraliste 
 -e a a 1 1 1997 Kinésithérapeute 
 r a a 1 1 1997 Adhérent 
-zeze zeze zeze 25 9 2002 Kinésithérapeute 
+-zeze zeze zeze 25 9 2002 Kinésithérapeute 

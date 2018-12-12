@@ -234,6 +234,54 @@ gtk_entry_set_text(GTK_ENTRY(e3),p.prenom);
  gtk_combo_box_set_active (c1,0);
 }
 
+// reactivate
+
+void
+on_stats_treeview_row_activated        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+  GtkWidget *e1,*e2,*e3,*s1,*s2,*s3,*c1;
+GtkTreeIter iter;
+GtkTreeModel *model;
+gchar *string,*string1,*string2,*string3,*string4;
+model=gtk_tree_view_get_model(treeview);
+gtk_tree_model_get_iter(model,&iter,path);
+gtk_tree_model_get(model,&iter,0,&string,-1);
+gtk_tree_model_get(model,&iter,1,&string1,-1);
+gtk_tree_model_get(model,&iter,2,&string2,-1);
+gtk_tree_model_get(model,&iter,3,&string3,-1);
+gtk_tree_model_get(model,&iter,4,&string4,-1);
+
+
+ GtkWidget *stats;
+ GtkWidget *react;
+ Personne p;
+ stats=lookup_widget(treeview,"stats");
+ react=create_react();
+ gtk_widget_show(react);
+e1=lookup_widget(react,"re_ent_id");
+e2=lookup_widget(react,"re_ent_nom");
+e3=lookup_widget(react,"re_ent_prenom");
+ s1=lookup_widget(react, "respinbutton1");
+ s2=lookup_widget(react, "respinbutton2");
+ s3=lookup_widget(react, "respinbutton3");
+ c1=lookup_widget(react,"recombobox1");
+char ch[30]="-";
+strcat(ch,string);
+p=get_personne(ch);
+gtk_entry_set_text(GTK_ENTRY(e1),string);
+gtk_entry_set_text(GTK_ENTRY(e2),string1);
+gtk_entry_set_text(GTK_ENTRY(e3),string2);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(s1),p.date.jour);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(s2),p.date.mois);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(s3),p.date.annee);
+ gtk_combo_box_prepend_text (GTK_COMBO_BOX (c1), _(string4));
+ gtk_widget_destroy(stats);
+ gtk_combo_box_set_active (c1,0);
+}
+
 void
 on_edit_acc_show                       (GtkWidget       *widget,
                                         gpointer         user_data)
@@ -924,16 +972,31 @@ on_stats_return_clicked                (GtkWidget       *objet,
 
 
 
+void
+on_reeturn_clicked                     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+  GtkWidget *stats;
+ GtkWidget *react;
+
+ react=lookup_widget(button,"react");
+ stats=create_stats();
+
+ gtk_widget_show(stats);
+ gtk_widget_destroy(react);
+ GtkWidget *tree;
+ tree=lookup_widget(stats,"stats_treeview");
+ afficher_bpersonne(tree);
+}
 
 
 
 
 
+void
+on_reactivate_clicked                  (GtkButton       *button,
+                                        gpointer         user_data)
+{
 
-
-
-
-
-
-
+}
 

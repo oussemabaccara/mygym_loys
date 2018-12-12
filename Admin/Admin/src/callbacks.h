@@ -159,3 +159,17 @@ on_treeview1_row_activated             (GtkTreeView     *treeview,
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data);
+
+void
+on_reeturn_clicked                     (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_stats_treeview_row_activated        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_reactivate_clicked                  (GtkButton       *button,
+                                        gpointer         user_data);
