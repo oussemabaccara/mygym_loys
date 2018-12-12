@@ -997,6 +997,6 @@ void
 on_reactivate_clicked                  (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+ 
 }
 
