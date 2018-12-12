@@ -8,3 +8,15 @@ z a a 1 1 1997 Médecin_généraliste
 r a a 3 3 1999 Adhérent 
 -r a a 4 4 2000 Adhérent 
 -zezee zezee zezee 25 9 2002 Kinésithérapeute 
+-1002 nom1 pre1 2 2 1998 Adhérent 
+1002 nom2 pre2 3 3 1999 Adhérent 
+-1002 nom3 pre3 4 4 2000 Médecin_généraliste 
+1003 z z 1 1 1997 Adhérent 
+1004 z z 1 1 1997 Adhérent 
+1005 z z 1 1 1997 Adhérent 
+1006 z z 1 1 1997 Adhérent 
+1007 z z 1 1 1997 Adhérent 
+-1008 z z 1 1 1997 Adhérent 
+-1009 z z 1 1 1997 Adhérent 
+-1010 z z 1 1 1997 Adhérent 
+1 2 3 1 1 1997 Adhérent 

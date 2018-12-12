@@ -415,7 +415,6 @@ create_add (void)
   GtkWidget *label10;
   GtkWidget *add_quit;
   GtkWidget *image7;
-  GtkWidget *label15;
   GtkWidget *label6;
   GtkWidget *label5;
   GtkWidget *label4;
@@ -430,6 +429,7 @@ create_add (void)
   GtkWidget *image4;
   GtkWidget *label11;
   GtkWidget *combobox1;
+  GtkWidget *label15;
 
   add = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (add, 800, 450);
@@ -511,11 +511,6 @@ create_add (void)
   gtk_widget_show (image7);
   gtk_container_add (GTK_CONTAINER (add_quit), image7);
 
-  label15 = gtk_label_new ("");
-  gtk_widget_show (label15);
-  gtk_fixed_put (GTK_FIXED (fixed4), label15, 552, 320);
-  gtk_widget_set_size_request (label15, 136, 33);
-
   label6 = gtk_label_new (_("Ann\303\251e"));
   gtk_widget_show (label6);
   gtk_fixed_put (GTK_FIXED (fixed4), label6, 475, 200);
@@ -592,6 +587,11 @@ create_add (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("M\303\251decin_nutritionniste"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1), _("Kin\303\251sith\303\251rapeute"));
 
+  label15 = gtk_label_new ("");
+  gtk_widget_show (label15);
+  gtk_fixed_put (GTK_FIXED (fixed4), label15, 504, 296);
+  gtk_widget_set_size_request (label15, 296, 89);
+
   g_signal_connect ((gpointer) add_return, "clicked",
                     G_CALLBACK (on_add_return_clicked),
                     NULL);
@@ -619,7 +619,6 @@ create_add (void)
   GLADE_HOOKUP_OBJECT (add, label10, "label10");
   GLADE_HOOKUP_OBJECT (add, add_quit, "add_quit");
   GLADE_HOOKUP_OBJECT (add, image7, "image7");
-  GLADE_HOOKUP_OBJECT (add, label15, "label15");
   GLADE_HOOKUP_OBJECT (add, label6, "label6");
   GLADE_HOOKUP_OBJECT (add, label5, "label5");
   GLADE_HOOKUP_OBJECT (add, label4, "label4");
@@ -634,6 +633,7 @@ create_add (void)
   GLADE_HOOKUP_OBJECT (add, image4, "image4");
   GLADE_HOOKUP_OBJECT (add, label11, "label11");
   GLADE_HOOKUP_OBJECT (add, combobox1, "combobox1");
+  GLADE_HOOKUP_OBJECT (add, label15, "label15");
 
   return add;
 }

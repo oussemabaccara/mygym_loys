@@ -90,15 +90,19 @@ on_list_add_clicked                    (GtkWidget       *objet,
  GtkWidget *list;
  GtkWidget *add;
  GtkWidget *c;
-
+GtkWidget *e1,*e2,*e3;
  list=lookup_widget(objet,"list");
  add=create_add();
+e1=lookup_widget(add,"add_ent_id");
+e2=lookup_widget(add,"add_ent_nom");
+e3=lookup_widget(add,"add_ent_prenom");
 c=lookup_widget(add,"combobox1");
-
  gtk_widget_show(add);
  gtk_widget_destroy(list);
- gtk_combo_box_set_active (c,
-                          0);
+gtk_entry_set_text(GTK_ENTRY(e1),"");
+gtk_entry_set_text(GTK_ENTRY(e2),"");
+gtk_entry_set_text(GTK_ENTRY(e3),"");
+ gtk_combo_box_set_active (c,0);
 }
 
 
@@ -109,7 +113,7 @@ on_add_return_clicked                  (GtkWidget       *objet,
                                         gpointer         user_data)
 {
  GtkWidget *add, *list;
- GtkWidget *treeview1; 
+ GtkWidget *treeview1;
 
  add=lookup_widget(objet,"add");
  list=create_list();
@@ -152,9 +156,6 @@ on_add_ajouter_clicked                 (GtkWidget       *objet,
  combobox1=lookup_widget(objet,"combobox1");
 
  output=lookup_widget(objet,"label15");
-
-
-
  strcpy(p.id,gtk_entry_get_text(GTK_ENTRY(input1)));
  strcpy(p.nom,gtk_entry_get_text(GTK_ENTRY(input2)));
  strcpy(p.prenom,gtk_entry_get_text(GTK_ENTRY(input3)));
@@ -165,13 +166,14 @@ on_add_ajouter_clicked                 (GtkWidget       *objet,
 
  strcpy(p.role,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox1)));
  
- // Condition manquante!!(cases non vides)
  int e;
  e=exist(p.id);
  if(e==1)
 	 gtk_label_set_text(GTK_LABEL(output),"L'identifiant existe");
  else if(e==2)
 	  gtk_label_set_text(GTK_LABEL(output),"ID désactivé");
+ else if((strcmp(p.id,"")==0)||(strcmp(p.nom,"")==0)||(strcmp(p.prenom,"")==0))
+	 gtk_label_set_text(GTK_LABEL(output),"Vous devez remplir toutes les cases");
  else
 	{
 	 ajouter_personne(p);

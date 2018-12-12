@@ -1,9 +1,4 @@
-2 3_mois 240DT
 4 1_mois+suivi_médical 200DT
 5 3_mois+suivi_médical 500DT
 6 1_an+suivi_médical 1800DT
-7 azaz az
-3 1_an 850DT 
-2 2 2 
-2 2 2 
-33 3 3 
+3 1_an 850DT
