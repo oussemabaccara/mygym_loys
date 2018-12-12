@@ -167,6 +167,8 @@ on_add_ajouter_clicked                 (GtkWidget       *objet,
  e=exist(p.id);
  if(e==1)
 	 gtk_label_set_text(GTK_LABEL(output),"L'identifiant existe");
+ else if(e==2)
+	  gtk_label_set_text(GTK_LABEL(output),"ID désactivé");
  else
 	{
 	 ajouter_personne(p);

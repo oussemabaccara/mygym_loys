@@ -242,7 +242,11 @@ int exist(char user[])
 	 while (fscanf(f,"%s %s %s" , login,pass,role)!=EOF)
 		{
 		 if (strcmp(user,login)==0 )
-			 exist=1;	
+			 exist=1;
+		 char dis[30]="-";
+		 strcat(dis,user);
+		 if (strcmp(dis,login)==0 )
+			 exist=2;	
 		}
 	}
 
