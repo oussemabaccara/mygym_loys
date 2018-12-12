@@ -193,11 +193,19 @@ void afficher_event(GtkWidget *liste)
 	{
 	 f = fopen("event.txt", "a+");
          while(fscanf(f,"%s %s %s %s %s %s %s %s %s %s \n",num,nom,description,jour,mois,annee,h,min,nombre,nombremax)!=EOF)
-		{
-		 strcpy(date,jour);strcat(date,"/");
-		 strcat(date,mois);strcat(date,"/");
+		{char cj[30]="0";
+		 char cm[30]="0";
+		 char ch[30]="0";
+		 if(strlen(jour)==1)strcat(cj,jour);
+		 else strcpy(cj,jour);
+		 if(strlen(mois)==1)strcat(cm,mois);
+		 else strcpy(cm,mois);
+		 strcpy(date,cj);strcat(date,"/");
+		 strcat(date,cm);strcat(date,"/");
 		 strcat(date,annee);
-		 strcpy(heure,h);strcat(heure,":");
+		 if(strlen(h)==1)strcat(ch,h);
+		 else strcpy(ch,h);
+		 strcpy(heure,ch);strcat(heure,":");
 		 strcat(heure,min);
 		 gtk_list_store_append (store, &iter);
 		 gtk_list_store_set (store,&iter,NUM,num,NOM,nom,DESCRIPTION,description,DATE,date,HEURE,heure,NOMBRE,nombre,NOMBREMAX,nombremax,-1); 

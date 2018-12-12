@@ -268,15 +268,19 @@ e3=lookup_widget(react,"re_ent_prenom");
  s2=lookup_widget(react, "respinbutton2");
  s3=lookup_widget(react, "respinbutton3");
  c1=lookup_widget(react,"recombobox1");
-char ch[30]="-";
-strcat(ch,string);
-p=get_personne(ch);
 gtk_entry_set_text(GTK_ENTRY(e1),string);
 gtk_entry_set_text(GTK_ENTRY(e2),string1);
 gtk_entry_set_text(GTK_ENTRY(e3),string2);
- gtk_spin_button_set_value(GTK_SPIN_BUTTON(s1),p.date.jour);
- gtk_spin_button_set_value(GTK_SPIN_BUTTON(s2),p.date.mois);
- gtk_spin_button_set_value(GTK_SPIN_BUTTON(s3),p.date.annee);
+char cj[30],cm[30],ca[30];
+cj[0]=string3[0];cj[1]=string3[1];
+cm[0]=string3[3];cm[1]=string3[4];
+ca[0]=string3[6];ca[1]=string3[7];ca[2]=string3[8];ca[3]=string3[9];
+int ij=atoi(cj);
+int im=atoi(cm);
+int ia=atoi(ca);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(s1),ij);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(s2),im);
+ gtk_spin_button_set_value(GTK_SPIN_BUTTON(s3),ia);
  gtk_combo_box_prepend_text (GTK_COMBO_BOX (c1), _(string4));
  gtk_widget_destroy(stats);
  gtk_combo_box_set_active (c1,0);
@@ -997,6 +1001,6 @@ void
 on_reactivate_clicked                  (GtkButton       *button,
                                         gpointer         user_data)
 {
-
+ 
 }
 

@@ -259,9 +259,14 @@ void afficher_personne(GtkWidget *liste)
 	 while(fscanf(f,"%s %s %s %s %s %s %s \n",id,nom,prenom,jour,mois,annee,role)!=EOF)
 		{
 		 if(id[0]!='-')
-			{
-			 strcpy(date,jour);strcat(date,"/");
-			 strcat(date,mois);strcat(date,"/");
+			{char cj[30]="0";
+			 char cm[30]="0";
+			 if(strlen(jour)==1)strcat(cj,jour);
+			 else strcpy(cj,jour);
+			 if(strlen(mois)==1)strcat(cm,mois);
+			 else strcpy(cm,mois);
+			 strcpy(date,cj);strcat(date,"/");
+			 strcat(date,cm);strcat(date,"/");
 			 strcat(date,annee);
 			 gtk_list_store_append (store, &iter);
 			 gtk_list_store_set (store,&iter,IDENTIFIANT,id,NOM,nom,PRENOM,prenom,DATE,date,ROLE,role,-1);
@@ -338,12 +343,17 @@ void afficher_bpersonne(GtkWidget *liste)
 	 while(fscanf(f,"%s %s %s %s %s %s %s \n",id,nom,prenom,jour,mois,annee,role)!=EOF)
 		{
 		 if(id[0]=='-')
-			{
+			{char cj[30]="0";
+			 char cm[30]="0";
 			 char aid[30];
 			 for(int i=0;i<strlen(id);i++)
 				*(aid+i)=*(id+i+1);
-			 strcpy(date,jour);strcat(date,"/");
-			 strcat(date,mois);strcat(date,"/");
+			 if(strlen(jour)==1)strcat(cj,jour);
+			 else strcpy(cj,jour);
+			 if(strlen(mois)==1)strcat(cm,mois);
+			 else strcpy(cm,mois);
+			 strcpy(date,cj);strcat(date,"/");
+			 strcat(date,cm);strcat(date,"/");
 			 strcat(date,annee);
 			 gtk_list_store_append (store, &iter);
 			 gtk_list_store_set (store,&iter,IDENTIFIANT,aid,NOM,nom,PRENOM,prenom,DATE,date,ROLE,role,-1);
