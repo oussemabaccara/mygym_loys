@@ -39,6 +39,9 @@ void on_button_clicked(GtkWidget       *objet_graphique,gpointer         user_da
 	 case 0:
  	 	 gtk_label_set_text(GTK_LABEL(output),"Erreur: verifier login ou mot de passe");
  	}
+int e;
+e=exist(nom);
+if(e==2)gtk_label_set_text(GTK_LABEL(output),"Erreur: Ce compte est désactivé");
 }
 
 

@@ -118,22 +118,29 @@ GtkWidget*
 create_Admin (void)
 {
   GtkWidget *Admin;
+  GdkPixbuf *Admin_icon_pixbuf;
   GtkWidget *fixed2;
   GtkWidget *admin_quit;
   GtkWidget *image8;
   GtkWidget *admin_list;
   GtkWidget *admin_deals;
-  GtkWidget *image21;
   GtkWidget *image20;
   GtkWidget *titre_espace_Admin;
   GtkWidget *image22;
   GtkWidget *image23;
   GtkWidget *admin_activ;
   GtkWidget *admin_stats;
+  GtkWidget *image21;
 
   Admin = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (Admin, 800, 450);
   gtk_window_set_title (GTK_WINDOW (Admin), _("Espace administrateur"));
+  Admin_icon_pixbuf = create_pixbuf ("database-logo-icon.png");
+  if (Admin_icon_pixbuf)
+    {
+      gtk_window_set_icon (GTK_WINDOW (Admin), Admin_icon_pixbuf);
+      gdk_pixbuf_unref (Admin_icon_pixbuf);
+    }
 
   fixed2 = gtk_fixed_new ();
   gtk_widget_show (fixed2);
@@ -157,11 +164,6 @@ create_Admin (void)
   gtk_widget_show (admin_deals);
   gtk_fixed_put (GTK_FIXED (fixed2), admin_deals, 525, 305);
   gtk_widget_set_size_request (admin_deals, 250, 50);
-
-  image21 = gtk_image_new_from_icon_name ("", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image21);
-  gtk_fixed_put (GTK_FIXED (fixed2), image21, 325, 235);
-  gtk_widget_set_size_request (image21, 50, 50);
 
   image20 = gtk_image_new_from_icon_name ("", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image20);
@@ -194,6 +196,11 @@ create_Admin (void)
   gtk_fixed_put (GTK_FIXED (fixed2), admin_stats, 375, 235);
   gtk_widget_set_size_request (admin_stats, 250, 50);
 
+  image21 = gtk_image_new_from_icon_name ("", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image21);
+  gtk_fixed_put (GTK_FIXED (fixed2), image21, 325, 232);
+  gtk_widget_set_size_request (image21, 51, 53);
+
   g_signal_connect ((gpointer) admin_quit, "clicked",
                     G_CALLBACK (gtk_main_quit),
                     NULL);
@@ -217,13 +224,13 @@ create_Admin (void)
   GLADE_HOOKUP_OBJECT (Admin, image8, "image8");
   GLADE_HOOKUP_OBJECT (Admin, admin_list, "admin_list");
   GLADE_HOOKUP_OBJECT (Admin, admin_deals, "admin_deals");
-  GLADE_HOOKUP_OBJECT (Admin, image21, "image21");
   GLADE_HOOKUP_OBJECT (Admin, image20, "image20");
   GLADE_HOOKUP_OBJECT (Admin, titre_espace_Admin, "titre_espace_Admin");
   GLADE_HOOKUP_OBJECT (Admin, image22, "image22");
   GLADE_HOOKUP_OBJECT (Admin, image23, "image23");
   GLADE_HOOKUP_OBJECT (Admin, admin_activ, "admin_activ");
   GLADE_HOOKUP_OBJECT (Admin, admin_stats, "admin_stats");
+  GLADE_HOOKUP_OBJECT (Admin, image21, "image21");
 
   return Admin;
 }
@@ -2399,11 +2406,6 @@ create_react (void)
   GtkWidget *label111;
   GtkWidget *label112;
   GtkWidget *label113;
-  GtkWidget *button30;
-  GtkWidget *alignment30;
-  GtkWidget *hbox30;
-  GtkWidget *image52;
-  GtkWidget *label114;
   GtkWidget *label103;
   GtkWidget *label105;
   GtkWidget *reeturn;
@@ -2412,6 +2414,11 @@ create_react (void)
   GtkWidget *image50;
   GtkWidget *label104;
   GtkWidget *recombobox1;
+  GtkWidget *reactivate;
+  GtkWidget *alignment30;
+  GtkWidget *hbox30;
+  GtkWidget *image52;
+  GtkWidget *label114;
 
   react = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (react, 800, 450);
@@ -2511,27 +2518,6 @@ create_react (void)
   gtk_widget_set_size_request (label113, 200, 30);
   gtk_misc_set_alignment (GTK_MISC (label113), 1, 0.5);
 
-  button30 = gtk_button_new ();
-  gtk_widget_show (button30);
-  gtk_fixed_put (GTK_FIXED (fixed13), button30, 350, 320);
-  gtk_widget_set_size_request (button30, 152, 32);
-
-  alignment30 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment30);
-  gtk_container_add (GTK_CONTAINER (button30), alignment30);
-
-  hbox30 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox30);
-  gtk_container_add (GTK_CONTAINER (alignment30), hbox30);
-
-  image52 = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image52);
-  gtk_box_pack_start (GTK_BOX (hbox30), image52, FALSE, FALSE, 0);
-
-  label114 = gtk_label_new_with_mnemonic (_("Reactiver"));
-  gtk_widget_show (label114);
-  gtk_box_pack_start (GTK_BOX (hbox30), label114, FALSE, FALSE, 0);
-
   label103 = gtk_label_new (_("<span foreground=\"blue\"><b>Reactiver ce compte? </b></span>"));
   gtk_widget_show (label103);
   gtk_fixed_put (GTK_FIXED (fixed13), label103, 320, 20);
@@ -2574,14 +2560,35 @@ create_react (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (recombobox1), _("M\303\251decin_nutritionniste"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (recombobox1), _("Kin\303\251sith\303\251rapeute"));
 
+  reactivate = gtk_button_new ();
+  gtk_widget_show (reactivate);
+  gtk_fixed_put (GTK_FIXED (fixed13), reactivate, 350, 320);
+  gtk_widget_set_size_request (reactivate, 152, 32);
+
+  alignment30 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment30);
+  gtk_container_add (GTK_CONTAINER (reactivate), alignment30);
+
+  hbox30 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox30);
+  gtk_container_add (GTK_CONTAINER (alignment30), hbox30);
+
+  image52 = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image52);
+  gtk_box_pack_start (GTK_BOX (hbox30), image52, FALSE, FALSE, 0);
+
+  label114 = gtk_label_new_with_mnemonic (_("Reactiver"));
+  gtk_widget_show (label114);
+  gtk_box_pack_start (GTK_BOX (hbox30), label114, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) button29, "clicked",
                     G_CALLBACK (gtk_main_quit),
                     NULL);
-  g_signal_connect ((gpointer) button30, "clicked",
-                    G_CALLBACK (on_add_ajouter_clicked),
-                    NULL);
   g_signal_connect ((gpointer) reeturn, "clicked",
                     G_CALLBACK (on_reeturn_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) reactivate, "clicked",
+                    G_CALLBACK (on_reactivate_clicked),
                     NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
@@ -2603,11 +2610,6 @@ create_react (void)
   GLADE_HOOKUP_OBJECT (react, label111, "label111");
   GLADE_HOOKUP_OBJECT (react, label112, "label112");
   GLADE_HOOKUP_OBJECT (react, label113, "label113");
-  GLADE_HOOKUP_OBJECT (react, button30, "button30");
-  GLADE_HOOKUP_OBJECT (react, alignment30, "alignment30");
-  GLADE_HOOKUP_OBJECT (react, hbox30, "hbox30");
-  GLADE_HOOKUP_OBJECT (react, image52, "image52");
-  GLADE_HOOKUP_OBJECT (react, label114, "label114");
   GLADE_HOOKUP_OBJECT (react, label103, "label103");
   GLADE_HOOKUP_OBJECT (react, label105, "label105");
   GLADE_HOOKUP_OBJECT (react, reeturn, "reeturn");
@@ -2616,6 +2618,11 @@ create_react (void)
   GLADE_HOOKUP_OBJECT (react, image50, "image50");
   GLADE_HOOKUP_OBJECT (react, label104, "label104");
   GLADE_HOOKUP_OBJECT (react, recombobox1, "recombobox1");
+  GLADE_HOOKUP_OBJECT (react, reactivate, "reactivate");
+  GLADE_HOOKUP_OBJECT (react, alignment30, "alignment30");
+  GLADE_HOOKUP_OBJECT (react, hbox30, "hbox30");
+  GLADE_HOOKUP_OBJECT (react, image52, "image52");
+  GLADE_HOOKUP_OBJECT (react, label114, "label114");
 
   return react;
 }

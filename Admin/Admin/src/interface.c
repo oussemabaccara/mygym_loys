@@ -123,13 +123,13 @@ create_Admin (void)
   GtkWidget *image8;
   GtkWidget *admin_list;
   GtkWidget *admin_deals;
-  GtkWidget *image21;
   GtkWidget *image20;
   GtkWidget *titre_espace_Admin;
   GtkWidget *image22;
   GtkWidget *image23;
   GtkWidget *admin_activ;
   GtkWidget *admin_stats;
+  GtkWidget *image21;
 
   Admin = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_size_request (Admin, 800, 450);
@@ -157,11 +157,6 @@ create_Admin (void)
   gtk_widget_show (admin_deals);
   gtk_fixed_put (GTK_FIXED (fixed2), admin_deals, 525, 305);
   gtk_widget_set_size_request (admin_deals, 250, 50);
-
-  image21 = gtk_image_new_from_icon_name ("", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image21);
-  gtk_fixed_put (GTK_FIXED (fixed2), image21, 325, 235);
-  gtk_widget_set_size_request (image21, 50, 50);
 
   image20 = gtk_image_new_from_icon_name ("", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (image20);
@@ -194,6 +189,11 @@ create_Admin (void)
   gtk_fixed_put (GTK_FIXED (fixed2), admin_stats, 375, 235);
   gtk_widget_set_size_request (admin_stats, 250, 50);
 
+  image21 = gtk_image_new_from_icon_name ("", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image21);
+  gtk_fixed_put (GTK_FIXED (fixed2), image21, 325, 232);
+  gtk_widget_set_size_request (image21, 51, 53);
+
   g_signal_connect ((gpointer) admin_quit, "clicked",
                     G_CALLBACK (gtk_main_quit),
                     NULL);
@@ -217,13 +217,13 @@ create_Admin (void)
   GLADE_HOOKUP_OBJECT (Admin, image8, "image8");
   GLADE_HOOKUP_OBJECT (Admin, admin_list, "admin_list");
   GLADE_HOOKUP_OBJECT (Admin, admin_deals, "admin_deals");
-  GLADE_HOOKUP_OBJECT (Admin, image21, "image21");
   GLADE_HOOKUP_OBJECT (Admin, image20, "image20");
   GLADE_HOOKUP_OBJECT (Admin, titre_espace_Admin, "titre_espace_Admin");
   GLADE_HOOKUP_OBJECT (Admin, image22, "image22");
   GLADE_HOOKUP_OBJECT (Admin, image23, "image23");
   GLADE_HOOKUP_OBJECT (Admin, admin_activ, "admin_activ");
   GLADE_HOOKUP_OBJECT (Admin, admin_stats, "admin_stats");
+  GLADE_HOOKUP_OBJECT (Admin, image21, "image21");
 
   return Admin;
 }
